@@ -1,0 +1,136 @@
+set $mod Mod1
+set $term ghostty                          
+set $menu rofi -show drun
+
+font pango:JetBrainsMono Nerd Font 9       
+floating_modifier $mod normal              
+tiling_drag modifier
+gaps inner 6
+
+### Output & input — new, replaces autorandr
+output DP-2 mode 1920x1080@180Hz adaptive_sync on
+seat seat0 xcursor_theme Quintom_Ink 24
+
+### Borders
+# sway: app_id for Wayland apps, class only for XWayland
+for_window [app_id=".*"] border pixel 1
+for_window [class=".*"] border pixel 1
+for_window [app_id="firefox"] border none
+for_window [app_id="librewolf"] border none
+
+client.focused          #5C5C68 #5C5C68 #ffffff #5C5C68   #5C5C68
+client.focused_inactive #000000 #000000 #ffffff #000000   #000000
+client.unfocused        #000000 #000000 #888888 #000000   #000000
+client.urgent           #000000 #000000 #ffffff #000000   #000000
+client.placeholder      #000000 #000000 #ffffff #000000   #000000
+client.background       #ffffff
+
+### Floating
+for_window [title="Calculator"] floating enable
+for_window [title="Timer"] floating enable
+for_window [app_id="mpv"] floating enable
+for_window [app_id="zenity"] floating enable
+for_window [app_id="swaynag"] floating enable
+
+### Core
+bindsym $mod+Return exec $term
+bindsym $mod+q kill
+bindsym $mod+r mode "resize"
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+# $mod+Shift+r restart — dropped, sway has no restart; reload covers it
+
+### Focus & movement — unchanged
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+a focus parent
+bindsym $mod+space focus mode_toggle
+
+### Layout — unchanged
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+t split toggle
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+w sticky toggle
+bindsym $mod+Shift+space floating toggle
+
+### Apps
+bindsym ctrl+space exec $menu
+bindsym $mod+Shift+p exec gnome-calculator
+bindsym $mod+l exec ~/.config/sway/lock.sh
+bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy   # was flameshot
+bindsym $mod+F3 exec $term -e yazi
+bindsym $mod+F4 exec firefox
+bindsym $mod+F9 exec $term -e ncmpcpp
+bindsym $mod+F6 exec ~/.config/sway/scripts/power-menu.sh
+# F7/F8 wifi+bt menus — polybar scripts, port later
+
+### Media — pamixer/amixer → wpctl (PipeWire)
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 3%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+### Brightness — ddcutil is I2C, works unchanged
+bindsym $mod+F1 exec ddcutil setvcp 10 - 20
+bindsym $mod+F2 exec ddcutil setvcp 10 + 20
+bindsym $mod+Shift+F6 exec systemctl reboot
+
+### Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+### Resize — unchanged
+mode "resize" {
+    bindsym Left resize shrink width 5 px or 5 ppt
+    bindsym Down resize grow height 5 px or 5 ppt
+    bindsym Up resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+### Autostart
+exec_always ~/.config/sway/autostart.sh
+exec swaymsg 'workspace 1; exec ghostty'
+
+include /etc/sway/config.d/*

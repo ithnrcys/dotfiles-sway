@@ -1,0 +1,8 @@
+keymap:
+  - name: command-key
+    remap:
+      SUPER-c: C-c
+      SUPER-v: C-v
+      SUPER-x: C-x
+      SUPER-z: C-z
+      SUPER-Shift-z: C-Shift-z
