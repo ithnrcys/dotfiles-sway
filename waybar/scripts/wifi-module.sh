@@ -3,7 +3,7 @@
 # ==========================================
 # EDITABLE VALUES (Change your icons here!)
 # ==========================================
-ICON_WIFI_ON="󰤨"
+ICON_WIFI_ON="󰀂"
 ICON_WIFI_OFF="󰤭"
 ICON_DISCONNECTED="󰤯"
 # ==========================================

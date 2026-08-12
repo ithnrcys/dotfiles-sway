@@ -5,7 +5,7 @@ b_val=$(ddcutil getvcp 10 2>/dev/null | grep -oP 'current value =\s*\K[0-9]+')
 
 # Fallback if ddcutil is busy or offline
 if [ -z "$b_val" ]; then
-    echo "󰃟 Offline"
+    echo "󰖙 Offline"
     exit 0
 fi
 
@@ -19,16 +19,11 @@ empty_width=$(( total_width - filled_width - 1 ))
 
 bar=""
 
-# 1. Add the filled characters (━)
-for (( i=0; i<$filled_width; i++ )); do bar="${bar}━"; done
+# 1. Add the filled characters (─)
+for (( i=0; i<$filled_width; i++ )); do bar="${bar}─"; done
 
-# 2. Add the indicator (┫)
-bar="${bar}┫"
-
-# 3. Add the empty characters (╍)
-if [ $empty_width -gt 0 ]; then
-    for (( i=0; i<$empty_width; i++ )); do bar="${bar}╍"; done
-fi
+# 2. Add the indicator (◈)
+bar="${bar}◈"
 
 # Output the icon and the calculated bar
-echo "󰃟  $bar"
+echo "󰖙  $bar"

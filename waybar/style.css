@@ -38,3 +38,7 @@ window#waybar.bottom { border-top:    1px solid #4D4D5A; }
 
 #window { padding-left: 10px; }
 #custom-nowplaying { padding-left: 10px; }
+
+#custom-brightness { padding-right: 20px; }
+#custom-power { padding-right: 20px; }
+
