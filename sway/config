@@ -50,7 +50,7 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 bindsym $mod+a focus parent
-bindsym $mod+space focus mode_toggle
+bindsym $mod+grave focus mode_toggle
 
 ### Layout — unchanged
 bindsym $mod+h split h
@@ -64,20 +64,15 @@ bindsym $mod+Shift+w sticky toggle
 bindsym $mod+Shift+space floating toggle
 
 ### Apps
-bindsym ctrl+space exec $menu
+bindsym $mod+space exec $menu
 bindsym $mod+Shift+p exec gnome-calculator
 bindsym $mod+l exec ~/.config/sway/lock.sh
-bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy   # was flameshot
-bindsym $mod+F3 exec $term -e yazi
+bindsym ctrl+space exec $term
 bindsym $mod+F4 exec firefox
 bindsym $mod+F9 exec $term -e ncmpcpp
 bindsym $mod+F6 exec ~/.config/sway/scripts/power-menu.sh
 # F7/F8 wifi+bt menus — polybar scripts, port later
 
-### Media — pamixer/amixer → wpctl (PipeWire)
-bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 3%+
-bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-
-bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
 ### Brightness — ddcutil is I2C, works unchanged
 bindsym $mod+F1 exec ddcutil setvcp 10 - 20
