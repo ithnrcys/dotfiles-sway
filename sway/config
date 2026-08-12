@@ -71,6 +71,9 @@ bindsym ctrl+space exec $term
 bindsym $mod+F4 exec firefox
 bindsym $mod+F9 exec $term -e ncmpcpp
 bindsym $mod+F6 exec ~/.config/sway/scripts/power-menu.sh
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Shift+f exec grim ~/Pictures/screenshots/$(date +%F_%H-%M-%S).png
+bindsym $mod+Shift+a exec grim -g "$(slurp)" ~/Pictures/screenshots/$(date +%F_%H-%M-%S).png
 # F7/F8 wifi+bt menus — polybar scripts, port later
 
 
@@ -128,4 +131,7 @@ mode "resize" {
 exec_always ~/.config/sway/autostart.sh
 exec swaymsg 'workspace 1; exec ghostty'
 
-include /etc/sway/config.d/*
+bar bar-0 {
+    mode invisible
+}
+exec_always pkill waybar; waybar

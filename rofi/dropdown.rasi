@@ -1,0 +1,26 @@
+@import "config.rasi"
+
+window {
+    location: north west;
+    anchor: north west;
+    width: 410px;
+    y-offset: 20px; 
+    x-offset: 1510px; 
+}
+
+/* Redefine the mainbox to ONLY contain the list (nukes the inputbar safely) */
+mainbox {
+    children: [ listview ];
+}
+
+/* Override your master config's "hide until typing" rules */
+listview {
+    require-input: false;
+    
+    /* Tell Rofi to shrink to fit the content */
+    fixed-height: false;
+    dynamic: true;
+    
+    /* This is now the MAXIMUM lines before a scrollbar appears */
+    lines: 8; 
+}

@@ -1,0 +1,96 @@
+[
+{
+  "name": "top",
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "modules-left": ["sway/window", "cpu", "memory", "temperature", "custom/updates"],
+  "modules-center": ["sway/workspaces"],
+  "modules-right": ["clock", "custom/weather", "custom/wifi", "custom/bt", "custom/power"],
+
+  "sway/window": { "max-length": 40, "format": "λ {app_id}  <span size='13pt'>✧</span>" },
+  "sway/workspaces": { "disable-scroll": false, "format": "{name}" },
+
+  "cpu": { "interval": 1, "format": "<span size='11pt'></span> {usage}%  <span size='13pt'>✧</span>" },
+  "memory": { "interval": 2, "format": "<span size='11pt'>󰍛</span> {used:0.1f}G  <span size='13pt'>✧</span>" },
+  "temperature": {
+  "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+  "interval": 2,
+  "format": "<span size='11pt'>󰔏</span> {temperatureC}°C  <span size='13pt'>✧</span>",
+  "critical-threshold": 85
+  },
+  "custom/updates": {
+  "exec": "~/.config/waybar/scripts/updates.sh",
+  "interval": 1800,
+  "format": "<span size='11pt'>󰚰</span> {}"
+  },
+
+  "clock": {
+    "format": "{:%a %d %b  %H:%M} <span size='13pt'>✧</span>",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+  "custom/weather": {
+    "exec": "~/.config/waybar/scripts/weather-module.sh --status",
+    "interval": 900,
+    "format": "{} <span size='13pt'>✧</span>",
+    "on-click": "~/.config/waybar/scripts/weather-module.sh --menu"
+  },
+  "custom/wifi": {
+    "exec": "~/.config/waybar/scripts/wifi-module.sh --status",
+    "interval": 5,
+    "format": "{} <span size='13pt'>✧</span>",
+    "on-click": "~/.config/waybar/scripts/wifi-module.sh --menu"
+  },
+  "custom/bt": {
+    "exec": "~/.config/waybar/scripts/bt-module.sh --status",
+    "interval": 5,
+    "format": "{} <span size='13pt'>✧</span>",
+    "on-click": "~/.config/waybar/scripts/bt-module.sh --menu"
+  },
+  "custom/power": {
+  "format": "<span size='11pt'>⏻</span>  ",
+  "on-click": "~/.config/waybar/scripts/power-module.sh"
+  }
+},
+{
+  "name": "bottom",
+  "layer": "top",
+  "position": "bottom",
+  "height": 28,
+  "modules-left": ["custom/nowplaying"],
+  "modules-center": ["custom/uptime", "network"],
+  "modules-right": ["tray", "custom/volume", "custom/brightness"],
+
+  "custom/nowplaying": {
+    "exec": "~/.config/waybar/scripts/nowplaying.sh",
+    "interval": 3,
+    "max-length": 45
+  },
+  "custom/uptime": {
+    "exec": "uptime -p | sed 's/up //'",
+    "interval": 60,
+    "format": "󰅐 {} <span size='13pt'>✧</span>"
+  },
+  "network": {
+  "format-wifi": "󰤨 {essid} <span size='13pt'>✧</span> {bandwidthDownBits}",
+  "format-ethernet": "󰈀 {ipaddr}",
+  "format-disconnected": "󰤭",
+  "interval": 3
+  },
+  "tray": { "spacing": 8 },
+  "custom/volume": {
+    "exec": "~/.config/waybar/scripts/volume-bar.sh",
+    "interval": 1,
+    "format": "{} <span size='13pt'>✧</span>",
+    "on-scroll-up": "pamixer -i 2",
+    "on-scroll-down": "pamixer -d 2",
+    "on-click": "pamixer --toggle-mute"
+  },
+  "custom/brightness": {
+    "exec": "~/.config/waybar/scripts/brightness-module.sh",
+    "interval": 5,
+    "on-scroll-up": "ddcutil setvcp 10 + 10",
+    "on-scroll-down": "ddcutil setvcp 10 - 10"
+  }
+}
+]
