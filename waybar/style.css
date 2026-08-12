@@ -30,8 +30,11 @@ window#waybar.bottom { border-top:    1px solid #4D4D5A; }
 #clock, #custom-weather, #custom-wifi, #custom-bt, #custom-power,
 #custom-nowplaying, #custom-uptime, #network, #tray,
 #custom-volume, #custom-brightness {
-  padding: 0 0 0 12px;
-  color: #e3e2e9;
+	padding: 0;
+	color: #e3e2e9;
 }
 
 #temperature.critical { color: #C0BFCC; }
+
+#window { padding-left: 10px; }
+#custom-nowplaying { padding-left: 10px; }
