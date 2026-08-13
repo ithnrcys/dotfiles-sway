@@ -1,5 +1,5 @@
 configuration {
-    font: "JetBrainsMono Nerd Font 10";
+    font: "JetBrainsMono Nerd Font 9.75";
     show-icons: true;
     display-drun: "λ";
 }
@@ -17,10 +17,10 @@ configuration {
 window {
     location: north west;
     anchor: north west;
-    width: 530px;
+    width: 700px;
     x-offset: -2px;
-    y-offset: 0px;
-    
+    y-offset: -28px;
+
     background-color: @background;
     
     /* We force these to 0 to stop the "ghost border" */
@@ -46,14 +46,14 @@ inputbar {
 prompt {
     background-color: transparent;
     text-color: @selected;
-    font: "JetBrainsMono Nerd Font Bold 10";
+    font: "JetBrainsMono Nerd Font Bold 9.75";
     margin: 0px 8px 0px 0px;
 }
 
 entry {
     background-color: transparent;
     text-color: @foreground;
-    placeholder: "Search...";
+    placeholder: "search...";
     placeholder-color: #565f89;
     vertical-align: 0.5;
 }
