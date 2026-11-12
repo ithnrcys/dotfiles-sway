@@ -125,13 +125,20 @@ MEMORY: 32Gib
     fastfetch: laid out as three colour-coded groups (system blue, desktop magenta, hardware green) with icon + lowercase keys in an aligned column and a row of palette dots
     ghostty: colour scheme is the built-in theme "Belafonte Night" (theme line in ghostty/colors; browse with ghostty +list-themes; reload a running Ghostty with pkill -USR2 -x ghostty); prompt colours in zsh/p10k-colors.zsh re-matched to it
     zsh: prompt restyled as powerline blocks (zsh/p10k-colors.zsh, on top of ~/.p10k.zsh) — blue folder block, git block (olive clean / amber changed) with ahead, staged, modified and untracked counts; status, duration and clock blocks on the right; prompt character alone on the second line
+    system: build tools and -devel packages installed for SwayFX (gcc, meson, ninja, scdoc, wlroots-devel, wayland / cairo / pango / libinput / libdrm / Mesa EGL+GLES / xcb devel ...)
+    swayfx: SwayFX 0.6 (sway fork with blur, rounded corners, shadows) built from source — sources in ~/.local/src/swayfx (scenefx 0.5 as a static subproject), installed to ~/.local/swayfx; picom is X11-only and cannot run under sway
+        build:   cd ~/.local/src/swayfx && meson setup build --prefix=$HOME/.local/swayfx --buildtype=release -Dscenefx:default_library=static && ninja -C build install
+        session: sway/swayfx.desktop copied to /usr/share/wayland-sessions/ — pick "SwayFX" at the login screen; sway/start-swayfx.sh starts it with sway/swayfx.config (= config + fx.conf) and falls back to plain sway if the binary cannot start (rebuild after a wlroots update)
+        effects: sway/fx.conf — corner radius 8, blur, shadows, slight dimming of unfocused windows, gaps 8, blur + shadow on rofi menus and notifications
+    ghostty: see-through background (0.82) under SwayFX only — start-swayfx.sh writes ~/.cache/ghostty-fx.conf, which ghostty/config includes when it exists; plain sway removes it
+    sway: window borders 2px; focused border rust #97522c, others dark plum (Belafonte Night colours)
     zsh: plugins — autosuggestions, syntax highlighting, history substring search (Up / Down) and fzf-tab (Tab completions in an fzf popup). Not packaged by openSUSE: zsh/install-plugins.sh clones them into ~/.local/share/zsh/plugins (run it once on a new machine, again to update); .zshrc skips any that are missing
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
-    sway/        config, autostart.sh
+    sway/        config, autostart.sh, fx.conf + swayfx.config + start-swayfx.sh + swayfx.desktop (SwayFX session)
     bin/         ws-color (workspace icon colours); ln -s into ~/.local/bin
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi

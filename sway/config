@@ -13,14 +13,15 @@ seat seat0 xcursor_theme Quintom_Ink 24
 
 ### Borders
 # sway: app_id for Wayland apps, class only for XWayland
-for_window [app_id=".*"] border pixel 1
-for_window [class=".*"] border pixel 1
+for_window [app_id=".*"] border pixel 2
+for_window [class=".*"] border pixel 2
 for_window [app_id="firefox"] border none
 for_window [app_id="librewolf"] border none
 
-client.focused          #5C5C68 #5C5C68 #ffffff #5C5C68   #5C5C68
-client.focused_inactive #000000 #000000 #ffffff #000000   #000000
-client.unfocused        #000000 #000000 #888888 #000000   #000000
+# focused: rust from the terminal theme (Belafonte Night); everything else: its dark plum
+client.focused          #97522c #97522c #d5ccba #eaa549   #97522c
+client.focused_inactive #45373c #45373c #d5ccba #45373c   #45373c
+client.unfocused        #20111b #20111b #968c83 #20111b   #20111b
 client.urgent           #000000 #000000 #ffffff #000000   #000000
 client.placeholder      #000000 #000000 #ffffff #000000   #000000
 client.background       #ffffff
@@ -135,6 +136,8 @@ mode "resize" {
 }
 
 ### Autostart
+# plain sway session: drop the SwayFX-only terminal transparency left by start-swayfx.sh
+exec sh -c '[ -n "$SWAYFX" ] || rm -f ~/.cache/ghostty-fx.conf'
 exec pasystray
 exec "dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway; systemctl --user start sway-session.target"
 exec_always ~/.config/sway/autostart.sh
