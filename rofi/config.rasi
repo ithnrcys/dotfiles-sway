@@ -1,5 +1,6 @@
 configuration {
-    font: "JetBrainsMono Nerd Font 9.75";
+    font: "JetBrainsMono Nerd Font 10.25";
+    dpi: 96;
     show-icons: true;
     display-drun: "λ";
 }
@@ -18,7 +19,7 @@ window {
     location: north west;
     anchor: north west;
     width: 700px;
-    x-offset: -2px;
+    x-offset: 0px;
     y-offset: -28px;
 
     background-color: @background;
@@ -39,14 +40,14 @@ inputbar {
     /* Putting the color and height control back here */
     background-color: @background;
     /* Adjust these two numbers (4px and 2px) to match your Polybar height exactly */
-    padding: 4px 10px 2px 10px; 
+    padding: 5px 10px 2px 10px; 
     children: [ prompt, entry ];
 }
 
 prompt {
     background-color: transparent;
     text-color: @selected;
-    font: "JetBrainsMono Nerd Font Bold 9.75";
+    font: "JetBrainsMono Nerd Font Bold 10.25";
     margin: 0px 8px 0px 0px;
 }
 
