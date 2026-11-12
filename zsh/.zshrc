@@ -47,3 +47,6 @@ source ~/.dotfiles/p10k/powerlevel10k.zsh-theme
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 [[ -f ~/.dotfiles/zsh/p10k-colors.zsh ]] && source ~/.dotfiles/zsh/p10k-colors.zsh
 
+# graphical password prompts (zenity) for sudo -A and for ssh key passphrases when there is no terminal
+export SUDO_ASKPASS="$HOME/.local/bin/zenity-askpass"
+export SSH_ASKPASS="$HOME/.local/bin/zenity-askpass"

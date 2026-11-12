@@ -95,6 +95,7 @@ MEMORY: 32Gib
     swaylock: "λ user" label removed from the lock background; ring changed to a 3px hairline with no disc (white segment on key press, solid white while verifying, light haze inside on a wrong password)
     swaylock: ring is now a thin blue accent (#86a4dc, from the wallpaper) over a dark glass disc — option D of four mock-ups
     swayidle: started from sway/autostart.sh — lock after 10 min idle, screen off at 11 min (back on at input), lock before suspend; fullscreen windows inhibit idle (sway/config)
+    zsh: SUDO_ASKPASS and SSH_ASKPASS point at ~/.local/bin/zenity-askpass (zenity --password); the default gnome-ssh-askpass cannot open its dialog here because the GNOME prompter service is not installed
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
