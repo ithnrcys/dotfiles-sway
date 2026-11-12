@@ -58,7 +58,11 @@ if [[ "$1" == "--menu" ]]; then
             else
                 rows="${rows}$(strength_icon "$signal") ${ssid}\n"
             fi
-        done < <(nmcli -t -e no -f IN-USE,SIGNAL,SECURITY,SSID dev wifi list | sort -t: -k2,2 -nr)
+        done < <(nmcli -t -e no -f IN-USE,SIGNAL,SECURITY,SSID dev wifi list --rescan no | sort -t: -k2,2 -nr)
+
+        # --rescan no: show NetworkManager's cached list at once (a forced scan blocks ~5 s).
+        # Kick off a scan in the background instead, so the cache is fresh for the next open.
+        ( nmcli dev wifi rescan >/dev/null 2>&1 & )
 
         if [ -n "$rows" ]; then
             MENU_CONTENT="${MENU_CONTENT}\n──────────────────────────────\n${rows%\\n}"
@@ -75,7 +79,8 @@ if [[ "$1" == "--menu" ]]; then
         *"Wi-Fi: Turn OFF"*) nmcli radio wifi off; exit 0 ;;
         *"Wi-Fi: Turn ON"*)  nmcli radio wifi on;  exit 0 ;;
         *"Rescan"*)
-            nmcli dev wifi rescan 2>/dev/null; sleep 2
+            # explicit rescan: this one does wait for the scan to finish
+            nmcli -t dev wifi list --rescan yes >/dev/null 2>&1
             exec "$0" --menu ;;
         ──*) exit 0 ;;
     esac
