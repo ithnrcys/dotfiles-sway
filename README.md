@@ -91,6 +91,7 @@ MEMORY: 32Gib
     waybar: power button moved to the far left of the bottom bar, followed by a grey vertical line before the music module; its menu opens upward from the corner (rofi/dropup-left.rasi); bluetooth is now the last module on the top bar
     waybar: tray moved from the bottom-right to the top-right edge, after bluetooth (✧ between them); bottom bar now ends with volume and brightness
     swaylock: new swaylock/config (~/.config/swaylock symlinked) — black screen, thin grey ring always visible, JetBrainsMono, lighter ring for verifying / wrong / caps lock; sway/lock.sh added, so $mod+l and the power menu's Lock entry now work
+    swaylock restyled: background is the wallpaper frosted (blurred), colour-muted and darkened, with "λ user" under the ring — built by sway/lock.sh with ImageMagick and cached in ~/.cache/swaylock/bg.jpg (rebuilt when the wallpaper or script changes; lock.sh --rebuild forces it); ring is larger and thicker over a smoked-glass disc, bright while verifying, inverted on a wrong password
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
@@ -135,6 +136,7 @@ Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, bo
     - $mod+F6 calls sway/scripts/power-menu.sh, which does not exist — point it at waybar/scripts/power-module.sh
     - $mod+F7/F8 wifi and bluetooth menus — bind to the waybar scripts
     - swayidle: idle lock and display off
+    - Lock screen has no clock (plain swaylock cannot draw one) — hyprlock or gtklock from the repo could
     - zsh/p10k-colors.zsh is sourced but missing; ~/.p10k.zsh lives outside the repo
     - p10k is a gitlink without .gitmodules — make it a real submodule or install it another way
     - Waybar temperature uses a fixed hwmon4 path that can shift between boots
