@@ -8,7 +8,7 @@
 # (Apple-licensed, deliberately not in this repo).
 
 FONT="SF Pro"
-ICON_SIZE="10pt"
+ICON_SIZE="9pt"
 ICON_CELLS=3          # advance of one icon measured in bar-font characters, for centring
 DIM="#7C7C84"         # unfocused icon without a colour of its own
 DIM_ALPHA="55%"       # unfocused icon with a colour: same colour, this opaque
