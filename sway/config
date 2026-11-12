@@ -31,6 +31,8 @@ for_window [title="Timer"] floating enable
 for_window [app_id="mpv"] floating enable
 for_window [app_id="zenity"] floating enable
 for_window [app_id="swaynag"] floating enable
+for_window [app_id="(?i)bitwarden"] floating enable
+for_window [class="(?i)bitwarden"] floating enable
 for_window [class="steam_app_244210" title="^Content Manager"] floating enable, resize set 100ppt 100ppt, move position 0 0
 
 ### Idle — a fullscreen window (game, video) keeps the screen from locking or turning off
