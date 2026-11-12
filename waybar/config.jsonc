@@ -104,7 +104,7 @@
   "position": "bottom",
   "height": 28,
 
-  "modules-left":   ["custom/power", "custom/nowplaying"],
+  "modules-left":   ["custom/power", "custom/music-prev", "custom/music-toggle", "custom/music-next", "custom/nowplaying"],
   "modules-center": ["custom/procs", "custom/uptime", "network"],
   "modules-right":  ["custom/volume", "custom/brightness"],
 
@@ -115,12 +115,31 @@
     "on-click": "ROFI_THEME=dropup-left.rasi ~/.config/waybar/scripts/power-module.sh"
   },
 
+  // back / play-pause / skip — hidden when nothing plays; a click refreshes all three (signal 9)
+  "custom/music-prev": {
+    "exec": "~/.config/waybar/scripts/music-module.sh --icon prev",
+    "interval": 2, "signal": 9, "tooltip": false, "format": "{}  ",
+    "on-click": "~/.config/waybar/scripts/music-module.sh --do prev"
+  },
+  "custom/music-toggle": {
+    "exec": "~/.config/waybar/scripts/music-module.sh --icon toggle",
+    "interval": 2, "signal": 9, "tooltip": false, "format": "{}  ",
+    "on-click": "~/.config/waybar/scripts/music-module.sh --do toggle"
+  },
+  "custom/music-next": {
+    "exec": "~/.config/waybar/scripts/music-module.sh --icon next",
+    "interval": 2, "signal": 9, "tooltip": false, "format": "{}  <span color='#4D4D5A'>│</span>  ",
+    "on-click": "~/.config/waybar/scripts/music-module.sh --do next"
+  },
+
   // playerctl → mpd fallback; empty when nothing plays.
   // Continuous script (no interval): long titles scroll in bursts, see nowplaying.sh
+  // click: dropup with the cover art, track details and controls
   "custom/nowplaying": {
     "exec": "~/.config/waybar/scripts/nowplaying.sh",
     "escape": true,
-    "tooltip": false
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/music-module.sh"
   },
 
   // running process count — click opens btop

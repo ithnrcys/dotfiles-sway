@@ -97,12 +97,15 @@ MEMORY: 32Gib
     swayidle: started from sway/autostart.sh — lock after 10 min idle, screen off at 11 min (back on at input), lock before suspend; fullscreen windows inhibit idle (sway/config)
     zsh: SUDO_ASKPASS and SSH_ASKPASS point at ~/.local/bin/zenity-askpass (zenity --password); the default gnome-ssh-askpass cannot open its dialog here because the GNOME prompter service is not installed
     sway: Steam starts with the session (steam -silent — tray only, no main window)
+    waybar: back / play-pause / skip buttons left of the now-playing text (waybar/scripts/music-module.sh, playerctl with mpd fallback); hidden when nothing plays
+    waybar: clicking the now-playing text opens a dropup with the cover art, title / artist / album and the same controls (rofi/music.rasi); remote covers are cached in ~/.cache/nowplaying
+    _rofi_engine.sh: ROFI_ARGS array is passed straight to rofi (-mesg, extra -theme-str)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
     sway/        config, autostart.sh
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
-    rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi (top-right / top-left / bottom-centre / bottom-left bar menus), colors.rasi
+    rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi (top-right / top-left / bottom-centre / bottom-left bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts
     zsh/         .zshrc
     fastfetch/   config.jsonc
