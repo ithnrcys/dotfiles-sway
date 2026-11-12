@@ -1,0 +1,54 @@
+# ~/.config/swaylock/config — black lock screen, grey ring, matches the bar palette
+# (same options as the swaylock command line, without the leading --)
+
+# behaviour
+daemonize
+ignore-empty-password
+show-failed-attempts
+indicator-caps-lock
+
+# background
+color=070708
+scaling=fill
+
+# indicator: always visible, thin ring in the middle of the screen
+indicator-idle-visible
+indicator-radius=64
+indicator-thickness=3
+font=JetBrainsMono Nerd Font
+font-size=14
+
+# no inner lines between ring segments
+line-uses-inside
+separator-color=00000000
+
+# idle
+inside-color=070708
+ring-color=4D4D5A
+text-color=e3e2e9
+
+# typing: key presses flash light, backspace dim
+key-hl-color=e3e2e9
+bs-hl-color=7C7C84
+
+# password cleared
+inside-clear-color=070708
+ring-clear-color=7C7C84
+text-clear-color=9A9AA4
+
+# checking the password
+inside-ver-color=070708
+ring-ver-color=BABAC6
+text-ver-color=BABAC6
+
+# wrong password
+inside-wrong-color=070708
+ring-wrong-color=e3e2e9
+text-wrong-color=e3e2e9
+
+# caps lock on
+inside-caps-lock-color=070708
+ring-caps-lock-color=9A9AA4
+text-caps-lock-color=9A9AA4
+caps-lock-key-hl-color=e3e2e9
+caps-lock-bs-hl-color=7C7C84

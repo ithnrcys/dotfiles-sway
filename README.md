@@ -38,7 +38,7 @@ MEMORY: 32Gib
     Verified: RX 9070 XT (radeonsi, gfx1201) and RADV GFX1201
 
 - Desktop (Aug 2026):
-    Cloned dotfiles; ~/.config/{sway,waybar,rofi,ghostty,fastfetch,dunst} and ~/.zshrc are symlinks into ~/.dotfiles
+    Cloned dotfiles; ~/.config/{sway,waybar,rofi,ghostty,fastfetch,dunst,swaylock} and ~/.zshrc are symlinks into ~/.dotfiles
     Ported the i3 config to sway: Mod4, app_id rules for Wayland windows, grim/slurp screenshots, ddcutil brightness keys
     Output: DP-2 1920x1080@180Hz with adaptive_sync on
     Replaced wofi with rofi (launcher sits over the top bar; dropdown.rasi for the bar menus)
@@ -90,6 +90,7 @@ MEMORY: 32Gib
     waybar: power menu icon changed to 󱄚 (U+F111A)
     waybar: power button moved to the far left of the bottom bar, followed by a grey vertical line before the music module; its menu opens upward from the corner (rofi/dropup-left.rasi); bluetooth is now the last module on the top bar
     waybar: tray moved from the bottom-right to the top-right edge, after bluetooth (✧ between them); bottom bar now ends with volume and brightness
+    swaylock: new swaylock/config (~/.config/swaylock symlinked) — black screen, thin grey ring always visible, JetBrainsMono, lighter ring for verifying / wrong / caps lock; sway/lock.sh added, so $mod+l and the power menu's Lock entry now work
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
@@ -100,6 +101,7 @@ MEMORY: 32Gib
     zsh/         .zshrc
     fastfetch/   config.jsonc
     dunst/       dunstrc (notifications)
+    swaylock/    config (lock screen)
     p10k/        powerlevel10k checkout
     wallpapers/  wallpaper.jpg
 Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, border #4D4D5A. Font: JetBrainsMono Nerd Font.
@@ -117,6 +119,7 @@ Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, bo
     $mod+r                resize mode
     $mod+Shift+s          region screenshot to clipboard
     $mod+Shift+a / f      region / full screenshot to ~/Pictures/screenshots
+    $mod+l                lock screen (swaylock)
     $mod+F1 / F2          monitor brightness down / up (ddcutil)
     $mod+F4 / F9          firefox / ncmpcpp
     $mod+Shift+c          reload config
@@ -129,7 +132,6 @@ Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, bo
 
 ## TODO:
 - Ricing:
-    - Lock screen: $mod+l and the power menu's Lock call ~/.config/sway/lock.sh, which does not exist (swaylock is installed)
     - $mod+F6 calls sway/scripts/power-menu.sh, which does not exist — point it at waybar/scripts/power-module.sh
     - $mod+F7/F8 wifi and bluetooth menus — bind to the waybar scripts
     - swayidle: idle lock and display off
