@@ -40,7 +40,7 @@ inputbar {
     /* Putting the color and height control back here */
     background-color: @background;
     /* Adjust these two numbers (4px and 2px) to match your Polybar height exactly */
-    padding: 7px 10px 0px 10px;
+    padding: 5px 10px 2px 10px; 
     children: [ prompt, entry ];
 }
 
