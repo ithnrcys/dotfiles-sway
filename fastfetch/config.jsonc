@@ -4,6 +4,29 @@
     "color": {
       "1": "38;2;72;118;24",
       "2": "38;2;180;180;188"
-    }
-  }
+    },
+    "padding": { "right": 3 }
+  },
+  "display": {
+    "separator": "  ",
+    "color": { "keys": "blue", "title": "magenta" }
+  },
+  // without a module list this fastfetch version prints the logo and nothing else
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "wm",
+    "terminal",
+    "cpu",
+    "gpu",
+    "memory",
+    "disk",
+    "break",
+    "colors"
+  ]
 }
