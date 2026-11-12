@@ -1,91 +1,38 @@
 #!/usr/bin/env bash
+# Weather for the top bar: condition icon + temperature from wttr.in, polled every 15 min.
 
-# ==========================================
-# THE ICON ENGINE (Reusable Function)
-# ==========================================
+# get_icon <condition text> <day|night>
+# Order matters: wttr.in conditions combine words ("Moderate or heavy rain with thunder",
+# "Patchy light snow with thunder"), so the most severe match has to come first.
 get_icon() {
     local condition=$(echo "$1" | tr '[:upper:]' '[:lower:]')
-    local time="$2" # day or night
+    local time="$2"
     case "$condition" in
+        *thunder*|*storm*)                          echo "󰖓" ;;
+        *snow*|*sleet*|*blizzard*|*ice*|*hail*)     echo "󰖘" ;;
+        *rain*|*drizzle*|*shower*)                  echo "󰖖" ;;
+        *fog*|*mist*|*haze*|*smoke*|*dust*|*sand*)  echo "󰖑" ;;
+        *partly*)   [ "$time" = "day" ] && echo "󰖕" || echo "󰼱" ;;
+        *cloud*|*overcast*)                         echo "󰖐" ;;
         *sunny*|*clear*) [ "$time" = "day" ] && echo "󰖙" || echo "󰖔" ;;
-        *partly*cloudy*) [ "$time" = "day" ] && echo "󰖕" || echo "󰼱" ;;
-        *cloud*|*overcast*) echo "󰖐" ;;
-        *rain*|*drizzle*|*shower*) echo "󰖖" ;;
-        *snow*|*ice*) echo "󰖘" ;;
-        *storm*|*thunder*) echo "󰖓" ;;
-        *fog*|*mist*) echo "󰖑" ;;
-        *) echo "󰖐" ;;
+        *)                                          echo "󰖐" ;;
     esac
 }
 
-# ------------------------------------------
-# MODE 1: THE POLLER (Runs every 15 mins)
-# ------------------------------------------
-if [[ "$1" == "--status" ]]; then
-    # --max-time prevents Polybar from hanging if your internet drops
-    weather=$(curl -sf --max-time 5 'wttr.in/?format=%C|%t' 2>/dev/null)
-    
-    if [ -z "$weather" ]; then
-        echo "󰖐 --°C"
-        exit 0
-    fi
+# --max-time keeps the bar from hanging when the network is down
+weather=$(curl -sf --max-time 5 'wttr.in/?format=%C|%t' 2>/dev/null)
 
-    condition=$(echo "$weather" | awk -F '|' '{print $1}')
-    temp=$(echo "$weather" | awk -F '|' '{print $2}' | sed 's/+//')
-
-    hour=$(date +%H)
-    if [ "$hour" -ge 6 ] && [ "$hour" -lt 20 ]; then
-        time="day"
-    else
-        time="night"
-    fi
-
-    icon=$(get_icon "$condition" "$time")
-    echo "$icon $temp"
+# wttr.in answers with an error page or "Unknown location" text now and then; only accept "cond|temp"
+if [[ "$weather" != *"|"*"°"* ]]; then
+    echo "󰖐 --°C"
     exit 0
 fi
 
-# ------------------------------------------
-# MODE 2: THE EXECUTOR (Runs only on click)
-# ------------------------------------------
-if [[ "$1" == "--menu" ]]; then
-    # Fetch detailed JSON data from wttr.in
-    json=$(curl -sf --max-time 5 'wttr.in/?format=j1' 2>/dev/null)
-    
-    if [ -z "$json" ]; then
-        MENU_CONTENT="󰖐 Weather API Unreachable"
-        source ~/.config/waybar/scripts/_rofi_engine.sh
-        exit 0
-    fi
+condition=${weather%%|*}
+temp=${weather##*|}
+temp=${temp#+}
 
-    MENU_CONTENT="󰖐 3-Day Forecast\n──────────────────────────────"
+hour=$(date +%-H)
+if [ "$hour" -ge 6 ] && [ "$hour" -lt 20 ]; then time="day"; else time="night"; fi
 
-    # Loop through Today, Tomorrow, and Next Day
-    for i in 0 1 2; do
-        raw_date=$(echo "$json" | jq -r ".weather[$i].date")
-        day_name=$(date -d "$raw_date" +%a)
-
-        # Morning (09:00 -> JSON index 3)
-        m_cond=$(echo "$json" | jq -r ".weather[$i].hourly[3].weatherDesc[0].value")
-        m_temp=$(echo "$json" | jq -r ".weather[$i].hourly[3].tempC")
-        m_icon=$(get_icon "$m_cond" "day")
-
-        # Afternoon (15:00 -> JSON index 5)
-        a_cond=$(echo "$json" | jq -r ".weather[$i].hourly[5].weatherDesc[0].value")
-        a_temp=$(echo "$json" | jq -r ".weather[$i].hourly[5].tempC")
-        a_icon=$(get_icon "$a_cond" "day")
-
-        # Night (21:00 -> JSON index 7)
-        n_cond=$(echo "$json" | jq -r ".weather[$i].hourly[7].weatherDesc[0].value")
-        n_temp=$(echo "$json" | jq -r ".weather[$i].hourly[7].tempC")
-        n_icon=$(get_icon "$n_cond" "night")
-
-        # Build the row to align cleanly in Rofi's monospace font
-        row="${day_name}:    ${m_icon} ${m_temp}°C    ${a_icon} ${a_temp}°C    ${n_icon} ${n_temp}°C"
-        MENU_CONTENT="${MENU_CONTENT}\n${row}"
-    done
-
-    # Hand off to our Shared Library
-    source ~/.config/waybar/scripts/_rofi_engine.sh
-    exit 0
-fi
+echo "$(get_icon "$condition" "$time") $temp"

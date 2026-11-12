@@ -80,6 +80,7 @@ MEMORY: 32Gib
     waybar: temperature removed from the cpu click panel (the bar already shows it)
     waybar: click menus toggle — clicking the same module again closes its rofi menu; clicking another module swaps to that menu (handled in _rofi_engine.sh, launcher click included)
     waybar: clock is 12h with AM/PM, hover calendar removed, click opens renCal
+    waybar: weather module — 3-day rofi forecast and hover tooltip removed; icon matching fixed (thunder/snow now win over rain in combined conditions; sleet, blizzard, hail, haze, smoke, dust added; error pages from wttr.in no longer shown as weather)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:

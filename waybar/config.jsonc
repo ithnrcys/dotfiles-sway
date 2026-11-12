@@ -74,12 +74,12 @@
     "on-click": "rencal"
   },
 
-  // wttr.in — click for 3-day rofi forecast
+  // wttr.in — icon follows the current condition (day/night variants)
   "custom/weather": {
-    "exec": "~/.config/waybar/scripts/weather-module.sh --status",
+    "exec": "~/.config/waybar/scripts/weather-module.sh",
     "interval": 900,
-    "format": "{}  <span size='13pt'>✧</span>  ",
-    "on-click": "~/.config/waybar/scripts/weather-module.sh --menu"
+    "tooltip": false,
+    "format": "{}  <span size='13pt'>✧</span>  "
   },
 
   // bluetooth — click for rofi device menu
