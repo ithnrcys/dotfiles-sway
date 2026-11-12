@@ -100,8 +100,9 @@ MEMORY: 32Gib
     waybar: back button left of the now-playing text, play-pause and skip right of it (waybar/scripts/music-module.sh, playerctl with mpd fallback); hidden when nothing plays
     waybar: clicking the now-playing text opens a dropup showing just the cover art (rofi/music.rasi); remote covers are cached in ~/.cache/nowplaying
     _rofi_engine.sh: ROFI_ARGS array is passed straight to rofi (-mesg, extra -theme-str)
-    fonts: sketchybar-app-font v3.0.23 (app-icon glyphs, same font as the macOS bar) in fonts/, symlinked into ~/.local/share/fonts; waybar needs a full restart to see a new font
-    waybar: workspaces module draws every window as its app icon, grouped per workspace — focused workspace in [brackets], others dimmed, empty workspace shows its number; app_id → icon lookup in workspaces.sh, known names in scripts/app-icons.txt, unknown apps get the default glyph
+    fonts: SF Pro (from the Mac) unzipped into ~/.local/share/fonts/SF-Pro — Apple-licensed, kept out of this repo; waybar needs a full restart to see a new font
+    waybar: workspaces module shows one constant SF Symbols icon per workspace (scripts/workspace-icons.txt, same set as aeromenu on macOS) — focused workspace uses its second glyph at the centre, the others are dimmed; workspaces without an icon show their name
+    sway: Bitwarden windows float
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
@@ -114,7 +115,6 @@ MEMORY: 32Gib
     dunst/       dunstrc (notifications)
     swaylock/    config (lock screen)
     p10k/        powerlevel10k checkout
-    fonts/       sketchybar-app-font.ttf (ln -s into ~/.local/share/fonts, then fc-cache -f)
     wallpapers/  wallpaper.jpg
 Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, border #4D4D5A. Font: JetBrainsMono Nerd Font.
 

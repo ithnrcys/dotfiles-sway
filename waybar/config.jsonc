@@ -29,7 +29,7 @@
   }
   },
 
-  // workspaces — custom script: one app icon per window, [ ] brackets the focused workspace
+  // workspaces — custom script: one constant SF Symbols icon per workspace, focused one centred
   "custom/workspaces": {
     "exec": "~/.config/waybar/scripts/workspaces.sh",
     "format": "{}",

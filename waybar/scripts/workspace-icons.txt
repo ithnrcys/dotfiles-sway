@@ -1,0 +1,11 @@
+# workspace  unfocused  focused   — SF Symbols characters (font: SF Pro, not in this repo)
+1 􀐘 􀐙
+2 􁹛 􁹜
+3 􀐞 􀐟
+4 􀑆 􀑇
+5 􀍕 􀍖
+6 􀢇 􁱂
+7 􀢸 􁘤
+8 􀳋 􀳌
+9 􀎬 􀎭
+10 􀐉 􀐊
