@@ -15,6 +15,8 @@
   // focused window — λ + app name, reverse-DNS ids shortened
   "sway/window": {
   "max-length": 40,
+  // click: app launcher, same as ctrl+space
+  "on-click": "rofi -show drun",
   "format": "λ {app_id}  <span size='13pt'>✧</span>  ",
   "rewrite": {
     "λ com\\.mitchellh\\.ghostty(.*)": "λ ghostty$1",

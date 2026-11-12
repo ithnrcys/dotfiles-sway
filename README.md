@@ -66,6 +66,7 @@ MEMORY: 32Gib
     _rofi_engine.sh: ROFI_THEME env var picks dropdown.rasi (top bar, default) or dropup.rasi (bottom bar)
     dunst: new dunst/dunstrc, ~/.config/dunst symlinked to it — black popups in the bottom-left corner above the bar, 1px grey frame (brighter for critical), JetBrainsMono 10; left click closes, right click closes all
     waybar: brightness icon changed to the brightness sun (nf-md-brightness_7) so it no longer matches the weather sun
+    waybar: clicking the λ + app name module (top left) opens the rofi launcher, same as ctrl+space
 
 ## Repo Layout:
     sway/        config, autostart.sh
