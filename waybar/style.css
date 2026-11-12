@@ -28,7 +28,7 @@ window#waybar.bottom { border-top:    1px solid #4D4D5A; }
 
 #window, #cpu, #memory, #temperature, #custom-updates,
 #clock, #custom-weather, #custom-wifi, #custom-bt, #custom-power,
-#custom-nowplaying, #custom-uptime, #network, #tray,
+#custom-nowplaying, #custom-procs, #custom-uptime, #network, #tray,
 #custom-volume, #custom-brightness {
 	padding: 0;
 	color: #e3e2e9;

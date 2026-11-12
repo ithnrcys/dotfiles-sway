@@ -94,7 +94,7 @@
   "height": 28,
 
   "modules-left":   ["custom/nowplaying"],
-  "modules-center": ["custom/uptime", "network"],
+  "modules-center": ["custom/procs", "custom/uptime", "network"],
   "modules-right":  ["custom/volume", "custom/brightness", "tray"],
 
   // playerctl → mpd fallback; empty when nothing plays
@@ -102,6 +102,15 @@
     "exec": "~/.config/waybar/scripts/nowplaying.sh",
     "interval": 3,
     "max-length": 45
+  },
+
+  // running process count — click opens btop
+  "custom/procs": {
+    "exec": "ps -e --no-headers | wc -l",
+    "interval": 5,
+    "format": "󰀻 \u2009{}  <span size='13pt'>✧</span>  ",
+    "tooltip": false,
+    "on-click": "ghostty -e btop"
   },
 
   "custom/uptime": {
