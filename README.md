@@ -38,7 +38,7 @@ MEMORY: 32Gib
     Verified: RX 9070 XT (radeonsi, gfx1201) and RADV GFX1201
 
 - Desktop (Aug 2026):
-    Cloned dotfiles; ~/.config/{sway,waybar,rofi,ghostty,fastfetch} and ~/.zshrc are symlinks into ~/.dotfiles
+    Cloned dotfiles; ~/.config/{sway,waybar,rofi,ghostty,fastfetch,dunst} and ~/.zshrc are symlinks into ~/.dotfiles
     Ported the i3 config to sway: Mod4, app_id rules for Wayland windows, grim/slurp screenshots, ddcutil brightness keys
     Output: DP-2 1920x1080@180Hz with adaptive_sync on
     Replaced wofi with rofi (launcher sits over the top bar; dropdown.rasi for the bar menus)
@@ -64,6 +64,7 @@ MEMORY: 32Gib
     wifi menu: networks sorted by signal with strength icons, Rescan entry, click to connect/disconnect; new secured networks ask for the password in rofi (no more nmtui window); result shown via dunstify
     rofi menus: added -sync in _rofi_engine.sh — rofi-wayland 1.7.9 segfaulted on every bar menu (wifi, bt, weather, power) because the inputbar-less menu started at zero height
     _rofi_engine.sh: ROFI_THEME env var picks dropdown.rasi (top bar, default) or dropup.rasi (bottom bar)
+    dunst: new dunst/dunstrc, ~/.config/dunst symlinked to it — black popups in the bottom-left corner above the bar, 1px grey frame (brighter for critical), JetBrainsMono 10; left click closes, right click closes all
 
 ## Repo Layout:
     sway/        config, autostart.sh
@@ -72,6 +73,7 @@ MEMORY: 32Gib
     ghostty/     config, colors, fonts
     zsh/         .zshrc
     fastfetch/   config.jsonc
+    dunst/       dunstrc (notifications)
     p10k/        powerlevel10k checkout
     wallpapers/  wallpaper.jpg
 Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, border #4D4D5A. Font: JetBrainsMono Nerd Font.
@@ -111,7 +113,7 @@ Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, bo
     - rofi dropdown x-offset is fixed at 1510px (assumes 1920 wide)
     - Clean out leftover Polybar/Alacritty comments in the scripts
     - Bottom-bar uptime module shows nothing: this uptime has no -p option
-    - mako is installed but dunst is the one started — remove one
+    - mako is installed but unused now that dunst is configured — uninstall it
     - wallpaper.jpg is 30MB — compress it or keep it out of git
 - System:
     - 32-bit graphics libs: Mesa-libGL-32bit Mesa-libEGL-32bit (libvulkan_radeon-32bit done)

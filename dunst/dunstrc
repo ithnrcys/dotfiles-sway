@@ -1,0 +1,69 @@
+# ~/.config/dunst/dunstrc — black popups, bottom left, matches the bar palette
+
+[global]
+    # placement: bottom-left corner, stacked upward from just above the bottom bar
+    monitor = 0
+    follow = mouse
+    origin = bottom-left
+    offset = (10, 10)
+    width = 340
+    height = (0, 160)
+    notification_limit = 5
+    gap_size = 6
+    layer = overlay
+
+    # look
+    font = JetBrainsMono Nerd Font 10
+    frame_width = 1
+    frame_color = "#4D4D5A"
+    separator_color = frame
+    separator_height = 1
+    corner_radius = 0
+    padding = 10
+    horizontal_padding = 12
+    text_icon_padding = 10
+    transparency = 0
+    line_height = 2
+
+    # text
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    ellipsize = end
+    word_wrap = yes
+    show_age_threshold = 60
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = no
+
+    # icons
+    icon_position = left
+    min_icon_size = 0
+    max_icon_size = 32
+
+    # behaviour
+    sort = yes
+    idle_threshold = 120
+    history_length = 30
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[urgency_low]
+    background = "#070708"
+    foreground = "#9A9AA4"
+    frame_color = "#4D4D5A"
+    timeout = 4
+
+[urgency_normal]
+    background = "#070708"
+    foreground = "#e3e2e9"
+    frame_color = "#4D4D5A"
+    timeout = 6
+
+[urgency_critical]
+    background = "#070708"
+    foreground = "#e3e2e9"
+    frame_color = "#BABAC6"
+    timeout = 0
