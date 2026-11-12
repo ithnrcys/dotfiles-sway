@@ -134,7 +134,7 @@
 
   // playerctl → mpd fallback; empty when nothing plays.
   // Continuous script (no interval): long titles scroll in bursts, see nowplaying.sh
-  // click: dropup with the cover art, track details and controls
+  // click: dropup showing the cover art
   "custom/nowplaying": {
     "exec": "~/.config/waybar/scripts/nowplaying.sh",
     "escape": true,

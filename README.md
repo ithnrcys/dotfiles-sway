@@ -98,7 +98,7 @@ MEMORY: 32Gib
     zsh: SUDO_ASKPASS and SSH_ASKPASS point at ~/.local/bin/zenity-askpass (zenity --password); the default gnome-ssh-askpass cannot open its dialog here because the GNOME prompter service is not installed
     sway: Steam starts with the session (steam -silent — tray only, no main window)
     waybar: back button left of the now-playing text, play-pause and skip right of it (waybar/scripts/music-module.sh, playerctl with mpd fallback); hidden when nothing plays
-    waybar: clicking the now-playing text opens a dropup with the cover art, title / artist / album and the same controls (rofi/music.rasi); remote covers are cached in ~/.cache/nowplaying
+    waybar: clicking the now-playing text opens a dropup showing just the cover art (rofi/music.rasi); remote covers are cached in ~/.cache/nowplaying
     _rofi_engine.sh: ROFI_ARGS array is passed straight to rofi (-mesg, extra -theme-str)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
