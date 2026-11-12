@@ -29,7 +29,7 @@
   }
   },
 
-  // workspaces — custom script: one constant SF Symbols icon per workspace, focused one centred
+  // workspaces — custom script: fixed row of SF Symbols icons, one per workspace; focused / open / not open differ in glyph and brightness
   "custom/workspaces": {
     "exec": "~/.config/waybar/scripts/workspaces.sh",
     "format": "{}",

@@ -1,51 +1,51 @@
 #!/usr/bin/env bash
-# Workspaces for the top bar: each workspace has one constant icon (workspace-icons.txt),
-# drawn with its "focused" glyph when focused and with the dimmed "unfocused" glyph otherwise.
-# The focused workspace sits at the visual centre. A workspace without an icon shows its name.
+# Workspaces for the top bar: a fixed row of icons, one constant icon per workspace
+# (workspace-icons.txt). The row never shifts; only the styling changes:
+#   focused   -> "focused" glyph, full brightness
+#   open      -> "unfocused" glyph, accent grey      (has windows, not focused)
+#   not open  -> "unfocused" glyph, faint            (workspace does not exist yet)
+# Open workspaces that have no icon are appended by name.
 #
 # The icons are SF Symbols characters and need the SF Pro font in ~/.local/share/fonts
 # (Apple-licensed, deliberately not in this repo).
 
-FONT="SF Pro"
-ICON_SIZE="10pt"
-ICON_CELLS=3          # advance of one icon measured in bar-font characters, for centring
-DIM="#7C7C84"
-GAP="    "            # between workspaces
+FONT="${WS_FONT:-SF Pro}"
+ICON_SIZE="${WS_SIZE:-11pt}"
+ICON_WEIGHT="${WS_WEIGHT:-light}"   # pango weight: thin, light, normal, medium, semibold, bold ...
+C_FOCUS="#e3e2e9"
+C_OPEN="#BABAC6"
+C_NONE="#4D4D5A"
+GAP="${WS_GAP:-   }"                 # between workspaces
 
+ORDER=()
 declare -A ICON_OFF ICON_ON
 while read -r ws off on; do
     [[ "$ws" == \#* || -z "$ws" ]] && continue
-    ICON_OFF[$ws]=$off; ICON_ON[$ws]=$on
+    ORDER+=("$ws"); ICON_OFF[$ws]=$off; ICON_ON[$ws]=$on
 done < "${0%/*}/workspace-icons.txt"
 
-icon_span() { echo "<span font_family='$FONT' size='$ICON_SIZE'>$1</span>"; }
+icon() { echo "<span font_family='$FONT' size='$ICON_SIZE' weight='$ICON_WEIGHT' color='$1'>$2</span>"; }
 
 print_ws() {
-    local name focused text cells
-    local left="" right="" centre="" lcells=0 rcells=0 seen=0
-
+    local name focused ws out="" extra=""
+    local -A state=()
     while IFS=$'\t' read -r name focused; do
-        if [ -n "${ICON_OFF[$name]}" ]; then
-            cells=$ICON_CELLS
-            if [ "$focused" = true ]; then text=$(icon_span "${ICON_ON[$name]}")
-            else                           text=$(icon_span "${ICON_OFF[$name]}"); fi
-        else
-            text="$name"; cells=${#name}
-        fi
-
-        if [ "$focused" = true ]; then
-            centre="$text"; seen=1
-        elif (( seen )); then
-            right+="$GAP<span color='$DIM'>$text</span>"; rcells=$(( rcells + ${#GAP} + cells ))
-        else
-            left+="<span color='$DIM'>$text</span>$GAP";  lcells=$(( lcells + ${#GAP} + cells ))
-        fi
+        state[$name]=$focused
+        [ -z "${ICON_OFF[$name]}" ] && {
+            if [ "$focused" = true ]; then extra+="$GAP<span color='$C_FOCUS'>$name</span>"
+            else                           extra+="$GAP<span color='$C_OPEN'>$name</span>"; fi
+        }
     done < <(swaymsg -t get_workspaces | jq -r '.[] | "\(.name)\t\(.focused)"')
 
-    # pad the shorter side so the focused workspace sits at the visual centre
-    while (( lcells < rcells )); do left=" $left";   lcells=$(( lcells + 1 )); done
-    while (( rcells < lcells )); do right="$right "; rcells=$(( rcells + 1 )); done
-    echo "$left$centre$right"
+    for ws in "${ORDER[@]}"; do
+        [ -n "$out" ] && out+="$GAP"
+        case "${state[$ws]}" in
+            true)  out+=$(icon "$C_FOCUS" "${ICON_ON[$ws]}") ;;
+            false) out+=$(icon "$C_OPEN"  "${ICON_OFF[$ws]}") ;;
+            *)     out+=$(icon "$C_NONE"  "${ICON_OFF[$ws]}") ;;
+        esac
+    done
+    echo "$out$extra"
 }
 
 print_ws
