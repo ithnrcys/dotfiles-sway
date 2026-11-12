@@ -85,6 +85,7 @@ MEMORY: 32Gib
     waybar: bluetooth module — hover tooltip removed; menu rewritten like the wifi one: power toggle, Scan (6 s, then reopens), connected / paired / new devices, click to connect, disconnect or pair+trust+connect, results via dunstify; every bluetoothctl call is time-boxed
     rofi: dropdown.rasi now anchors to the top-right corner flush under the bar (was a fixed 1510px offset with a 28px gap), used by the bluetooth and power menus
     Found: bluez is not installed (adapter hci0 exists), so the bluetooth module shows "off" and the menu says so until it is
+    Installed bluez, bluetooth.service running; bar menu tested: power on/off, scan, status icons (device rows and pair/connect actions only against a stub — no named device was in range)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
@@ -136,7 +137,7 @@ Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, bo
     - mako is installed but unused now that dunst is configured — uninstall it
     - wallpaper.jpg is 30MB — compress it or keep it out of git
 - System:
-    - Bluetooth: sudo zypper in bluez && sudo systemctl enable --now bluetooth — then test the bar menu with a real device
+    - Bluetooth: pair and connect a real device through the bar menu (only tested against a stub so far)
     - 32-bit graphics libs: Mesa-libGL-32bit Mesa-libEGL-32bit (libvulkan_radeon-32bit done)
     - Set the hostname — still localhost
     - BIOS: Above 4G Decoding + Resizable BAR, SVM Mode, PBO or 105W cTDP
