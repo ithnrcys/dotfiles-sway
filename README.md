@@ -110,7 +110,8 @@ MEMORY: 32Gib
     bin/ws-color: CLI to set a workspace icon colour — "ws-color" lists, "ws-color 3 ff9f0a" sets, "ws-color 3 none" clears, "ws-color rand" / "ws-color 3 rand" picks random colours; symlinked into ~/.local/bin, reloads waybar
     waybar: focused workspace icon sits in [ brackets ]; wider gap between workspace icons; icons 9pt
     waybar: the [ ] brackets stay fixed at the centre — each side is padded with invisible copies of the other side's icons so the widths match exactly; the slide animation is gone (it moved the brackets)
-    waybar: bottom-right icons are SF Symbols now (volume, brightness, do not disturb, caffeine), drawn at 10pt — toggles show the empty variant when off and the filled one when on; the volume icon is empty normally and filled while the mixer dropup is open; caffeine cup nudged down 3px in style.css
+    waybar: brightness, do-not-disturb and caffeine icons are SF Symbols now, drawn at 10pt — toggles show the empty variant when off and the filled one when on; the volume slider keeps its original music-note icon; caffeine cup nudged down 3px in style.css
+    waybar: no hover tooltip on the volume and brightness sliders
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus

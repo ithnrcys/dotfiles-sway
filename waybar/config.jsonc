@@ -175,7 +175,7 @@
   "custom/volume": {
     "exec": "~/.config/waybar/scripts/volume-bar.sh",
     "interval": 1,
-    "signal": 12,
+    "tooltip": false,
     "format": "{}    ",
     "on-scroll-up": "pamixer -i 2",
     "on-scroll-down": "pamixer -d 2",
@@ -187,6 +187,7 @@
   "custom/brightness": {
     "exec": "~/.config/waybar/scripts/brightness-module.sh",
     "interval": 5,
+    "tooltip": false,
     "on-scroll-up": "ddcutil setvcp 10 + 10",
     "on-scroll-down": "ddcutil setvcp 10 - 10"
   },

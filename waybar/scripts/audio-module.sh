@@ -82,12 +82,6 @@ app_levels() {      # index, current volume, muted
 
 if [ "$1" = "--rows" ]; then build; printf '%s\n' "${ROWS[@]}"; exit 0; fi
 
-# flag for the volume icon (volume-bar.sh draws it filled while the mixer is open)
-OPEN="${XDG_RUNTIME_DIR:-/tmp}/mixer-open"
-refresh_icon() { pkill -RTMIN+12 -x waybar; }
-trap 'rm -f "$OPEN"; refresh_icon' EXIT
-touch "$OPEN"; refresh_icon
-
 row=0
 while true; do
     build
