@@ -78,6 +78,7 @@ MEMORY: 32Gib
     wifi menu: opens instantly from NetworkManager's cached scan (--rescan no) and refreshes the scan in the background; only the Rescan entry waits for a fresh scan
     waybar: hover tooltip removed from the window (λ) module
     waybar: temperature removed from the cpu click panel (the bar already shows it)
+    waybar: click menus toggle — clicking the same module again closes its rofi menu; clicking another module swaps to that menu (handled in _rofi_engine.sh, launcher click included)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
