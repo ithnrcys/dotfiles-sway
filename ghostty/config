@@ -5,8 +5,6 @@ config-file = fonts
 window-decoration = false
 window-padding-x = 10
 window-padding-y = 10
-window-width = 92
-window-height = 24
 background-opacity = 1.0
 window-inherit-working-directory = true
 
