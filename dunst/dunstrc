@@ -4,7 +4,7 @@
     # placement: bottom-left corner, stacked upward from just above the bottom bar
     monitor = 0
     follow = mouse
-    origin = bottom-left
+    origin = bottom-right
     offset = (10, 10)
     width = 340
     height = (0, 160)
