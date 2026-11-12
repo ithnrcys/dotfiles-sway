@@ -17,6 +17,7 @@
   "max-length": 40,
   // click: app launcher, same as ctrl+space
   "on-click": "rofi -show drun",
+  "tooltip": false,
   "format": "λ {app_id}  <span size='13pt'>✧</span>  ",
   "rewrite": {
     // nothing focused (empty workspace): app_id is empty, show the username instead
