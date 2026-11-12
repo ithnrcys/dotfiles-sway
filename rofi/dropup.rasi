@@ -1,0 +1,10 @@
+/* Bar menu for the bottom bar: opens upward, centred above the centre modules */
+@import "dropdown.rasi"
+
+window {
+    location: south;
+    anchor: south;
+    width: 410px;
+    x-offset: 0px;
+    y-offset: 0px;
+}

@@ -60,11 +60,15 @@ MEMORY: 32Gib
     fastfetch: opensuse logo, green/grey colours
     waybar: bottom-right order is now volume, brightness, ✧, tray (tray at the edge); no separator between volume and brightness
     waybar: process count module first in the bottom centre (ps -e count, every 5s); click opens btop in ghostty
+    waybar: clicking the bottom-bar wifi module opens a rofi network menu above it (rofi/dropup.rasi); hover tooltip removed
+    wifi menu: networks sorted by signal with strength icons, Rescan entry, click to connect/disconnect; new secured networks ask for the password in rofi (no more nmtui window); result shown via dunstify
+    rofi menus: added -sync in _rofi_engine.sh — rofi-wayland 1.7.9 segfaulted on every bar menu (wifi, bt, weather, power) because the inputbar-less menu started at zero height
+    _rofi_engine.sh: ROFI_THEME env var picks dropdown.rasi (top bar, default) or dropup.rasi (bottom bar)
 
 ## Repo Layout:
     sway/        config, autostart.sh
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
-    rofi/        config.rasi (launcher), dropdown.rasi (bar menus), colors.rasi
+    rofi/        config.rasi (launcher), dropdown.rasi / dropup.rasi (top / bottom bar menus), colors.rasi
     ghostty/     config, colors, fonts
     zsh/         .zshrc
     fastfetch/   config.jsonc
@@ -106,6 +110,7 @@ Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, bo
     - Waybar temperature uses a fixed hwmon4 path that can shift between boots
     - rofi dropdown x-offset is fixed at 1510px (assumes 1920 wide)
     - Clean out leftover Polybar/Alacritty comments in the scripts
+    - Bottom-bar uptime module shows nothing: this uptime has no -p option
     - mako is installed but dunst is the one started — remove one
     - wallpaper.jpg is 30MB — compress it or keep it out of git
 - System:

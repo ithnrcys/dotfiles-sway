@@ -123,7 +123,10 @@
     "format-wifi": "󰖩 \u2009{essid}  <span size='13pt'>✧</span>  󰓅  {bandwidthDownBits}",
     "format-ethernet": "󰈀 \u2009{ipaddr}",
     "format-disconnected": "󰤭",
-    "interval": 3
+    "interval": 3,
+    "tooltip": false,
+    // click: rofi network list opening upward from the bottom bar
+    "on-click": "ROFI_THEME=dropup.rasi ~/.config/waybar/scripts/wifi-module.sh --menu"
   },
 
   // tray sits at the right edge; separator before it comes from the brightness format
