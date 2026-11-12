@@ -13,15 +13,15 @@ seat seat0 xcursor_theme Quintom_Ink 24
 
 ### Borders
 # sway: app_id for Wayland apps, class only for XWayland
-for_window [app_id=".*"] border pixel 2
-for_window [class=".*"] border pixel 2
+for_window [app_id=".*"] border pixel 3
+for_window [class=".*"] border pixel 3
 for_window [app_id="firefox"] border none
 for_window [app_id="librewolf"] border none
 
-# focused: rust from the terminal theme (Belafonte Night); everything else: its dark plum
-client.focused          #97522c #97522c #d5ccba #eaa549   #97522c
-client.focused_inactive #45373c #45373c #d5ccba #45373c   #45373c
-client.unfocused        #20111b #20111b #968c83 #20111b   #20111b
+# black border on every window, focused or not
+client.focused          #000000 #000000 #d5ccba #000000   #000000
+client.focused_inactive #000000 #000000 #d5ccba #000000   #000000
+client.unfocused        #000000 #000000 #968c83 #000000   #000000
 client.urgent           #000000 #000000 #ffffff #000000   #000000
 client.placeholder      #000000 #000000 #ffffff #000000   #000000
 client.background       #ffffff

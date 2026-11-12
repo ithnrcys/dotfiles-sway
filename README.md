@@ -129,9 +129,9 @@ MEMORY: 32Gib
     swayfx: SwayFX 0.6 (sway fork with blur, rounded corners, shadows) built from source — sources in ~/.local/src/swayfx (scenefx 0.5 as a static subproject), installed to ~/.local/swayfx; picom is X11-only and cannot run under sway
         build:   cd ~/.local/src/swayfx && meson setup build --prefix=$HOME/.local/swayfx --buildtype=release -Dscenefx:default_library=static && ninja -C build install
         session: sway/swayfx.desktop copied to /usr/share/wayland-sessions/ — pick "SwayFX" at the login screen; sway/start-swayfx.sh starts it with sway/swayfx.config (= config + fx.conf) and falls back to plain sway if the binary cannot start (rebuild after a wlroots update)
-        effects: sway/fx.conf — corner radius 8, blur, shadows, slight dimming of unfocused windows, gaps 8, blur + shadow on rofi menus and notifications
+        effects: sway/fx.conf — square corners, blur, soft dark shadows, slight dimming of unfocused windows, gaps 8, blur + shadow on rofi menus and notifications
     ghostty: see-through background (0.82) under SwayFX only — start-swayfx.sh writes ~/.cache/ghostty-fx.conf, which ghostty/config includes when it exists; plain sway removes it
-    sway: window borders 2px; focused border rust #97522c, others dark plum (Belafonte Night colours)
+    sway: window borders 3px black on every window, focused or not (none on Firefox / LibreWolf)
     zsh: plugins — autosuggestions, syntax highlighting, history substring search (Up / Down) and fzf-tab (Tab completions in an fzf popup). Not packaged by openSUSE: zsh/install-plugins.sh clones them into ~/.local/share/zsh/plugins (run it once on a new machine, again to update); .zshrc skips any that are missing
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
