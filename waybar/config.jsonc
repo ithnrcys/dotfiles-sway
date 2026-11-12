@@ -175,6 +175,7 @@
   "custom/volume": {
     "exec": "~/.config/waybar/scripts/volume-bar.sh",
     "interval": 1,
+    "signal": 12,
     "format": "{}    ",
     "on-scroll-up": "pamixer -i 2",
     "on-scroll-down": "pamixer -d 2",

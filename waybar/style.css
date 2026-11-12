@@ -41,5 +41,6 @@ window#waybar.bottom { border-top:    1px solid #4D4D5A; }
 #custom-power { padding-left: 10px; }
 
 #tray { padding-right: 20px; }
-#custom-caffeine { padding-right: 20px; }
+/* padding-top nudges the cup glyph down onto the bar centre line */
+#custom-caffeine { padding-right: 20px; padding-top: 3px; }
 
