@@ -1,0 +1,10 @@
+/* Bar menu for the right end of the bottom bar (audio): opens upward from the corner */
+@import "dropdown.rasi"
+
+window {
+    location: south east;
+    anchor: south east;
+    width: 480px;
+    x-offset: 0px;
+    y-offset: 0px;
+}
