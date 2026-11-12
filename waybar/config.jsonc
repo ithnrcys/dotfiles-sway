@@ -19,6 +19,8 @@
   "on-click": "rofi -show drun",
   "format": "λ {app_id}  <span size='13pt'>✧</span>  ",
   "rewrite": {
+    // nothing focused (empty workspace): app_id is empty, show the username instead
+    "λ   (<span.*)": "λ ocx  $1",
     "λ com\\.mitchellh\\.ghostty(.*)": "λ ghostty$1",
     "λ org\\.mozilla\\.firefox(.*)": "λ firefox$1",
     "λ steamwebhelper(.*)": "λ steam$1",

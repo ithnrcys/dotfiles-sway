@@ -70,6 +70,7 @@ MEMORY: 32Gib
     waybar: cpu module — hover tooltip removed; click opens a rofi panel (waybar/scripts/cpu-module.sh, rofi/dropdown-left.rasi) with total usage bar, temp, frequency, load, per-core bars (first version also had the model name, top 3 processes and an Open btop entry)
     waybar: cpu panel trimmed to usage, temp, freq, load and per-core bars (no model name, processes or btop entry); opens instantly — a hidden custom/cpusnap module snapshots /proc/stat every second so no sampling wait is needed
     waybar: memory module — click opens a small rofi menu (waybar/scripts/mem-module.sh) with ram and swap bars, free and cache; hover tooltips removed from memory, temperature and updates
+    waybar: window module shows "λ ocx" when nothing is focused (empty workspace)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
