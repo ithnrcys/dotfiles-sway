@@ -10,7 +10,7 @@
 
   "modules-left":   ["sway/window", "cpu", "memory", "temperature", "custom/updates", "custom/cpusnap"],
   "modules-center": ["custom/workspaces"],
-  "modules-right":  ["clock", "custom/weather", "custom/wifi", "custom/bt", "custom/power"],
+  "modules-right":  ["clock", "custom/weather", "custom/bt", "custom/power"],
 
   // focused window — λ + app name, reverse-DNS ids shortened
   "sway/window": {
@@ -79,14 +79,6 @@
     "on-click": "~/.config/waybar/scripts/weather-module.sh --menu"
   },
 
-  // wifi status icon — click for rofi network menu
-  "custom/wifi": {
-    "exec": "~/.config/waybar/scripts/wifi-module.sh --status",
-    "interval": 5,
-    "format": "{}  <span size='13pt'>✧</span>  ",
-    "on-click": "~/.config/waybar/scripts/wifi-module.sh --menu"
-  },
-
   // bluetooth — click for rofi device menu
   "custom/bt": {
     "exec": "~/.config/waybar/scripts/bt-module.sh --status",
@@ -136,7 +128,7 @@
   },
 
   "network": {
-    "format-wifi": "󰖩 \u2009{essid}  <span size='13pt'>✧</span>  󰓅  {bandwidthDownBits}",
+    "format-wifi": "󰀂 \u2009{essid}  <span size='13pt'>✧</span>  󰓅  {bandwidthDownBits}",
     "format-ethernet": "󰈀 \u2009{ipaddr}",
     "format-disconnected": "󰤭",
     "interval": 3,
