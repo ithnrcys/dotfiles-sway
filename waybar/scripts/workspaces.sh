@@ -10,8 +10,7 @@
 
 FONT="SF Pro"
 ICON_SIZE="9pt"
-DIM="#7C7C84"         # unfocused icon without a colour of its own
-DIM_ALPHA="55%"       # unfocused icon with a colour: same colour, this opaque
+DIM="#7C7C84"         # every unfocused icon
 GAP="      "          # between workspaces
 
 declare -A ICON_OFF ICON_ON ICON_COLOR
@@ -22,15 +21,15 @@ done < "${0%/*}/workspace-icons.txt"
 
 # $1 glyph, $2 optional colour (from the icons file), $3 "dim" for an unfocused workspace,
 # "ghost" for an invisible copy that only takes up space.
-# A coloured icon keeps its colour when unfocused, just fainter; an uncoloured one goes grey.
+# An icon shows its colour only while its workspace is focused; unfocused icons are all grey.
 icon_span() {
     local attrs=""
     if [ "$3" = ghost ]; then
         attrs=" fgalpha='1'"
-    elif [ -n "$2" ]; then
-        attrs=" color='$2'"; [ "$3" = dim ] && attrs+=" fgalpha='$DIM_ALPHA'"
     elif [ "$3" = dim ]; then
         attrs=" color='$DIM'"
+    elif [ -n "$2" ]; then
+        attrs=" color='$2'"
     fi
     echo "<span font_family='$FONT' size='$ICON_SIZE'$attrs>$1</span>"
 }
