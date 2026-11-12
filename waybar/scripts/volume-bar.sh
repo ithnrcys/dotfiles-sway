@@ -2,7 +2,7 @@
 # Volume slider for the bottom bar. Icons are SF Symbols (font: SF Pro, not in this repo):
 # filled while sound is on, the empty variant when muted.
 I_ON=$'\U0010343A' I_OFF=$'\U00103439'
-ICON_SIZE="10pt"
+ICON_SIZE="8pt"
 icon() { echo "<span font_family='SF Pro' size='$ICON_SIZE'>$1</span>"; }
 
 v=$(pamixer --get-volume)
