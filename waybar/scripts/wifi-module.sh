@@ -9,6 +9,24 @@ ICON_DISCONNECTED="󰤯"
 # ==========================================
 
 # ------------------------------------------
+# MODE 0: icon in front of the waybar network module (custom/netstate)
+#   wired / wifi glyph while the internet is reachable; the "no internet" glyph otherwise —
+#   not connected at all, or connected to a router that has no way out (NetworkManager's
+#   connectivity check: anything but "full")
+# ------------------------------------------
+if [[ "$1" == "--icon" ]]; then
+    ICON_NO_INTERNET="<span font_family='SF Pro' size='10pt'>"$'\U00100665'"</span>"
+    if [[ "$(nmcli -t -f CONNECTIVITY general 2>/dev/null)" != "full" ]]; then
+        echo "$ICON_NO_INTERNET"
+    elif nmcli -t -f TYPE,STATE dev 2>/dev/null | grep -q '^ethernet:connected'; then
+        echo "󰈀"
+    else
+        echo "$ICON_WIFI_ON"
+    fi
+    exit 0
+fi
+
+# ------------------------------------------
 # MODE 1: THE POLLER (Runs every second)
 # ------------------------------------------
 if [[ "$1" == "--status" ]]; then

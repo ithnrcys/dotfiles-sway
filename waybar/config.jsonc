@@ -105,8 +105,8 @@
   "height": 28,
 
   "modules-left":   ["custom/power", "custom/music-prev", "custom/nowplaying", "custom/music-toggle", "custom/music-next"],
-  "modules-center": ["custom/procs", "custom/uptime", "network"],
-  "modules-right":  ["custom/volume", "custom/brightness", "custom/dnd", "custom/caffeine"],
+  "modules-center": ["custom/procs", "custom/uptime", "custom/netstate", "network"],
+  "modules-right":  ["custom/volume", "custom/brightness", "custom/drive", "custom/dnd", "custom/caffeine"],
 
   // power menu (rofi, opens upward from the corner) + vertical line before the music module;
   // the button is the current moon phase, recomputed every hour
@@ -160,13 +160,23 @@
     "format": "󰅐 \u2009{}  <span size='13pt'>✧</span>  "
   },
 
+  // icon for the network module: wifi / wired glyph, or the "no internet" glyph when the
+  // connection has no way out (not connected, or router up but internet down)
+  "custom/netstate": {
+    "exec": "~/.config/waybar/scripts/wifi-module.sh --icon",
+    "interval": 5,
+    "tooltip": false,
+    "format": "{} ",
+    "on-click": "ROFI_THEME=dropup.rasi ~/.config/waybar/scripts/wifi-module.sh --menu"
+  },
+
   "network": {
-    "format-wifi": "󰀂 \u2009{signalStrength}%  <span size='13pt'>✧</span>  󰓅  {bandwidthDownBits}",
-    "format-ethernet": "󰈀 \u2009{ipaddr}",
-    "format-disconnected": "󰀂 \u2009offline",
+    "format-wifi": "\u2009{signalStrength}%  <span size='13pt'>✧</span>  󰓅  {bandwidthDownBits}",
+    "format-ethernet": "\u2009{ipaddr}",
+    "format-disconnected": "\u2009offline",
     // wifi radio switched off (rfkill): without this the module is empty and disappears,
     // taking the click menu (and its "Turn ON" entry) with it
-    "format-disabled": "󰀂 \u2009offline",
+    "format-disabled": "\u2009offline",
     "interval": 3,
     "tooltip": false,
     // click: rofi network list opening upward from the bottom bar
@@ -195,11 +205,20 @@
     "on-scroll-down": "ddcutil setvcp 10 - 10"
   },
 
-  // do not disturb — click pauses/resumes dunst; vertical line separates the toggles from the sliders
+  // external drives — filled icon when one is connected; click: dropup with eject / mount.
+  // The vertical line separates the toggles from the sliders
+  "custom/drive": {
+    "exec": "~/.config/waybar/scripts/drive-module.sh --status",
+    "interval": 3, "signal": 13, "tooltip": false,
+    "format": "  <span color='#4D4D5A'>│</span>  <span size='10pt'>{}</span>   ",
+    "on-click": "~/.config/waybar/scripts/drive-module.sh"
+  },
+
+  // do not disturb — click pauses/resumes dunst
   "custom/dnd": {
     "exec": "~/.config/waybar/scripts/dnd-module.sh",
     "interval": 5, "signal": 10, "tooltip": false,
-    "format": "  <span color='#4D4D5A'>│</span>  <span size='11pt'>{}</span>   ",
+    "format": "<span size='11pt'>{}</span>   ",
     "on-click": "~/.config/waybar/scripts/dnd-module.sh --toggle"
   },
 

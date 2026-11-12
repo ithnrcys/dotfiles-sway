@@ -114,6 +114,9 @@ MEMORY: 32Gib
     waybar: no hover tooltip on the volume and brightness sliders
     waybar: brightness icon 8pt, closer to its slider and lifted onto the slider line; do-not-disturb icon 11pt, nudged down 1px (style.css)
     waybar: the power button is the current moon phase (SF Symbols moonphase set, computed from the date in power-module.sh --icon, refreshed hourly); click still opens the power menu; 13px from the left edge
+    waybar: external-drive module on the bottom bar, after the separator (scripts/drive-module.sh) — filled icon while a USB / hot-plug drive is connected; click opens a dropup to eject (unmount + power off via udisksctl) or mount
+    waybar: network icon moved into its own module (custom/netstate, wifi-module.sh --icon) — shows the "no internet" glyph when NetworkManager's connectivity is anything but full (offline, or router up but internet down)
+    waybar: bluetooth icon is one constant SF Symbols glyph; it no longer changes with the adapter state
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus

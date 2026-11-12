@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Bluetooth for the top bar.
-#   --status   icon for the bar (polled)
+#   --status   icon for the bar: always the same glyph, whatever the adapter is doing
+#              (SF Symbols character; font: SF Pro, not in this repo)
 #   --menu     rofi dropdown: power, scan, connect / disconnect / pair devices
 
 ICON_ON="󰂱"            # a device is connected
@@ -20,13 +21,7 @@ notify() { command -v dunstify >/dev/null && dunstify -a bluetooth "Bluetooth" "
 # MODE 1: status icon
 # ------------------------------------------
 if [[ "$1" == "--status" ]]; then
-    if ! have_bt || ! powered; then
-        echo "$ICON_OFF"
-    elif bt devices Connected | grep -q "^Device"; then
-        echo "$ICON_ON"
-    else
-        echo "$ICON_DISCONNECTED"
-    fi
+    echo "<span font_family='SF Pro' size='10pt'>"$'\U0010070A'"</span>"
     exit 0
 fi
 

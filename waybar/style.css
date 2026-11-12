@@ -30,7 +30,7 @@ window#waybar.bottom { border-top:    1px solid #4D4D5A; }
 #clock, #custom-weather, #custom-wifi, #custom-bt, #custom-power,
 #custom-music-prev, #custom-music-toggle, #custom-music-next,
 #custom-nowplaying, #custom-procs, #custom-uptime, #network, #tray,
-#custom-volume, #custom-brightness, #custom-dnd, #custom-caffeine {
+#custom-volume, #custom-brightness, #custom-drive, #custom-dnd, #custom-caffeine, #custom-netstate {
 	padding: 0;
 	color: #e3e2e9;
 }
