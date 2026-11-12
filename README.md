@@ -86,6 +86,7 @@ MEMORY: 32Gib
     rofi: dropdown.rasi now anchors to the top-right corner flush under the bar (was a fixed 1510px offset with a 28px gap), used by the bluetooth and power menus
     Found: bluez is not installed (adapter hci0 exists), so the bluetooth module shows "off" and the menu says so until it is
     Installed bluez, bluetooth.service running; bar menu tested: power on/off, scan, status icons (device rows and pair/connect actions only against a stub — no named device was in range)
+    waybar: now-playing scrolls long titles as a marquee in bursts — holds the start 3 s, slides 4 chars/s to the end, holds 2 s, restarts; 40-char window; nowplaying.sh now runs continuously instead of on a 3 s interval; markup in titles is escaped
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:

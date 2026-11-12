@@ -111,11 +111,12 @@
   "modules-center": ["custom/procs", "custom/uptime", "network"],
   "modules-right":  ["custom/volume", "custom/brightness", "tray"],
 
-  // playerctl → mpd fallback; empty when nothing plays
+  // playerctl → mpd fallback; empty when nothing plays.
+  // Continuous script (no interval): long titles scroll in bursts, see nowplaying.sh
   "custom/nowplaying": {
     "exec": "~/.config/waybar/scripts/nowplaying.sh",
-    "interval": 3,
-    "max-length": 45
+    "escape": true,
+    "tooltip": false
   },
 
   // running process count — click opens btop
