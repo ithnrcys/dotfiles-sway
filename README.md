@@ -112,7 +112,7 @@ MEMORY: 32Gib
     waybar: the [ ] brackets stay fixed at the centre — each side is padded with invisible copies of the other side's icons so the widths match exactly; the slide animation is gone (it moved the brackets)
     waybar: brightness, do-not-disturb and caffeine icons are SF Symbols now, drawn at 10pt — toggles show the empty variant when off and the filled one when on; the volume slider keeps its original music-note icon; caffeine cup nudged down 3px in style.css
     waybar: no hover tooltip on the volume and brightness sliders
-    waybar: brightness icon 8pt, closer to its slider and lifted onto the slider line; do-not-disturb icon 11pt
+    waybar: brightness icon 8pt, closer to its slider and lifted onto the slider line; do-not-disturb icon 11pt, nudged down 1px (style.css)
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
