@@ -119,6 +119,9 @@ MEMORY: 32Gib
     waybar: bluetooth icon is one constant SF Symbols glyph; it no longer changes with the adapter state
     waybar: external-drive icon nudged down 2px (style.css)
     waybar: tray icons nudged down 2px so they sit on the text line, 12px from the right edge (style.css)
+    ghostty: colour palette — muted pastels instead of sixteen greys (ghostty/colors), so ls, git, bat and fzf output is coloured
+    zsh: fastfetch runs at the top of every new terminal (before the p10k instant prompt); prompt colours in zsh/p10k-colors.zsh (blue directory, green / yellow git, magenta / red prompt character); coloured completion lists with group headings; bat and fzf follow the terminal palette; AUTO_CD and comments at the prompt
+    fastfetch: added a module list — without one this version printed only the logo; keys coloured blue
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
@@ -166,7 +169,8 @@ Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, bo
     - $mod+F6 calls sway/scripts/power-menu.sh, which does not exist — point it at waybar/scripts/power-module.sh
     - $mod+F7/F8 wifi and bluetooth menus — bind to the waybar scripts
     - Lock screen has no clock (plain swaylock cannot draw one) — hyprlock or gtklock from the repo could
-    - zsh/p10k-colors.zsh is sourced but missing; ~/.p10k.zsh lives outside the repo
+    - ~/.p10k.zsh lives outside the repo (its colours are overridden by zsh/p10k-colors.zsh)
+    - zsh autosuggestions / syntax highlighting: .zshrc sources them from /usr/share/zsh/site-functions, but openSUSE does not package them — not installed yet
     - p10k is a gitlink without .gitmodules — make it a real submodule or install it another way
     - Waybar temperature uses a fixed hwmon4 path that can shift between boots
     - Clean out leftover Polybar/Alacritty comments in the scripts
