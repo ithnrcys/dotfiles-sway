@@ -42,6 +42,7 @@ window#waybar.bottom { border-top:    1px solid #4D4D5A; }
 
 #tray { padding-right: 20px; }
 /* padding-top nudges a glyph down: the bell a touch, the cup onto the bar centre line */
+#custom-drive { padding-top: 4px; }
 #custom-dnd { padding-top: 2px; }
 #custom-caffeine { padding-right: 20px; padding-top: 3px; }
 
