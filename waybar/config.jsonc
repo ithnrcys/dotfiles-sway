@@ -60,6 +60,9 @@
     "exec": "~/.config/waybar/scripts/updates.sh",
     "interval": 1800,
     "tooltip": false,
+    "signal": 8,
+    // click: terminal listing the updates, with a prompt to run zypper dup
+    "on-click": "ghostty -e ~/.config/waybar/scripts/updates.sh --show",
     "format": "<span size='11pt'>󰳢</span> \u2009{}"
   },
 

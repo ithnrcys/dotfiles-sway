@@ -71,6 +71,7 @@ MEMORY: 32Gib
     waybar: cpu panel trimmed to usage, temp, freq, load and per-core bars (no model name, processes or btop entry); opens instantly — a hidden custom/cpusnap module snapshots /proc/stat every second so no sampling wait is needed
     waybar: memory module — click opens a small rofi menu (waybar/scripts/mem-module.sh) with ram and swap bars, free and cache; hover tooltips removed from memory, temperature and updates
     waybar: window module shows "λ ocx" when nothing is focused (empty workspace)
+    waybar: clicking the updates count opens ghostty with the pending update list (zypper lu) and a y/N prompt to run sudo zypper dup; the count refreshes afterwards (signal 8)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
