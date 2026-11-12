@@ -58,6 +58,7 @@ MEMORY: 32Gib
     ghostty: removed fixed window-width/height
     zsh: ssh-agent on $XDG_RUNTIME_DIR/ssh-agent.socket, 12h key lifetime, no prompt at shell start
     fastfetch: opensuse logo, green/grey colours
+    waybar: bottom-right order is now volume, brightness, ✧, tray (tray at the edge); no separator between volume and brightness
 
 ## Repo Layout:
     sway/        config, autostart.sh

@@ -95,7 +95,7 @@
 
   "modules-left":   ["custom/nowplaying"],
   "modules-center": ["custom/uptime", "network"],
-  "modules-right":  ["tray", "custom/volume", "custom/brightness"],
+  "modules-right":  ["custom/volume", "custom/brightness", "tray"],
 
   // playerctl → mpd fallback; empty when nothing plays
   "custom/nowplaying": {
@@ -117,13 +117,14 @@
     "interval": 3
   },
 
+  // tray sits at the right edge; separator before it comes from the brightness format
   "tray": { "spacing": 8 },
 
   // thin-line lever slider ⎯⎯⎯◈ ; scroll/click wired to pamixer
   "custom/volume": {
     "exec": "~/.config/waybar/scripts/volume-bar.sh",
     "interval": 1,
-    "format": "{}  <span size='13pt'>✧</span>  ",
+    "format": "{}    ",
     "on-scroll-up": "pamixer -i 2",
     "on-scroll-down": "pamixer -d 2",
     "on-click": "pamixer --toggle-mute"
@@ -133,6 +134,7 @@
   "custom/brightness": {
     "exec": "~/.config/waybar/scripts/brightness-module.sh",
     "interval": 5,
+    "format": "{}  <span size='13pt'>✧</span>  ",
     "on-scroll-up": "ddcutil setvcp 10 + 10",
     "on-scroll-down": "ddcutil setvcp 10 - 10"
   }
