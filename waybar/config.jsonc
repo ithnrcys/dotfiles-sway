@@ -29,7 +29,7 @@
   }
   },
 
-  // workspaces — custom script: [n] brackets the focused one
+  // workspaces — custom script: one app icon per window, [ ] brackets the focused workspace
   "custom/workspaces": {
     "exec": "~/.config/waybar/scripts/workspaces.sh",
     "format": "{}",
