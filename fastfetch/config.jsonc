@@ -1,3 +1,6 @@
+// Three colour-coded groups next to the logo: system (blue), desktop (magenta), hardware (green).
+// Keys are icon + lowercase name in a fixed-width column so the values line up; the module
+// count matches the 18 lines of the logo. Without a "modules" list this version prints only the logo.
 {
   "logo": {
     "source": "opensuse",
@@ -5,28 +8,88 @@
       "1": "38;2;72;118;24",
       "2": "38;2;180;180;188"
     },
-    "padding": { "right": 3 }
+    "padding": {
+      "right": 4
+    }
   },
   "display": {
-    "separator": "  ",
-    "color": { "keys": "blue", "title": "magenta" }
+    "separator": "",
+    "key": {
+      "width": 15
+    },
+    "color": {
+      "title": "magenta",
+      "separator": "bright_black"
+    }
   },
-  // without a module list this fastfetch version prints the logo and nothing else
   "modules": [
     "title",
-    "separator",
-    "os",
-    "kernel",
-    "uptime",
-    "packages",
-    "shell",
-    "wm",
-    "terminal",
-    "cpu",
-    "gpu",
-    "memory",
-    "disk",
+    {
+      "type": "separator",
+      "string": "─"
+    },
+    {
+      "type": "os",
+      "key": "  os",
+      "keyColor": "blue"
+    },
+    {
+      "type": "kernel",
+      "key": "  kernel",
+      "keyColor": "blue"
+    },
+    {
+      "type": "packages",
+      "key": "  packages",
+      "keyColor": "blue"
+    },
+    {
+      "type": "shell",
+      "key": "  shell",
+      "keyColor": "blue"
+    },
     "break",
-    "colors"
+    {
+      "type": "wm",
+      "key": "󰕰  wm",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "terminal",
+      "key": "󰆍  terminal",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "uptime",
+      "key": "  uptime",
+      "keyColor": "magenta"
+    },
+    "break",
+    {
+      "type": "cpu",
+      "key": "󰘚  cpu",
+      "keyColor": "green"
+    },
+    {
+      "type": "gpu",
+      "key": "󰢮  gpu",
+      "keyColor": "green"
+    },
+    {
+      "type": "memory",
+      "key": "󰍛  memory",
+      "keyColor": "green"
+    },
+    {
+      "type": "disk",
+      "key": "󰋊  disk",
+      "keyColor": "green",
+      "folders": "/"
+    },
+    "break",
+    {
+      "type": "colors",
+      "symbol": "circle"
+    }
   ]
 }

@@ -122,6 +122,7 @@ MEMORY: 32Gib
     ghostty: colour palette — muted pastels instead of sixteen greys (ghostty/colors), so ls, git, bat and fzf output is coloured
     zsh: fastfetch runs at the top of every new terminal (before the p10k instant prompt), followed by an empty line; prompt colours in zsh/p10k-colors.zsh (blue directory, green / yellow git, magenta / red prompt character); coloured completion lists with group headings; bat and fzf follow the terminal palette; AUTO_CD and comments at the prompt
     fastfetch: added a module list — without one this version printed only the logo; keys coloured blue
+    fastfetch: laid out as three colour-coded groups (system blue, desktop magenta, hardware green) with icon + lowercase keys in an aligned column and a row of palette dots
     zsh: plugins — autosuggestions, syntax highlighting, history substring search (Up / Down) and fzf-tab (Tab completions in an fzf popup). Not packaged by openSUSE: zsh/install-plugins.sh clones them into ~/.local/share/zsh/plugins (run it once on a new machine, again to update); .zshrc skips any that are missing
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
