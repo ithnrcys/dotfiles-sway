@@ -44,8 +44,42 @@ alias g='git'
 # tools
 eval "$(zoxide init zsh)"
 source <(fzf --zsh)
-source /usr/share/zsh/site-functions/zsh-autosuggestions.zsh 2>/dev/null
-source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh 2>/dev/null
+
+# plugins — fetched by zsh/install-plugins.sh into ~/.local/share/zsh/plugins; each one is
+# skipped quietly if it is not there. The order matters: fzf-tab right after compinit,
+# syntax highlighting after everything that adds widgets, history search last.
+ZPLUGINS="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/plugins"
+
+# fzf-tab: Tab opens the completions in an fzf popup (type to filter, Tab/arrows to move)
+if [[ -r $ZPLUGINS/fzf-tab/fzf-tab.plugin.zsh ]]; then
+  source $ZPLUGINS/fzf-tab/fzf-tab.plugin.zsh
+  zstyle ':completion:*' menu no                       # fzf-tab draws the menu itself
+  zstyle ':fzf-tab:*' use-fzf-default-opts yes
+  zstyle ':fzf-tab:*' switch-group '<' '>'
+  zstyle ':fzf-tab:complete:(cd|z|ls|eza):*' fzf-preview 'eza -1 --icons --color=always $realpath'
+fi
+
+# autosuggestions: grey ghost text from history, then from completion; Right arrow / End accepts
+if [[ -r $ZPLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+  source $ZPLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# syntax highlighting: commands, strings, paths and mistakes coloured as you type
+if [[ -r $ZPLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+  source $ZPLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# history search: Up / Down walk through history entries containing what is already typed
+if [[ -r $ZPLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+  source $ZPLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh
+  bindkey '^[[A' history-substring-search-up   '^[OA' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down '^[OB' history-substring-search-down
+  HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=0,bg=4'
+  HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=0,bg=1'
+fi
 
 # ssh agent — one per login, no prompt at shell start
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"

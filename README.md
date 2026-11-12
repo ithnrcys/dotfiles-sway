@@ -122,6 +122,7 @@ MEMORY: 32Gib
     ghostty: colour palette — muted pastels instead of sixteen greys (ghostty/colors), so ls, git, bat and fzf output is coloured
     zsh: fastfetch runs at the top of every new terminal (before the p10k instant prompt); prompt colours in zsh/p10k-colors.zsh (blue directory, green / yellow git, magenta / red prompt character); coloured completion lists with group headings; bat and fzf follow the terminal palette; AUTO_CD and comments at the prompt
     fastfetch: added a module list — without one this version printed only the logo; keys coloured blue
+    zsh: plugins — autosuggestions, syntax highlighting, history substring search (Up / Down) and fzf-tab (Tab completions in an fzf popup). Not packaged by openSUSE: zsh/install-plugins.sh clones them into ~/.local/share/zsh/plugins (run it once on a new machine, again to update); .zshrc skips any that are missing
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
@@ -132,7 +133,7 @@ MEMORY: 32Gib
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts
-    zsh/         .zshrc
+    zsh/         .zshrc, p10k-colors.zsh (prompt colours), install-plugins.sh (fetches the zsh plugins)
     fastfetch/   config.jsonc
     dunst/       dunstrc (notifications)
     swaylock/    config (lock screen)
@@ -170,7 +171,6 @@ Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, bo
     - $mod+F7/F8 wifi and bluetooth menus — bind to the waybar scripts
     - Lock screen has no clock (plain swaylock cannot draw one) — hyprlock or gtklock from the repo could
     - ~/.p10k.zsh lives outside the repo (its colours are overridden by zsh/p10k-colors.zsh)
-    - zsh autosuggestions / syntax highlighting: .zshrc sources them from /usr/share/zsh/site-functions, but openSUSE does not package them — not installed yet
     - p10k is a gitlink without .gitmodules — make it a real submodule or install it another way
     - Waybar temperature uses a fixed hwmon4 path that can shift between boots
     - Clean out leftover Polybar/Alacritty comments in the scripts
