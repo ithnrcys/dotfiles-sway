@@ -108,9 +108,12 @@
   "modules-center": ["custom/procs", "custom/uptime", "network"],
   "modules-right":  ["custom/volume", "custom/brightness", "custom/dnd", "custom/caffeine"],
 
-  // power menu (rofi, opens upward from the corner) + vertical line before the music module
+  // power menu (rofi, opens upward from the corner) + vertical line before the music module;
+  // the button is the current moon phase, recomputed every hour
   "custom/power": {
-    "format": "<span size='11pt'>󱄚</span>  <span color='#4D4D5A'>│</span>  ",
+    "exec": "~/.config/waybar/scripts/power-module.sh --icon",
+    "interval": 3600,
+    "format": "<span size='10pt'>{}</span>  <span color='#4D4D5A'>│</span>  ",
     "tooltip": false,
     "on-click": "ROFI_THEME=dropup-left.rasi ~/.config/waybar/scripts/power-module.sh"
   },
