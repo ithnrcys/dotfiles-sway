@@ -131,7 +131,7 @@ MEMORY: 32Gib
         session: sway/swayfx.desktop copied to /usr/share/wayland-sessions/ — pick "SwayFX" at the login screen; sway/start-swayfx.sh starts it with sway/swayfx.config (= config + fx.conf) and falls back to plain sway if the binary cannot start (rebuild after a wlroots update)
         effects: sway/fx.conf — square corners, blur, soft dark shadows, slight dimming of unfocused windows, gaps 8, blur + shadow on rofi menus and notifications
         quirk:   SwayFX 0.6 stops drawing the left / right window borders after a config reload; sway/fix-borders.sh (exec_always in fx.conf) nudges the border colours to redraw them about 1.5 s later
-    swayfx: the focused window is solid, unfocused windows are 80% opaque with blur behind them (sway/inactive-opacity.sh, started from fx.conf); the terminal itself is opaque again
+    swayfx: the focused window is solid, unfocused windows are 92% opaque with blur behind them (sway/inactive-opacity.sh, started from fx.conf); the terminal itself is opaque again
     sway: window borders 3px black on every window, focused or not (none on Firefox / LibreWolf)
     zsh: plugins — autosuggestions, syntax highlighting, history substring search (Up / Down) and fzf-tab (Tab completions in an fzf popup). Not packaged by openSUSE: zsh/install-plugins.sh clones them into ~/.local/share/zsh/plugins (run it once on a new machine, again to update); .zshrc skips any that are missing
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
