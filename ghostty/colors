@@ -1,19 +1,21 @@
 background = 070708
 foreground = e3e2e9
 
-palette = 0=#070708
-palette = 1=#7C7C84
-palette = 2=#808088
-palette = 3=#9A9AA4
-palette = 4=#BABAC6
-palette = 5=#C0BFCC
-palette = 6=#CACAD6
-palette = 7=#e3e2e9
-palette = 8=#9e9ea3
-palette = 9=#7C7C84
-palette = 10=#808088
-palette = 11=#9A9AA4
-palette = 12=#BABAC6
-palette = 13=#C0BFCC
-palette = 14=#CACAD6
+# muted pastels on the near-black background: enough colour to tell things apart
+# (ls, git, the prompt) without shouting
+palette = 0=#16161a
+palette = 1=#D98C8C
+palette = 2=#9DBF8E
+palette = 3=#D9C58A
+palette = 4=#8FA8C8
+palette = 5=#B4A0D0
+palette = 6=#8EC4C4
+palette = 7=#C9C9D4
+palette = 8=#5C5C68
+palette = 9=#E8A0A0
+palette = 10=#B2D4A3
+palette = 11=#E8D8A0
+palette = 12=#A6BEDD
+palette = 13=#C8B6E2
+palette = 14=#A8DADA
 palette = 15=#e3e2e9
