@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# The Engine: Takes $MENU_CONTENT, feeds it to Rofi, and outputs $ROFI_CHOICE
+# The Engine: Takes $MENU_CONTENT, feeds it to Rofi, and outputs $ROFI_CHOICE (and $ROFI_EXIT)
 # ROFI_THEME picks the menu position: dropdown.rasi (top bar, default) or dropup.rasi (bottom bar)
 ROFI_THEME_FILE="$HOME/.config/rofi/${ROFI_THEME:-dropdown.rasi}"
 
@@ -26,6 +26,7 @@ fi
 # ROFI_ARGS (optional array) is passed straight to rofi, e.g. -mesg or extra -theme-str.
 ROFI_CHOICE=$(echo -e "$MENU_CONTENT" | rofi -dmenu -i -sync -config "$ROFI_THEME_FILE" \
               ${ROFI_LINES:+-theme-str "listview { lines: ${ROFI_LINES}; }"} "${ROFI_ARGS[@]}")
+ROFI_EXIT=$?      # 0 = row chosen, 1 = closed, 10+ = custom key (-kb-custom-N)
 
 # menu closed normally: clear the state, but only if this instance still owns it
 [ "$(cat "$ROFI_STATE" 2>/dev/null)" = "$ROFI_MENU_ID $$" ] && rm -f "$ROFI_STATE"
