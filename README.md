@@ -118,7 +118,7 @@ MEMORY: 32Gib
     waybar: network icon moved into its own module (custom/netstate, wifi-module.sh --icon) — shows the "no internet" glyph when NetworkManager's connectivity is anything but full (offline, or router up but internet down)
     waybar: bluetooth icon is one constant SF Symbols glyph; it no longer changes with the adapter state
     waybar: external-drive icon nudged down 2px (style.css)
-    rofi: launcher search text moved down 2px so it lines up with the top-bar text it covers
+    waybar: tray icons nudged down 2px so they sit on the text line (style.css)
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
