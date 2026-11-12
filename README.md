@@ -67,7 +67,8 @@ MEMORY: 32Gib
     dunst: new dunst/dunstrc, ~/.config/dunst symlinked to it — black popups in the bottom-left corner above the bar, 1px grey frame (brighter for critical), JetBrainsMono 10; left click closes, right click closes all
     waybar: brightness icon changed to the brightness sun (nf-md-brightness_7) so it no longer matches the weather sun
     waybar: clicking the λ + app name module (top left) opens the rofi launcher, same as ctrl+space
-    waybar: cpu module — hover tooltip removed; click opens a rofi panel (waybar/scripts/cpu-module.sh, rofi/dropdown-left.rasi) with total usage bar, temp, frequency, load, per-core bars, top 3 processes and an Open btop entry
+    waybar: cpu module — hover tooltip removed; click opens a rofi panel (waybar/scripts/cpu-module.sh, rofi/dropdown-left.rasi) with total usage bar, temp, frequency, load, per-core bars (first version also had the model name, top 3 processes and an Open btop entry)
+    waybar: cpu panel trimmed to usage, temp, freq, load and per-core bars (no model name, processes or btop entry); opens instantly — a hidden custom/cpusnap module snapshots /proc/stat every second so no sampling wait is needed
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:

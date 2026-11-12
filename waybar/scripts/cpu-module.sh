@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 # CPU details menu for the top bar (click on the cpu module).
-# Samples /proc/stat twice to get live per-core usage, then shows it through the rofi engine.
+#
+#   --snapshot   run by waybar every second (hidden custom/cpusnap module): keeps the two most
+#                recent copies of /proc/stat in $XDG_RUNTIME_DIR, prints nothing
+#   (no args)    builds the menu from the older copy vs. now, so it opens with no sampling delay
+
+SNAP="${XDG_RUNTIME_DIR:-/tmp}/cpu-stat"
+
+if [[ "$1" == "--snapshot" ]]; then
+    mv -f "$SNAP.1" "$SNAP.2" 2>/dev/null
+    grep '^cpu' /proc/stat > "$SNAP.1"
+    exit 0
+fi
 
 SEP="──────────────────────────────────────"
 
@@ -13,12 +24,13 @@ bar() {
     echo "$out"
 }
 
-snapshot() { grep '^cpu' /proc/stat; }
-
-a=$(snapshot)
-# top needs its own interval for real per-process numbers; run it during the sample window
-top_out=$(top -b -n 2 -d 0.4 -o %CPU -w 200 2>/dev/null | awk '/^top - /{n++} n==2' | awk '/^ *PID/{f=1; next} f && NF {print $1 "|" $9}' | head -3)
-b=$(snapshot)
+# previous sample: 1-2 s old from the snapshot module; only sample by hand if it is missing
+if [ -s "$SNAP.2" ]; then
+    a=$(cat "$SNAP.2")
+else
+    a=$(grep '^cpu' /proc/stat); sleep 0.3
+fi
+b=$(grep '^cpu' /proc/stat)
 
 # usage per line: 100 * (1 - idle_delta / total_delta); idle = idle + iowait
 mapfile -t usage < <(paste <(echo "$a") <(echo "$b") | awk '{
@@ -32,7 +44,6 @@ mapfile -t usage < <(paste <(echo "$a") <(echo "$b") | awk '{
 total=${usage[0]}
 cores=("${usage[@]:1}")
 
-model=$(awk -F': ' '/^model name/{print $2; exit}' /proc/cpuinfo | sed -E 's/\(R\)|\(TM\)//g; s/ [0-9]+-Core Processor//; s/  +/ /g')
 freq=$(awk -F': ' '/^cpu MHz/{s += $2; n++} END{printf "%.2f GHz", s / n / 1000}' /proc/cpuinfo)
 load=$(cut -d' ' -f1-3 /proc/loadavg)
 
@@ -45,14 +56,13 @@ for h in /sys/class/hwmon/hwmon*; do
     fi
 done
 
-MENU_CONTENT="${model}\n${SEP}"
-MENU_CONTENT+="\n$(printf 'usage   %3d%%   %s' "$total" "$(bar "$total" 24)")"
+MENU_CONTENT="$(printf 'usage   %3d%%   %s' "$total" "$(bar "$total" 24)")"
 MENU_CONTENT+="\n$(printf 'temp    %-8s freq   %s' "$temp" "$freq")"
 MENU_CONTENT+="\n$(printf 'load    %s' "$load")"
 MENU_CONTENT+="\n${SEP}"
 
 # cores two per row
-rows=2
+rows=4
 for (( i = 0; i < ${#cores[@]}; i += 2 )); do
     line=$(printf '%2d %s %3d%%' "$i" "$(bar "${cores[i]}" 9)" "${cores[i]}")
     if [ -n "${cores[i+1]}" ]; then
@@ -62,19 +72,7 @@ for (( i = 0; i < ${#cores[@]}; i += 2 )); do
     rows=$(( rows + 1 ))
 done
 
-MENU_CONTENT+="\n${SEP}"
-while IFS='|' read -r pid pct; do
-    [ -z "$pid" ] && continue
-    name=$(ps -o comm= -p "$pid" 2>/dev/null)
-    MENU_CONTENT+="\n$(printf '%-30s %5.1f%%' "${name:-pid $pid}" "$pct")"
-    rows=$(( rows + 1 ))
-done <<< "$top_out"
-MENU_CONTENT+="\n${SEP}\n󰀻 Open btop"
-
-# header(2) + stats(3) + sep + cores + sep + procs + sep + btop
-ROFI_LINES=$(( rows + 8 ))
+ROFI_LINES=$rows
 ROFI_THEME=dropdown-left.rasi
 source ~/.config/waybar/scripts/_rofi_engine.sh
-
-[[ "$ROFI_CHOICE" == *"Open btop"* ]] && exec ghostty -e btop
 exit 0

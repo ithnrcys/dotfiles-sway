@@ -8,7 +8,7 @@
   "position": "top",
   "height": 28,
 
-  "modules-left":   ["sway/window", "cpu", "memory", "temperature", "custom/updates"],
+  "modules-left":   ["sway/window", "cpu", "memory", "temperature", "custom/updates", "custom/cpusnap"],
   "modules-center": ["custom/workspaces"],
   "modules-right":  ["clock", "custom/weather", "custom/wifi", "custom/bt", "custom/power"],
 
@@ -33,7 +33,10 @@
     "tooltip": false
   },
 
-  // click: rofi panel with per-core usage, temp, load, top processes
+  // invisible: prints nothing, just keeps a 1-2 s old /proc/stat copy so the cpu panel opens instantly
+  "custom/cpusnap": { "exec": "~/.config/waybar/scripts/cpu-module.sh --snapshot", "interval": 1, "tooltip": false },
+
+  // click: rofi panel with total usage, temp, freq, load and per-core bars
   "cpu":    { "interval": 1, "format": "<span size='9pt'></span> \u2009{usage}%  <span size='13pt'>✧</span>  ", "tooltip": false,
               "on-click": "~/.config/waybar/scripts/cpu-module.sh" },
   "memory": { "interval": 2, "format": "<span size='11pt'>󰍛</span> \u2009{used:0.1f}G  <span size='13pt'>✧</span>  " },
