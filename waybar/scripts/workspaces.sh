@@ -7,7 +7,7 @@
 # (Apple-licensed, deliberately not in this repo).
 
 FONT="SF Pro"
-ICON_SIZE="12pt"
+ICON_SIZE="10pt"
 ICON_CELLS=3          # advance of one icon measured in bar-font characters, for centring
 DIM="#7C7C84"
 GAP="    "            # between workspaces
