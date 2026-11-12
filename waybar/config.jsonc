@@ -14,12 +14,13 @@
 
   // focused window — λ + app name, reverse-DNS ids shortened
   "sway/window": {
-    "max-length": 40,
-    "format": "<b>λ</b> {app_id}  <span size='13pt'>✧</span>  ",
+  "max-length": 40,
+  "format": "λ {app_id}  <span size='13pt'>✧</span>  ",
   "rewrite": {
-  "<b>λ</b> com\\.mitchellh\\.ghostty(.*)": "<b>λ</b> ghostty$1",
-  "<b>λ</b> org\\.mozilla\\.firefox(.*)": "<b>λ</b> firefox$1",
-  "<b>λ</b> (.*)": "<b>λ</b> $1"
+    "λ com\\.mitchellh\\.ghostty(.*)": "λ ghostty$1",
+    "λ org\\.mozilla\\.firefox(.*)": "λ firefox$1",
+    "λ steamwebhelper(.*)": "λ steam$1",
+    "λ (.*)": "λ $1"
   }
   },
 
