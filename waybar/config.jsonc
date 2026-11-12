@@ -79,6 +79,8 @@
     "exec": "~/.config/waybar/scripts/weather-module.sh",
     "interval": 900,
     "tooltip": false,
+    // click: Mousam (flatpak weather app)
+    "on-click": "flatpak run io.github.amit9838.mousam",
     "format": "{}  <span size='13pt'>✧</span>  "
   },
 
