@@ -9,16 +9,27 @@
 FONT="SF Pro"
 ICON_SIZE="10pt"
 ICON_CELLS=3          # advance of one icon measured in bar-font characters, for centring
-DIM="#7C7C84"
+DIM="#7C7C84"         # unfocused icon without a colour of its own
+DIM_ALPHA="55%"       # unfocused icon with a colour: same colour, this opaque
 GAP="    "            # between workspaces
 
-declare -A ICON_OFF ICON_ON
-while read -r ws off on; do
+declare -A ICON_OFF ICON_ON ICON_COLOR
+while read -r ws off on color; do
     [[ "$ws" == \#* || -z "$ws" ]] && continue
-    ICON_OFF[$ws]=$off; ICON_ON[$ws]=$on
+    ICON_OFF[$ws]=$off; ICON_ON[$ws]=$on; ICON_COLOR[$ws]=$color
 done < "${0%/*}/workspace-icons.txt"
 
-icon_span() { echo "<span font_family='$FONT' size='$ICON_SIZE'>$1</span>"; }
+# $1 glyph, $2 optional colour (from the icons file), $3 "dim" for an unfocused workspace.
+# A coloured icon keeps its colour when unfocused, just fainter; an uncoloured one goes grey.
+icon_span() {
+    local attrs=""
+    if [ -n "$2" ]; then
+        attrs=" color='$2'"; [ "$3" = dim ] && attrs+=" fgalpha='$DIM_ALPHA'"
+    elif [ "$3" = dim ]; then
+        attrs=" color='$DIM'"
+    fi
+    echo "<span font_family='$FONT' size='$ICON_SIZE'$attrs>$1</span>"
+}
 
 print_ws() {
     local name focused text cells
@@ -27,18 +38,19 @@ print_ws() {
     while IFS=$'\t' read -r name focused; do
         if [ -n "${ICON_OFF[$name]}" ]; then
             cells=$ICON_CELLS
-            if [ "$focused" = true ]; then text=$(icon_span "${ICON_ON[$name]}")
-            else                           text=$(icon_span "${ICON_OFF[$name]}"); fi
+            if [ "$focused" = true ]; then text=$(icon_span "${ICON_ON[$name]}" "${ICON_COLOR[$name]}")
+            else                           text=$(icon_span "${ICON_OFF[$name]}" "${ICON_COLOR[$name]}" dim); fi
         else
             text="$name"; cells=${#name}
+            [ "$focused" = true ] || text="<span color='$DIM'>$text</span>"
         fi
 
         if [ "$focused" = true ]; then
             centre="$text"; seen=1
         elif (( seen )); then
-            right+="$GAP<span color='$DIM'>$text</span>"; rcells=$(( rcells + ${#GAP} + cells ))
+            right+="$GAP$text"; rcells=$(( rcells + ${#GAP} + cells ))
         else
-            left+="<span color='$DIM'>$text</span>$GAP";  lcells=$(( lcells + ${#GAP} + cells ))
+            left+="$text$GAP"; lcells=$(( lcells + ${#GAP} + cells ))
         fi
     done < <(swaymsg -t get_workspaces | jq -r '.[] | "\(.name)\t\(.focused)"')
 
