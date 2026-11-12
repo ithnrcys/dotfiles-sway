@@ -1,0 +1,28 @@
+/* Now-playing dropup for the bottom bar: cover art, track details, then the controls.
+   music-module.sh passes the cover path as  icon-cover { filename: "..."; }  */
+@import "dropup-left.rasi"
+
+window {
+    width: 300px;
+    x-offset: 44px;      /* clear of the power button, above the music module */
+}
+
+mainbox {
+    children: [ icon-cover, message, listview ];
+}
+
+icon-cover {
+    expand: false;
+    size: 300px;
+    padding: 0px;
+}
+
+listview {
+    lines: 3;
+}
+
+/* track details: no separator line, text aligned with the rows below */
+message {
+    border: 0px;
+    padding: 8px 12px 6px 12px;
+}
