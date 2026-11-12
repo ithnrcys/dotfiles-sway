@@ -1,0 +1,8 @@
+/* Bar menu for the left side of the top bar (cpu etc.) */
+@import "dropdown.rasi"
+
+window {
+    width: 400px;
+    x-offset: 0px;
+    y-offset: 0px;
+}
