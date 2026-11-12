@@ -67,9 +67,11 @@
     "format": "<span size='11pt'>󰳢</span> \u2009{}"
   },
 
+  // 12h clock — click opens the calendar app (renCal)
   "clock": {
-    "format": "{:%a %d %b  %H:%M}  <span size='13pt'>✧</span>  ",
-    "tooltip-format": "<tt>{calendar}</tt>"
+    "format": "{:%a %d %b  %I:%M %p}  <span size='13pt'>✧</span>  ",
+    "tooltip": false,
+    "on-click": "rencal"
   },
 
   // wttr.in — click for 3-day rofi forecast
