@@ -196,7 +196,7 @@
   "custom/dnd": {
     "exec": "~/.config/waybar/scripts/dnd-module.sh",
     "interval": 5, "signal": 10, "tooltip": false,
-    "format": "  <span color='#4D4D5A'>│</span>  <span size='10pt'>{}</span>   ",
+    "format": "  <span color='#4D4D5A'>│</span>  <span size='11pt'>{}</span>   ",
     "on-click": "~/.config/waybar/scripts/dnd-module.sh --toggle"
   },
 

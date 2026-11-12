@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Icon is an SF Symbols character (font: SF Pro, not in this repo)
-ICON="<span font_family='SF Pro' size='8pt'>"$'\U00101E65'"</span>"
+# Icon is an SF Symbols character (font: SF Pro, not in this repo); rise lifts it onto the slider line
+ICON="<span font_family='SF Pro' size='8pt' rise='1000'>"$'\U00101E65'"</span>"
 
 # Fetch current brightness from the external monitor via I2C
 b_val=$(ddcutil getvcp 10 2>/dev/null | grep -oP 'current value =\s*\K[0-9]+')
