@@ -5,7 +5,7 @@ set $menu rofi -show drun
 font pango:JetBrainsMono Nerd Font 9       
 floating_modifier $mod normal              
 tiling_drag modifier
-gaps inner 6
+gaps inner 3
 
 ### Output & input — new, replaces autorandr
 output DP-2 mode 1920x1080@180Hz adaptive_sync on
@@ -31,6 +31,7 @@ for_window [title="Timer"] floating enable
 for_window [app_id="mpv"] floating enable
 for_window [app_id="zenity"] floating enable
 for_window [app_id="swaynag"] floating enable
+for_window [class="steam_app_244210" title="^Content Manager"] floating enable, resize set 100ppt 100ppt, move position 0 0
 
 ### Core
 bindsym $mod+Return exec $term
@@ -64,10 +65,10 @@ bindsym $mod+Shift+w sticky toggle
 bindsym $mod+Shift+space floating toggle
 
 ### Apps
-bindsym $mod+space exec $menu
+bindsym ctrl+space exec $menu
 bindsym $mod+Shift+p exec gnome-calculator
 bindsym $mod+l exec ~/.config/sway/lock.sh
-bindsym ctrl+space exec $term
+bindsym $mod+space exec $term
 bindsym $mod+F4 exec firefox
 bindsym $mod+F9 exec $term -e ncmpcpp
 bindsym $mod+F6 exec ~/.config/sway/scripts/power-menu.sh
@@ -128,6 +129,8 @@ mode "resize" {
 }
 
 ### Autostart
+exec pasystray
+exec "dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway; systemctl --user start sway-session.target"
 exec_always ~/.config/sway/autostart.sh
 exec swaymsg 'workspace 1; exec ghostty'
 
@@ -135,3 +138,4 @@ bar bar-0 {
     mode invisible
 }
 exec_always pkill waybar; waybar
+output * bg ~/.dotfiles/wallpapers/wallpaper.jpg fill
