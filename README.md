@@ -37,19 +37,81 @@ MEMORY: 32Gib
     Installed libvulkan_radeon — Vulkan had been falling back to llvmpipe
     Verified: RX 9070 XT (radeonsi, gfx1201) and RADV GFX1201
 
+- Desktop (Aug 2026):
+    Cloned dotfiles; ~/.config/{sway,waybar,rofi,ghostty,fastfetch} and ~/.zshrc are symlinks into ~/.dotfiles
+    Ported the i3 config to sway: Mod4, app_id rules for Wayland windows, grim/slurp screenshots, ddcutil brightness keys
+    Output: DP-2 1920x1080@180Hz with adaptive_sync on
+    Replaced wofi with rofi (launcher sits over the top bar; dropdown.rasi for the bar menus)
+    Waybar: two bars, greyscale theme, polybar scripts ported (workspaces, updates, weather, wifi, bt, power, nowplaying, volume, brightness)
+    Ghostty: colours/fonts split into their own files, ctrl+c/ctrl+v copy-paste
+    zsh: powerlevel10k, eza/bat aliases, zoxide, fzf, autosuggestions, syntax highlighting
+    Enabled Packman; installed Steam, gamescope, mangohud, libvulkan_radeon-32bit
+    xdg-user-dirs set up
+- Desktop (Oct-Nov 2026):
+    sway: gaps inner 6 → 3; ctrl+space opens rofi, $mod+space opens the terminal
+    sway: autostart.sh — dunst, autotiling-rs, udiskie, gammastep, mpd, polkit-gnome agent; pasystray in the tray
+    sway: session env imported into systemd/dbus, sway-session.target started
+    sway: wallpaper set from wallpapers/wallpaper.jpg
+    sway: Content Manager window of steam_app_244210 floats at full size
+    rofi: font 10.25 at fixed 96 dpi, x-offset 0, inputbar padding tuned to the bar
+    waybar: plain λ in the window module, steamwebhelper shown as steam
+    ghostty: removed fixed window-width/height
+    zsh: ssh-agent on $XDG_RUNTIME_DIR/ssh-agent.socket, 12h key lifetime, no prompt at shell start
+    fastfetch: opensuse logo, green/grey colours
+
+## Repo Layout:
+    sway/        config, autostart.sh
+    waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
+    rofi/        config.rasi (launcher), dropdown.rasi (bar menus), colors.rasi
+    ghostty/     config, colors, fonts
+    zsh/         .zshrc
+    fastfetch/   config.jsonc
+    p10k/        powerlevel10k checkout
+    wallpapers/  wallpaper.jpg
+Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, border #4D4D5A. Font: JetBrainsMono Nerd Font.
+
+## Keybinds (sway):
+    $mod = Super
+    ctrl+space            rofi launcher
+    $mod+space / Return   ghostty
+    $mod+q                kill window
+    $mod+arrows           focus; +Shift to move
+    $mod+1..0             workspace; +Shift to move the window there
+    $mod+f / s / w / e    fullscreen / stacking / tabbed / toggle split
+    $mod+h / v / t        split horizontal / vertical / toggle
+    $mod+Shift+space      floating toggle
+    $mod+r                resize mode
+    $mod+Shift+s          region screenshot to clipboard
+    $mod+Shift+a / f      region / full screenshot to ~/Pictures/screenshots
+    $mod+F1 / F2          monitor brightness down / up (ddcutil)
+    $mod+F4 / F9          firefox / ncmpcpp
+    $mod+Shift+c          reload config
+    $mod+Shift+e          exit sway
+    $mod+Shift+F6         reboot
+
+## Workflow:
+    Every change is committed per component ("sway: ...", "waybar: ...") and logged in the Modification Log above.
+    Ricing goals live in the TODO below; finished items move to the log.
+
 ## TODO:
-    - output DP-2 adaptive_sync on in sway config
-    - 32-bit graphics libs: libvulkan_radeon-32bit Mesa-libGL-32bit Mesa-libEGL-32bit
-    - xdg-user-dirs + home directory structure
-    - Clone dotfiles, translate i3 config to sway
+- Ricing:
+    - Lock screen: $mod+l and the power menu's Lock call ~/.config/sway/lock.sh, which does not exist (swaylock is installed)
+    - $mod+F6 calls sway/scripts/power-menu.sh, which does not exist — point it at waybar/scripts/power-module.sh
+    - $mod+F7/F8 wifi and bluetooth menus — bind to the waybar scripts
+    - swayidle: idle lock and display off
+    - zsh/p10k-colors.zsh is sourced but missing; ~/.p10k.zsh lives outside the repo
+    - p10k is a gitlink without .gitmodules — make it a real submodule or install it another way
+    - Waybar temperature uses a fixed hwmon4 path that can shift between boots
+    - rofi dropdown x-offset is fixed at 1510px (assumes 1920 wide)
+    - Clean out leftover Polybar/Alacritty comments in the scripts
+    - mako is installed but dunst is the one started — remove one
+    - wallpaper.jpg is 30MB — compress it or keep it out of git
+- System:
+    - 32-bit graphics libs: Mesa-libGL-32bit Mesa-libEGL-32bit (libvulkan_radeon-32bit done)
     - Set the hostname — still localhost
-    - Packman repo and codecs
-    - Steam, gamescope, mangohud
     - BIOS: Above 4G Decoding + Resizable BAR, SVM Mode, PBO or 105W cTDP
     - Optionally re-enable Secure Boot
     - Remove leftover /boot/efi/EFI/Microsoft and regenerate grub.cfg
     - Confirm native resolution — currently 1080p180, panel also offers 1440p75
     - Ethernet enp10s0 still shows no link — cable or router
     - rpm -V vulkan-tools — reported an error on install
-    - monitor gsync enable
-    - 
