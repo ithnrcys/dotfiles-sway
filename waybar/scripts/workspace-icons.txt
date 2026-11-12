@@ -1,6 +1,6 @@
 # workspace  unfocused  focused  [colour]   — SF Symbols characters (font: SF Pro, not in this repo)
 1 􀐘 􀐙 #FF9F0A
-2 􀑆 􀑇
+2 􀑆 􀑇 #007A74
 3 􀢇 􁱂
 4 􀳋 􀳌
 5 􀎬 􀎭
