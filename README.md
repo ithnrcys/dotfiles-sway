@@ -65,6 +65,7 @@ MEMORY: 32Gib
     rofi menus: added -sync in _rofi_engine.sh — rofi-wayland 1.7.9 segfaulted on every bar menu (wifi, bt, weather, power) because the inputbar-less menu started at zero height
     _rofi_engine.sh: ROFI_THEME env var picks dropdown.rasi (top bar, default) or dropup.rasi (bottom bar)
     dunst: new dunst/dunstrc, ~/.config/dunst symlinked to it — black popups in the bottom-left corner above the bar, 1px grey frame (brighter for critical), JetBrainsMono 10; left click closes, right click closes all
+    waybar: brightness icon changed to the brightness sun (nf-md-brightness_7) so it no longer matches the weather sun
 
 ## Repo Layout:
     sway/        config, autostart.sh

@@ -5,7 +5,7 @@ b_val=$(ddcutil getvcp 10 2>/dev/null | grep -oP 'current value =\s*\K[0-9]+')
 
 # Fallback if ddcutil is busy or offline
 if [ -z "$b_val" ]; then
-    echo "󰖙 Offline"
+    echo "󰃠 Offline"
     exit 0
 fi
 
@@ -26,4 +26,4 @@ for (( i=0; i<$filled_width; i++ )); do bar="${bar}─"; done
 bar="${bar}◈"
 
 # Output the icon and the calculated bar
-echo "󰖙  $bar"
+echo "󰃠  $bar"
