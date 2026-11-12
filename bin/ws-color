@@ -4,10 +4,12 @@
 #   ws-color 3 ff9f0a        colour workspace 3   (#ff9f0a, ff9f0a and the short form f90 all work)
 #   ws-color 3 none          back to the default white / grey
 #   ws-color all none        clear every colour
+#   ws-color rand            give every workspace a random colour
+#   ws-color 3 rand          random colour for workspace 3 only
 
 FILE="$HOME/.dotfiles/waybar/scripts/workspace-icons.txt"
 
-usage() { sed -n '2,6s/^# \{0,1\}//p' "$0"; exit "${1:-0}"; }
+usage() { sed -n '2,8s/^# \{0,1\}//p' "$0"; exit "${1:-0}"; }
 
 list() {
     local ws off on color r g b
@@ -25,6 +27,7 @@ list() {
 case "$1" in
     "")        list; exit 0 ;;
     -h|--help) usage ;;
+    rand)      [ $# -eq 1 ] && set -- all rand ;;
 esac
 [ $# -eq 2 ] || usage 1
 ws="$1" color="${2#\#}"
@@ -35,6 +38,7 @@ fi
 
 case "${color,,}" in
     none|default|off) color="" ;;
+    rand|random)      color="rand" ;;
     *)
         [[ "$color" =~ ^[0-9a-fA-F]{3}$ ]] && color="${color:0:1}${color:0:1}${color:1:1}${color:1:1}${color:2:1}${color:2:1}"
         [[ "$color" =~ ^[0-9a-fA-F]{6}$ ]] || { echo "ws-color: '$2' is not a hex colour (try ff9f0a)" >&2; exit 1; }
@@ -42,9 +46,24 @@ case "${color,,}" in
 esac
 
 tmp=$(mktemp)
-awk -v ws="$ws" -v color="$color" '
+awk -v ws="$ws" -v color="$color" -v seed="$RANDOM$RANDOM" '
+    # random hue, kept saturated and light enough to read on the dark bar (HSL -> RGB)
+    function hue(p, q, t) {
+        t = t - int(t); if (t < 0) t += 1
+        if (t < 1/6) return p + (q - p) * 6 * t
+        if (t < 1/2) return q
+        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6
+        return p
+    }
+    function random_color(   h, sat, l, p, q) {
+        h = rand(); sat = 0.55 + rand() * 0.40; l = 0.58 + rand() * 0.14
+        q = l + sat - l * sat; p = 2 * l - q
+        return sprintf("#%02X%02X%02X", hue(p, q, h + 1/3) * 255, hue(p, q, h) * 255, hue(p, q, h - 1/3) * 255)
+    }
+    BEGIN                  { srand(seed) }
     /^#/ || NF == 0        { print; next }
-    ws == "all" || $1 == ws { print $1, $2, $3 (color == "" ? "" : " " color); next }
+    ws == "all" || $1 == ws { c = (color == "rand") ? random_color() : color
+                              print $1, $2, $3 (c == "" ? "" : " " c); next }
                             { print }' "$FILE" > "$tmp" && cat "$tmp" > "$FILE"   # cat keeps the symlink/inode
 rm -f "$tmp"
 

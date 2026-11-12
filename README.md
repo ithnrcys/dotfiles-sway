@@ -107,7 +107,7 @@ MEMORY: 32Gib
     waybar: do-not-disturb toggle at the right end of the bottom bar (scripts/dnd-module.sh) — pauses dunst; held notifications appear when it is switched off
     waybar: caffeine toggle next to it (scripts/caffeine-module.sh) — while on, the swayidle lock and screen-off timeouts in sway/autostart.sh are skipped; resets on reboot, lock-before-suspend unaffected
     waybar: workspace icons can carry a colour (optional 4th column in scripts/workspace-icons.txt) — workspace 1 is orange #FF9F0A, workspace 2 teal #007A74; a coloured icon stays coloured but fainter when unfocused
-    bin/ws-color: CLI to set a workspace icon colour — "ws-color" lists, "ws-color 3 ff9f0a" sets, "ws-color 3 none" clears; symlinked into ~/.local/bin, reloads waybar
+    bin/ws-color: CLI to set a workspace icon colour — "ws-color" lists, "ws-color 3 ff9f0a" sets, "ws-color 3 none" clears, "ws-color rand" / "ws-color 3 rand" picks random colours; symlinked into ~/.local/bin, reloads waybar
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
