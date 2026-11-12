@@ -136,8 +136,6 @@ mode "resize" {
 }
 
 ### Autostart
-# plain sway session: drop the SwayFX-only terminal transparency left by start-swayfx.sh
-exec sh -c '[ -n "$SWAYFX" ] || rm -f ~/.cache/ghostty-fx.conf'
 exec pasystray
 exec "dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway; systemctl --user start sway-session.target"
 exec_always ~/.config/sway/autostart.sh
