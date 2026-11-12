@@ -118,17 +118,17 @@
   // back · now playing · play-pause · skip — buttons hide when nothing plays; a click refreshes all three (signal 9)
   "custom/music-prev": {
     "exec": "~/.config/waybar/scripts/music-module.sh --icon prev",
-    "interval": 2, "signal": 9, "tooltip": false, "format": "{} ",
+    "interval": 2, "signal": 9, "tooltip": false, "format": "<span size='13pt'>{}</span> ",
     "on-click": "~/.config/waybar/scripts/music-module.sh --do prev"
   },
   "custom/music-toggle": {
     "exec": "~/.config/waybar/scripts/music-module.sh --icon toggle",
-    "interval": 2, "signal": 9, "tooltip": false, "format": "  {}",
+    "interval": 2, "signal": 9, "tooltip": false, "format": " <span size='13pt'>{}</span>",
     "on-click": "~/.config/waybar/scripts/music-module.sh --do toggle"
   },
   "custom/music-next": {
     "exec": "~/.config/waybar/scripts/music-module.sh --icon next",
-    "interval": 2, "signal": 9, "tooltip": false, "format": " {}",
+    "interval": 2, "signal": 9, "tooltip": false, "format": " <span size='13pt'>{}</span>",
     "on-click": "~/.config/waybar/scripts/music-module.sh --do next"
   },
 
