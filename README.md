@@ -124,6 +124,7 @@ MEMORY: 32Gib
     fastfetch: added a module list — without one this version printed only the logo; keys coloured blue
     fastfetch: laid out as three colour-coded groups (system blue, desktop magenta, hardware green) with icon + lowercase keys in an aligned column and a row of palette dots
     ghostty: colour scheme is the built-in theme "Belafonte Night" (theme line in ghostty/colors; browse with ghostty +list-themes; reload a running Ghostty with pkill -USR2 -x ghostty); prompt colours in zsh/p10k-colors.zsh re-matched to it
+    zsh: a thin dim rule spans the terminal above the current prompt (p10k ruler, set in zsh/p10k-colors.zsh) in place of the empty line
     zsh: plugins — autosuggestions, syntax highlighting, history substring search (Up / Down) and fzf-tab (Tab completions in an fzf popup). Not packaged by openSUSE: zsh/install-plugins.sh clones them into ~/.local/share/zsh/plugins (run it once on a new machine, again to update); .zshrc skips any that are missing
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)

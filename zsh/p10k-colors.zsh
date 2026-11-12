@@ -11,3 +11,10 @@ typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND='#97522c' 
 typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS}_FOREGROUND='#be100e'   # red: last command failed
 typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='#eaa549'         # amber: how long it took
 typeset -g POWERLEVEL9K_TIME_FOREGROUND='#5e5252'                           # dim: clock
+
+# A thin dim rule across the terminal above every prompt, separating one command's output
+# from the next. It takes the place of the empty line p10k otherwise adds.
+typeset -g POWERLEVEL9K_SHOW_RULER=true
+typeset -g POWERLEVEL9K_RULER_CHAR='─'
+typeset -g POWERLEVEL9K_RULER_FOREGROUND='#5e5252'
+typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
