@@ -10,7 +10,7 @@
 
   "modules-left":   ["sway/window", "cpu", "memory", "temperature", "custom/updates", "custom/cpusnap"],
   "modules-center": ["custom/workspaces"],
-  "modules-right":  ["clock", "custom/weather", "custom/bt"],
+  "modules-right":  ["clock", "custom/weather", "custom/bt", "tray"],
 
   // focused window — λ + app name, reverse-DNS ids shortened
   "sway/window": {
@@ -89,10 +89,12 @@
     "exec": "~/.config/waybar/scripts/bt-module.sh --status",
     "interval": 5,
     "tooltip": false,
-    // last module on the bar: no separator, edge gap comes from CSS padding-right
-    "format": "{}",
+    "format": "{}  <span size='13pt'>✧</span>  ",
     "on-click": "~/.config/waybar/scripts/bt-module.sh --menu"
-  }
+  },
+
+  // tray (background apps) at the right edge; edge gap comes from CSS padding-right
+  "tray": { "spacing": 8 }
 },
 
 // ──────────────────────── BOTTOM BAR ─────────────────────────
@@ -104,7 +106,7 @@
 
   "modules-left":   ["custom/power", "custom/nowplaying"],
   "modules-center": ["custom/procs", "custom/uptime", "network"],
-  "modules-right":  ["custom/volume", "custom/brightness", "tray"],
+  "modules-right":  ["custom/volume", "custom/brightness"],
 
   // power menu (rofi, opens upward from the corner) + vertical line before the music module
   "custom/power": {
@@ -149,9 +151,6 @@
     "on-click": "ROFI_THEME=dropup.rasi ~/.config/waybar/scripts/wifi-module.sh --menu"
   },
 
-  // tray sits at the right edge; separator before it comes from the brightness format
-  "tray": { "spacing": 8 },
-
   // thin-line lever slider ⎯⎯⎯◈ ; scroll/click wired to pamixer
   "custom/volume": {
     "exec": "~/.config/waybar/scripts/volume-bar.sh",
@@ -166,7 +165,6 @@
   "custom/brightness": {
     "exec": "~/.config/waybar/scripts/brightness-module.sh",
     "interval": 5,
-    "format": "{}  <span size='13pt'>✧</span>  ",
     "on-scroll-up": "ddcutil setvcp 10 + 10",
     "on-scroll-down": "ddcutil setvcp 10 - 10"
   }

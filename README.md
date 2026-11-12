@@ -89,6 +89,7 @@ MEMORY: 32Gib
     waybar: now-playing scrolls long titles as a marquee in bursts — holds the start 3 s, slides 4 chars/s to the end, holds 2 s, restarts; 40-char window; nowplaying.sh now runs continuously instead of on a 3 s interval; markup in titles is escaped
     waybar: power menu icon changed to 󱄚 (U+F111A)
     waybar: power button moved to the far left of the bottom bar, followed by a grey vertical line before the music module; its menu opens upward from the corner (rofi/dropup-left.rasi); bluetooth is now the last module on the top bar
+    waybar: tray moved from the bottom-right to the top-right edge, after bluetooth (✧ between them); bottom bar now ends with volume and brightness
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
