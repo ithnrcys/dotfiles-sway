@@ -1,11 +1,12 @@
 @import "config.rasi"
 
 window {
-    location: north west;
-    anchor: north west;
+    /* flush under the top bar, against the right edge */
+    location: north east;
+    anchor: north east;
     width: 410px;
-    y-offset: 28px; 
-    x-offset: 1510px;
+    y-offset: 0px;
+    x-offset: 0px;
 }
 
 /* Redefine the mainbox to ONLY contain the list (nukes the inputbar safely) */

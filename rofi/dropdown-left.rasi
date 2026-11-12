@@ -2,6 +2,8 @@
 @import "dropdown.rasi"
 
 window {
+    location: north west;
+    anchor: north west;
     width: 400px;
     x-offset: 0px;
     y-offset: 0px;

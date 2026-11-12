@@ -88,6 +88,7 @@
   "custom/bt": {
     "exec": "~/.config/waybar/scripts/bt-module.sh --status",
     "interval": 5,
+    "tooltip": false,
     "format": "{}  <span size='13pt'>✧</span>  ",
     "on-click": "~/.config/waybar/scripts/bt-module.sh --menu"
   },

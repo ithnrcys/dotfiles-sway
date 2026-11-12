@@ -1,81 +1,111 @@
 #!/usr/bin/env bash
+# Bluetooth for the top bar.
+#   --status   icon for the bar (polled)
+#   --menu     rofi dropdown: power, scan, connect / disconnect / pair devices
 
-# ==========================================
-# EDITABLE VALUES (Change your icons here!)
-# ==========================================
-ICON_ON="󰂱"
-ICON_OFF="󰂲"
-ICON_DISCONNECTED="󰂯"
-# ==========================================
+ICON_ON="󰂱"            # a device is connected
+ICON_OFF="󰂲"           # adapter off, or no bluetooth stack
+ICON_DISCONNECTED="󰂯"  # on, nothing connected
+ICON_SCAN="󰂰"
+
+SEP="──────────────────────────────"
+
+# every bluetoothctl call is time-boxed: it waits forever if bluetoothd is not answering
+bt() { timeout 5 bluetoothctl "$@" 2>/dev/null; }
+have_bt() { command -v bluetoothctl >/dev/null; }
+powered() { bt show | grep -q "Powered: yes"; }
+notify() { command -v dunstify >/dev/null && dunstify -a bluetooth "Bluetooth" "$1"; }
 
 # ------------------------------------------
-# MODE 1: THE POLLER (Runs every second)
+# MODE 1: status icon
 # ------------------------------------------
 if [[ "$1" == "--status" ]]; then
-    
-    if ! bluetoothctl show | grep -q "Powered: yes"; then
+    if ! have_bt || ! powered; then
         echo "$ICON_OFF"
-    elif bluetoothctl devices Connected | grep -q "Device"; then
+    elif bt devices Connected | grep -q "^Device"; then
         echo "$ICON_ON"
     else
         echo "$ICON_DISCONNECTED"
     fi
-    
-    exit 0 # Exits immediately. Protects your CPU!
+    exit 0
 fi
 
 # ------------------------------------------
-# MODE 2: THE EXECUTOR (Runs only on click)
+# MODE 2: menu (runs only on click)
 # ------------------------------------------
 if [[ "$1" == "--menu" ]]; then
-    
-    # 1. Gather Current State
-    power_state=$(bluetoothctl show | grep "Powered: yes" | wc -c)
+    declare -A MAC   # device name -> address
 
-    # 2. Build the Menu
-    if [ $power_state -gt 0 ]; then
-        toggle="󰂲 Power: Turn OFF"
-        scan="󰂰 Scan for New Devices"
-
-        connected=$(bluetoothctl devices Connected | sed 's/^Device \S* /󰂱 /' | sed 's/$/ (Connected)/')
-        paired=$(bluetoothctl devices | grep -v -f <(bluetoothctl devices Connected | awk '{print $2}') | sed 's/^Device \S* /󰂯 /')
-
-        # Start with the base options
-        MENU_CONTENT="${toggle}\n${scan}"
-
-        # Only draw the separator and devices IF there are devices to show
-        if [ -n "$connected" ] || [ -n "$paired" ]; then
-            MENU_CONTENT="${MENU_CONTENT}\n──────────────────────────────"
-            [ -n "$connected" ] && MENU_CONTENT="${MENU_CONTENT}\n${connected}"
-            [ -n "$paired" ] && MENU_CONTENT="${MENU_CONTENT}\n${paired}"
-        fi
+    if ! have_bt; then
+        MENU_CONTENT="${ICON_OFF} bluez is not installed"
+    elif ! powered; then
+        MENU_CONTENT="${ICON_DISCONNECTED} Bluetooth: Turn ON"
     else
-        # If power is off, the only option is to turn it on
-        MENU_CONTENT="󰂯 Power: Turn ON"
+        MENU_CONTENT="${ICON_OFF} Bluetooth: Turn OFF\n${ICON_SCAN} Scan for devices"
+
+        connected_macs=$(bt devices Connected | awk '{print $2}')
+        paired_macs=$(bt devices Paired | awk '{print $2}')
+        rows_connected="" rows_paired="" rows_new=""
+
+        # "Device AA:BB:CC:DD:EE:FF Some Name" — everything known to the adapter, scan results included
+        while read -r _ mac name; do
+            [ -z "$name" ] && continue
+            # devices that never sent a name show up as their address with dashes; skip them
+            [[ "$name" =~ ^([0-9A-F]{2}-){5}[0-9A-F]{2}$ ]] && continue
+            MAC[$name]="$mac"
+            if grep -Fxq "$mac" <<< "$connected_macs"; then
+                rows_connected+="\n${ICON_ON} ${name} (Connected)"
+            elif grep -Fxq "$mac" <<< "$paired_macs"; then
+                rows_paired+="\n${ICON_DISCONNECTED} ${name}"
+            else
+                rows_new+="\n${ICON_SCAN} ${name} (New)"
+            fi
+        done < <(bt devices)
+
+        rows="${rows_connected}${rows_paired}${rows_new}"
+        [ -n "$rows" ] && MENU_CONTENT+="\n${SEP}${rows}"
     fi
 
-    # 3. Hand off to the Engine (Inheritance)
+    # Hand off to the Engine
     source ~/.config/waybar/scripts/_rofi_engine.sh
+    [ -z "$ROFI_CHOICE" ] && exit 0
 
-    # 4. Execute the Action based on what was clicked
-    if [[ "$ROFI_CHOICE" == *"Power: Turn OFF"* ]]; then
-        bluetoothctl power off
-    elif [[ "$ROFI_CHOICE" == *"Power: Turn ON"* ]]; then
-        bluetoothctl power on
-    elif [[ "$ROFI_CHOICE" == *"Scan for New Devices"* ]]; then
-        # Pops open Alacritty for a live scan
-        ghostty -e bash -c "echo 'Scanning for 15 seconds...'; bluetoothctl --timeout 15 scan on; echo 'Done. Check Rofi menu.'; sleep 2"
-    elif [[ "$ROFI_CHOICE" == *"󰂱"* ]]; then
-        # Disconnect a connected device
-        name=$(echo "$ROFI_CHOICE" | sed 's/󰂱 //;s/ (Connected)//')
-        mac=$(bluetoothctl devices | grep "$name" | awk '{print $2}')
-        bluetoothctl disconnect "$mac"
-    elif [[ "$ROFI_CHOICE" == *"󰂯"* ]]; then
-        # Connect to an available device
-        name=$(echo "$ROFI_CHOICE" | sed 's/󰂯 //')
-        mac=$(bluetoothctl devices | grep "$name" | awk '{print $2}')
-        bluetoothctl connect "$mac"
-    fi
-    
+    case "$ROFI_CHOICE" in
+        *"Bluetooth: Turn OFF"*) bt power off >/dev/null; exit 0 ;;
+        *"Bluetooth: Turn ON"*)  bt power on  >/dev/null; exit 0 ;;
+        *"Scan for devices"*)
+            notify "Scanning for 6 seconds…"
+            timeout 8 bluetoothctl --timeout 6 scan on >/dev/null 2>&1
+            exec "$0" --menu ;;
+        *"not installed"*|──*) exit 0 ;;
+    esac
+
+    # A device row: strip the icon and the state tag, look the address up by name
+    name="${ROFI_CHOICE#* }"
+    state=""
+    case "$name" in
+        *" (Connected)") state="connected"; name="${name% (Connected)}" ;;
+        *" (New)")       state="new";       name="${name% (New)}" ;;
+    esac
+    mac="${MAC[$name]}"
+    [ -z "$mac" ] && exit 0
+
+    case "$state" in
+        connected)
+            bt disconnect "$mac" >/dev/null && notify "Disconnected ${name}" ;;
+        new)
+            # first time: pair, trust (so it reconnects by itself later), then connect
+            notify "Pairing ${name}…"
+            if timeout 20 bluetoothctl pair "$mac" >/dev/null 2>&1; then
+                bt trust "$mac" >/dev/null
+                timeout 15 bluetoothctl connect "$mac" >/dev/null 2>&1 \
+                    && notify "Connected ${name}" || notify "Paired ${name}, but could not connect"
+            else
+                notify "Could not pair ${name}"
+            fi ;;
+        *)
+            timeout 15 bluetoothctl connect "$mac" >/dev/null 2>&1 \
+                && notify "Connected ${name}" || notify "Could not connect ${name}" ;;
+    esac
     exit 0
 fi
