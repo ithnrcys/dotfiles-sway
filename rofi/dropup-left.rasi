@@ -1,0 +1,10 @@
+/* Bar menu for the left end of the bottom bar (power): opens upward from the corner */
+@import "dropdown.rasi"
+
+window {
+    location: south west;
+    anchor: south west;
+    width: 410px;
+    x-offset: 0px;
+    y-offset: 0px;
+}

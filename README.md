@@ -88,12 +88,13 @@ MEMORY: 32Gib
     Installed bluez, bluetooth.service running; bar menu tested: power on/off, scan, status icons (device rows and pair/connect actions only against a stub — no named device was in range)
     waybar: now-playing scrolls long titles as a marquee in bursts — holds the start 3 s, slides 4 chars/s to the end, holds 2 s, restarts; 40-char window; nowplaying.sh now runs continuously instead of on a 3 s interval; markup in titles is escaped
     waybar: power menu icon changed to 󱄚 (U+F111A)
+    waybar: power button moved to the far left of the bottom bar, followed by a grey vertical line before the music module; its menu opens upward from the corner (rofi/dropup-left.rasi); bluetooth is now the last module on the top bar
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
     sway/        config, autostart.sh
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
-    rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi (top-right / top-left / bottom bar menus), colors.rasi
+    rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi (top-right / top-left / bottom-centre / bottom-left bar menus), colors.rasi
     ghostty/     config, colors, fonts
     zsh/         .zshrc
     fastfetch/   config.jsonc

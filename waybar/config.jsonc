@@ -10,7 +10,7 @@
 
   "modules-left":   ["sway/window", "cpu", "memory", "temperature", "custom/updates", "custom/cpusnap"],
   "modules-center": ["custom/workspaces"],
-  "modules-right":  ["clock", "custom/weather", "custom/bt", "custom/power"],
+  "modules-right":  ["clock", "custom/weather", "custom/bt"],
 
   // focused window — λ + app name, reverse-DNS ids shortened
   "sway/window": {
@@ -89,14 +89,9 @@
     "exec": "~/.config/waybar/scripts/bt-module.sh --status",
     "interval": 5,
     "tooltip": false,
-    "format": "{}  <span size='13pt'>✧</span>  ",
+    // last module on the bar: no separator, edge gap comes from CSS padding-right
+    "format": "{}",
     "on-click": "~/.config/waybar/scripts/bt-module.sh --menu"
-  },
-
-  // power menu (rofi) — edge gap comes from CSS padding-right, not spaces
-  "custom/power": {
-    "format": "<span size='11pt'>󱄚</span>",
-    "on-click": "~/.config/waybar/scripts/power-module.sh"
   }
 },
 
@@ -107,9 +102,16 @@
   "position": "bottom",
   "height": 28,
 
-  "modules-left":   ["custom/nowplaying"],
+  "modules-left":   ["custom/power", "custom/nowplaying"],
   "modules-center": ["custom/procs", "custom/uptime", "network"],
   "modules-right":  ["custom/volume", "custom/brightness", "tray"],
+
+  // power menu (rofi, opens upward from the corner) + vertical line before the music module
+  "custom/power": {
+    "format": "<span size='11pt'>󱄚</span>  <span color='#4D4D5A'>│</span>  ",
+    "tooltip": false,
+    "on-click": "ROFI_THEME=dropup-left.rasi ~/.config/waybar/scripts/power-module.sh"
+  },
 
   // playerctl → mpd fallback; empty when nothing plays.
   // Continuous script (no interval): long titles scroll in bursts, see nowplaying.sh
