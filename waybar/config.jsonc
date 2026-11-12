@@ -128,9 +128,9 @@
   },
 
   "network": {
-    "format-wifi": "󰀂 \u2009{essid}  <span size='13pt'>✧</span>  󰓅  {bandwidthDownBits}",
+    "format-wifi": "󰀂 \u2009{signalStrength}%  <span size='13pt'>✧</span>  󰓅  {bandwidthDownBits}",
     "format-ethernet": "󰈀 \u2009{ipaddr}",
-    "format-disconnected": "󰤭",
+    "format-disconnected": "󰤭 \u2009offline",
     "interval": 3,
     "tooltip": false,
     // click: rofi network list opening upward from the bottom bar
