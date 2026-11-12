@@ -93,6 +93,7 @@ MEMORY: 32Gib
     swaylock: new swaylock/config (~/.config/swaylock symlinked) — black screen, thin grey ring always visible, JetBrainsMono, lighter ring for verifying / wrong / caps lock; sway/lock.sh added, so $mod+l and the power menu's Lock entry now work
     swaylock restyled: background is the wallpaper frosted (blurred), colour-muted and darkened, with "λ user" under the ring — built by sway/lock.sh with ImageMagick and cached in ~/.cache/swaylock/bg.jpg (rebuilt when the wallpaper or script changes; lock.sh --rebuild forces it); ring is larger and thicker over a smoked-glass disc, bright while verifying, inverted on a wrong password
     swaylock: "λ user" label removed from the lock background; ring changed to a 3px hairline with no disc (white segment on key press, solid white while verifying, light haze inside on a wrong password)
+    swaylock: ring is now a thin blue accent (#86a4dc, from the wallpaper) over a dark glass disc — option D of four mock-ups
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:

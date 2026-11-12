@@ -12,10 +12,10 @@ indicator-caps-lock
 color=070708
 scaling=fill
 
-# indicator: always visible, a hairline ring with nothing inside it
+# indicator: always visible, a thin blue ring (picked from the wallpaper) over a dark glass disc
 indicator-idle-visible
-indicator-radius=70
-indicator-thickness=3
+indicator-radius=76
+indicator-thickness=4
 font=JetBrainsMono Nerd Font
 font-size=15
 
@@ -24,34 +24,34 @@ line-color=00000000
 separator-color=00000000
 
 # idle
-inside-color=00000000
-ring-color=e3e2e9b0
-text-color=e3e2e9
+inside-color=07070880
+ring-color=86a4dcd0
+text-color=d2e0ff
 
-# typing: key presses light a white segment, backspace a dim one
-key-hl-color=ffffff
-bs-hl-color=7C7C84
+# typing: key presses light a pale blue segment, backspace a dim one
+key-hl-color=d2e0ff
+bs-hl-color=4f6184
 
 # password cleared
-inside-clear-color=00000000
-ring-clear-color=e3e2e960
-text-clear-color=e3e2e9
+inside-clear-color=07070880
+ring-clear-color=86a4dc70
+text-clear-color=d2e0ff
 line-clear-color=00000000
 
-# checking the password: ring goes solid white
-inside-ver-color=00000000
-ring-ver-color=ffffff
-text-ver-color=ffffff
+# checking the password: ring goes pale and solid
+inside-ver-color=070708a0
+ring-ver-color=d2e0ff
+text-ver-color=d2e0ff
 line-ver-color=00000000
 
-# wrong password: ring stays white and the inside fills with a light haze
-inside-wrong-color=e3e2e940
+# wrong password: ring turns white, disc fills with a blue haze
+inside-wrong-color=86a4dc60
 ring-wrong-color=ffffff
 text-wrong-color=ffffff
 line-wrong-color=00000000
 
 # caps lock on
-inside-caps-lock-color=00000000
+inside-caps-lock-color=07070880
 ring-caps-lock-color=BABAC6
 text-caps-lock-color=BABAC6
 line-caps-lock-color=00000000
