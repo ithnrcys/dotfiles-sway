@@ -2,6 +2,7 @@
 # Workspaces for the top bar: each workspace has one constant icon (workspace-icons.txt),
 # drawn with its "focused" glyph when focused and with the dimmed "unfocused" glyph otherwise.
 # The focused workspace sits at the visual centre. A workspace without an icon shows its name.
+# On a workspace switch the row slides to its new position over a few frames.
 #
 # The icons are SF Symbols characters and need the SF Pro font in ~/.local/share/fonts
 # (Apple-licensed, deliberately not in this repo).
@@ -12,6 +13,8 @@ ICON_CELLS=3          # advance of one icon measured in bar-font characters, for
 DIM="#7C7C84"         # unfocused icon without a colour of its own
 DIM_ALPHA="55%"       # unfocused icon with a colour: same colour, this opaque
 GAP="    "            # between workspaces
+FRAMES=8              # slide animation: number of steps (0 = jump straight there)
+FRAME_TIME=0.016      # seconds per step
 
 declare -A ICON_OFF ICON_ON ICON_COLOR
 while read -r ws off on color; do
@@ -31,7 +34,9 @@ icon_span() {
     echo "<span font_family='$FONT' size='$ICON_SIZE'$attrs>$1</span>"
 }
 
-print_ws() {
+# Builds the row for the current state: ROW is the markup, SHIFT how far it must be pushed
+# so the focused workspace is centred (> 0: that many spaces on the left, < 0: on the right).
+build_row() {
     local name focused text cells
     local left="" right="" centre="" lcells=0 rcells=0 seen=0
 
@@ -54,11 +59,36 @@ print_ws() {
         fi
     done < <(swaymsg -t get_workspaces | jq -r '.[] | "\(.name)\t\(.focused)"')
 
-    # pad the shorter side so the focused workspace sits at the visual centre
-    while (( lcells < rcells )); do left=" $left";   lcells=$(( lcells + 1 )); done
-    while (( rcells < lcells )); do right="$right "; rcells=$(( rcells + 1 )); done
-    echo "$left$centre$right"
+    ROW="$left$centre$right"
+    SHIFT=$(( rcells - lcells ))
 }
 
-print_ws
-swaymsg -t subscribe -m '["workspace"]' | while read -r _; do print_ws; done
+# prints ROW pushed by $1 cells
+frame() {
+    local pad
+    if (( $1 >= 0 )); then printf -v pad '%*s' "$1" '';        echo "$pad$ROW"
+    else                   printf -v pad '%*s' "$(( -$1 ))" ''; echo "$ROW$pad"; fi
+}
+
+# $1 = "slide": move from the previous position to the new one, fast at first, easing out
+SHOWN=""
+update() {
+    local i from
+    build_row
+    if [ "$1" = slide ] && [ -n "$SHOWN" ] && (( FRAMES > 0 && SHOWN != SHIFT )); then
+        from=$SHOWN
+        for (( i = 1; i < FRAMES; i++ )); do
+            frame $(( from + (SHIFT - from) * (FRAMES * FRAMES - (FRAMES - i) * (FRAMES - i)) / (FRAMES * FRAMES) ))
+            sleep "$FRAME_TIME"
+        done
+    fi
+    frame "$SHIFT"
+    SHOWN=$SHIFT
+}
+
+update
+swaymsg -t subscribe -m '["workspace"]' | while read -r _; do
+    # several switches in quick succession: skip ahead and animate only to the latest state
+    while read -r -t 0.005 _; do :; done
+    update slide
+done
