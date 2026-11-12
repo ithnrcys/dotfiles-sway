@@ -1,14 +1,17 @@
-/* Now-playing dropup for the bottom bar: cover art, track details, then the controls.
+/* Now-playing dropup for the bottom bar: the cover art and nothing else.
    music-module.sh passes the cover path as  icon-cover { filename: "..."; }  */
 @import "dropup-left.rasi"
 
 window {
     width: 300px;
     x-offset: 44px;      /* clear of the power button, above the music module */
+    padding: 0px;
 }
 
 mainbox {
-    children: [ icon-cover, message, listview ];
+    children: [ icon-cover, listview ];
+    padding: 0px;
+    spacing: 0px;
 }
 
 icon-cover {
@@ -17,12 +20,26 @@ icon-cover {
     padding: 0px;
 }
 
+/* rofi only draws the cover when a listview is present, so one empty row stays in the
+   layout, squeezed to nothing and painted in the background colour */
 listview {
-    lines: 3;
-}
-
-/* track details: no separator line, text aligned with the rows below */
-message {
+    lines: 1;
+    padding: 0px;
+    margin: 0px;
+    spacing: 0px;
     border: 0px;
-    padding: 8px 12px 6px 12px;
+}
+element {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    children: [ element-text ];
+}
+element-text {
+    font: "JetBrainsMono Nerd Font 1";
+    padding: 0px;
+}
+element normal.normal, element selected.normal, element alternate.normal, element-text {
+    background-color: @background;
+    text-color: @background;
 }
