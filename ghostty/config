@@ -6,6 +6,8 @@ window-decoration = false
 window-padding-x = 10
 window-padding-y = 10
 background-opacity = 1.0
+# overrides the opacity under SwayFX only; written by sway/start-swayfx.sh, absent otherwise
+config-file = ?~/.cache/ghostty-fx.conf
 window-inherit-working-directory = true
 
 # behaviour
