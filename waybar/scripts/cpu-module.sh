@@ -47,17 +47,8 @@ cores=("${usage[@]:1}")
 freq=$(awk -F': ' '/^cpu MHz/{s += $2; n++} END{printf "%.2f GHz", s / n / 1000}' /proc/cpuinfo)
 load=$(cut -d' ' -f1-3 /proc/loadavg)
 
-# CPU temperature: find the k10temp sensor by name, hwmon numbers shift between boots
-temp="--"
-for h in /sys/class/hwmon/hwmon*; do
-    if [ "$(cat "$h/name" 2>/dev/null)" = "k10temp" ]; then
-        temp="$(( $(cat "$h/temp1_input") / 1000 ))°C"
-        break
-    fi
-done
-
 MENU_CONTENT="$(printf 'usage   %3d%%   %s' "$total" "$(bar "$total" 24)")"
-MENU_CONTENT+="\n$(printf 'temp    %-8s freq   %s' "$temp" "$freq")"
+MENU_CONTENT+="\n$(printf 'freq    %s' "$freq")"
 MENU_CONTENT+="\n$(printf 'load    %s' "$load")"
 MENU_CONTENT+="\n${SEP}"
 
