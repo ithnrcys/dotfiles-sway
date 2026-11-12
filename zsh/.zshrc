@@ -1,3 +1,5 @@
+#fastfetch
+
 # p10k instant prompt — must stay at the top
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -32,14 +34,16 @@ source <(fzf --zsh)
 source /usr/share/zsh/site-functions/zsh-autosuggestions.zsh 2>/dev/null
 source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh 2>/dev/null
 
-# ssh agent — persist across sessions
-if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-  ssh-agent -t 12h > ~/.ssh/agent-env
+# ssh agent — one per login, no prompt at shell start
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+ssh-add -l >/dev/null 2>&1
+if [ $? -eq 2 ]; then
+  rm -f "$SSH_AUTH_SOCK"
+  eval "$(ssh-agent -t 12h -a "$SSH_AUTH_SOCK")" >/dev/null
 fi
-[[ -f ~/.ssh/agent-env ]] && source ~/.ssh/agent-env >/dev/null
-ssh-add -l >/dev/null 2>&1 || ssh-add ~/.ssh/id_ed25519 2>/dev/null
 
 # prompt
 source ~/.dotfiles/p10k/powerlevel10k.zsh-theme
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 [[ -f ~/.dotfiles/zsh/p10k-colors.zsh ]] && source ~/.dotfiles/zsh/p10k-colors.zsh
+
