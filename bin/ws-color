@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# Set the colour of a workspace icon on the top bar (waybar/scripts/workspace-icons.txt).
+#   ws-color                 list the workspaces and their colours
+#   ws-color 3 ff9f0a        colour workspace 3   (#ff9f0a, ff9f0a and the short form f90 all work)
+#   ws-color 3 none          back to the default white / grey
+#   ws-color all none        clear every colour
+
+FILE="$HOME/.dotfiles/waybar/scripts/workspace-icons.txt"
+
+usage() { sed -n '2,6s/^# \{0,1\}//p' "$0"; exit "${1:-0}"; }
+
+list() {
+    local ws off on color r g b
+    while read -r ws off on color; do
+        [[ "$ws" == \#* || -z "$ws" ]] && continue
+        if [ -n "$color" ]; then
+            r=$((16#${color:1:2})) g=$((16#${color:3:2})) b=$((16#${color:5:2}))
+            printf '%3s  \e[48;2;%d;%d;%dm    \e[0m  %s\n' "$ws" "$r" "$g" "$b" "$color"
+        else
+            printf '%3s        default\n' "$ws"
+        fi
+    done < "$FILE"
+}
+
+case "$1" in
+    "")        list; exit 0 ;;
+    -h|--help) usage ;;
+esac
+[ $# -eq 2 ] || usage 1
+ws="$1" color="${2#\#}"
+
+if [ "$ws" != all ] && ! grep -q "^$ws " "$FILE"; then
+    echo "ws-color: no workspace '$ws' in $FILE" >&2; exit 1
+fi
+
+case "${color,,}" in
+    none|default|off) color="" ;;
+    *)
+        [[ "$color" =~ ^[0-9a-fA-F]{3}$ ]] && color="${color:0:1}${color:0:1}${color:1:1}${color:1:1}${color:2:1}${color:2:1}"
+        [[ "$color" =~ ^[0-9a-fA-F]{6}$ ]] || { echo "ws-color: '$2' is not a hex colour (try ff9f0a)" >&2; exit 1; }
+        color="#${color^^}" ;;
+esac
+
+tmp=$(mktemp)
+awk -v ws="$ws" -v color="$color" '
+    /^#/ || NF == 0        { print; next }
+    ws == "all" || $1 == ws { print $1, $2, $3 (color == "" ? "" : " " color); next }
+                            { print }' "$FILE" > "$tmp" && cat "$tmp" > "$FILE"   # cat keeps the symlink/inode
+rm -f "$tmp"
+
+pkill -SIGUSR2 -x waybar      # reload the bar so the new colour shows
+list
