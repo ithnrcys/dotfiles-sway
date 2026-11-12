@@ -101,7 +101,7 @@ MEMORY: 32Gib
     waybar: clicking the now-playing text opens a dropup showing just the cover art (rofi/music.rasi); remote covers are cached in ~/.cache/nowplaying
     _rofi_engine.sh: ROFI_ARGS array is passed straight to rofi (-mesg, extra -theme-str)
     fonts: SF Pro (from the Mac) unzipped into ~/.local/share/fonts/SF-Pro — Apple-licensed, kept out of this repo; waybar needs a full restart to see a new font
-    waybar: workspaces module is a fixed row of ten SF Symbols icons, one per workspace (scripts/workspace-icons.txt, same set as aeromenu on macOS), light weight — focused: filled glyph, bright; open: outline, accent grey; not open: outline, faint. Open workspaces without an icon are appended by name
+    waybar: workspaces module shows one constant SF Symbols icon per workspace (scripts/workspace-icons.txt, same set as aeromenu on macOS) — focused workspace uses its second glyph at the centre, the others are dimmed; workspaces without an icon show their name
     sway: Bitwarden windows float
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
