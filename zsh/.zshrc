@@ -1,6 +1,7 @@
 # system summary at the top of every new terminal — has to run before the p10k instant
 # prompt below, which does not allow output once it has started
-[[ -o interactive ]] && command -v fastfetch >/dev/null && fastfetch
+# (the empty line after it keeps the first prompt off the logo)
+[[ -o interactive ]] && command -v fastfetch >/dev/null && { fastfetch; print; }
 
 # p10k instant prompt — must stay at the top
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
