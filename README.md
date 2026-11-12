@@ -109,7 +109,7 @@ MEMORY: 32Gib
     waybar: workspace icons can carry a colour (optional 4th column in scripts/workspace-icons.txt) — workspace 1 is orange #FF9F0A, workspace 2 teal #007A74; a coloured icon stays coloured but fainter when unfocused
     bin/ws-color: CLI to set a workspace icon colour — "ws-color" lists, "ws-color 3 ff9f0a" sets, "ws-color 3 none" clears, "ws-color rand" / "ws-color 3 rand" picks random colours; symlinked into ~/.local/bin, reloads waybar
     waybar: workspace icons slide to their new position on a workspace switch (8 eased steps of 16 ms in workspaces.sh — FRAMES / FRAME_TIME; sway itself cannot animate windows)
-    waybar: focused workspace icon sits in [ brackets ]; wider gap between workspace icons
+    waybar: focused workspace icon sits in [ brackets ]; wider gap between workspace icons; icons 9pt
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
