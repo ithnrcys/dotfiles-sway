@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Workspaces for the top bar: each workspace has one constant icon (workspace-icons.txt),
 # drawn with its "focused" glyph when focused and with the dimmed "unfocused" glyph otherwise.
-# The focused workspace sits at the visual centre. A workspace without an icon shows its name.
+# The focused workspace sits at the visual centre in [ brackets ]. A workspace without an icon shows its name.
 # On a workspace switch the row slides to its new position over a few frames.
 #
 # The icons are SF Symbols characters and need the SF Pro font in ~/.local/share/fonts
@@ -12,7 +12,7 @@ ICON_SIZE="10pt"
 ICON_CELLS=3          # advance of one icon measured in bar-font characters, for centring
 DIM="#7C7C84"         # unfocused icon without a colour of its own
 DIM_ALPHA="55%"       # unfocused icon with a colour: same colour, this opaque
-GAP="    "            # between workspaces
+GAP="      "          # between workspaces
 FRAMES=8              # slide animation: number of steps (0 = jump straight there)
 FRAME_TIME=0.016      # seconds per step
 
@@ -51,7 +51,7 @@ build_row() {
         fi
 
         if [ "$focused" = true ]; then
-            centre="$text"; seen=1
+            centre="[ $text ]"; seen=1
         elif (( seen )); then
             right+="$GAP$text"; rcells=$(( rcells + ${#GAP} + cells ))
         else
