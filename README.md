@@ -94,6 +94,7 @@ MEMORY: 32Gib
     swaylock restyled: background is the wallpaper frosted (blurred), colour-muted and darkened, with "λ user" under the ring — built by sway/lock.sh with ImageMagick and cached in ~/.cache/swaylock/bg.jpg (rebuilt when the wallpaper or script changes; lock.sh --rebuild forces it); ring is larger and thicker over a smoked-glass disc, bright while verifying, inverted on a wrong password
     swaylock: "λ user" label removed from the lock background; ring changed to a 3px hairline with no disc (white segment on key press, solid white while verifying, light haze inside on a wrong password)
     swaylock: ring is now a thin blue accent (#86a4dc, from the wallpaper) over a dark glass disc — option D of four mock-ups
+    swayidle: started from sway/autostart.sh — lock after 10 min idle, screen off at 11 min (back on at input), lock before suspend; fullscreen windows inhibit idle (sway/config)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
@@ -137,7 +138,6 @@ Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, bo
 - Ricing:
     - $mod+F6 calls sway/scripts/power-menu.sh, which does not exist — point it at waybar/scripts/power-module.sh
     - $mod+F7/F8 wifi and bluetooth menus — bind to the waybar scripts
-    - swayidle: idle lock and display off
     - Lock screen has no clock (plain swaylock cannot draw one) — hyprlock or gtklock from the repo could
     - zsh/p10k-colors.zsh is sourced but missing; ~/.p10k.zsh lives outside the repo
     - p10k is a gitlink without .gitmodules — make it a real submodule or install it another way

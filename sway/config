@@ -33,6 +33,10 @@ for_window [app_id="zenity"] floating enable
 for_window [app_id="swaynag"] floating enable
 for_window [class="steam_app_244210" title="^Content Manager"] floating enable, resize set 100ppt 100ppt, move position 0 0
 
+### Idle — a fullscreen window (game, video) keeps the screen from locking or turning off
+for_window [app_id=".*"] inhibit_idle fullscreen
+for_window [class=".*"] inhibit_idle fullscreen
+
 ### Core
 bindsym $mod+Return exec $term
 bindsym $mod+q kill
