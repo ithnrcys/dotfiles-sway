@@ -103,6 +103,7 @@ MEMORY: 32Gib
     fonts: SF Pro (from the Mac) unzipped into ~/.local/share/fonts/SF-Pro — Apple-licensed, kept out of this repo; waybar needs a full restart to see a new font
     waybar: workspaces module shows one constant SF Symbols icon per workspace (scripts/workspace-icons.txt, same set as aeromenu on macOS) — focused workspace uses its second glyph at the centre, the others are dimmed; workspaces without an icon show their name
     sway: Bitwarden windows float
+    dunst: notifications appear bottom-right (was bottom-left)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
