@@ -95,7 +95,7 @@
 
   // power menu (rofi) — edge gap comes from CSS padding-right, not spaces
   "custom/power": {
-    "format": "<span size='11pt'>󰤁</span>",
+    "format": "<span size='11pt'>󱄚</span>",
     "on-click": "~/.config/waybar/scripts/power-module.sh"
   }
 },
