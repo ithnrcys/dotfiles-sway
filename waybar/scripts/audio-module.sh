@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
-# Audio mixer for the bottom bar: a dropup listing the output devices and every application
-# that is playing sound, each with its own level.
-#   Enter / click on a device        make it the default output (playing apps move to it)
+# Audio mixer for the bottom bar: a dropup listing every application that is playing sound
+# (browser, music player, games ...), each with its own level. Output devices are not listed.
 #   Enter / click on an application  pick a level from a list (or mute it)
-#   Left / Right on any row          volume -5% / +5%
+#   Left / Right on an application   volume -5% / +5%
 #   Escape, or clicking the volume slider again, closes it
 #   --rows  print the menu rows and exit (for checking)
 
 STEP=5
-LABEL=26          # characters of device / application name
+LABEL=30          # characters of application name
 SLIDER=10         # characters of the level slider
 I_APP=$'\U000F0386'
 
@@ -30,20 +29,10 @@ level() {
     printf '%s %3d%%' "$bar" "$1"
 }
 
-# fills ROWS (text) and ACTS ("sink|name|vol|mute" or "app|index|vol|mute"), same order
+# fills ROWS (text) and ACTS ("app|index|vol|mute"), same order
 build() {
-    local kind id vol mute name default
+    local id vol mute name
     ROWS=() ACTS=()
-    default=$(pactl get-default-sink 2>/dev/null)
-
-    while IFS=$'\t' read -r id vol mute name; do
-        [ -n "$id" ] || continue
-        if [ "$id" = "$default" ]; then kind="●"; else kind="○"; fi
-        ROWS+=("$kind  $(label "$name")  $(level "$vol" "$mute")")
-        ACTS+=("sink|$id|$vol|$mute")
-    done < <(pactl -f json list sinks 2>/dev/null | jq -r '.[] |
-        [.name, ([.volume[].value_percent | rtrimstr("%") | tonumber] | max), .mute, .description] | @tsv')
-
     while IFS=$'\t' read -r id vol mute name; do
         [ -n "$id" ] || continue
         ROWS+=("$I_APP  $(label "$name")  $(level "$vol" "$mute")")
@@ -54,21 +43,13 @@ build() {
         [.index, ([.volume[].value_percent | rtrimstr("%") | tonumber] | max), .mute,
          (if $media == "" or $media == $app then $app else "\($app) · \($media)" end)] | @tsv')
 
-    (( ${#ROWS[@]} )) || { ROWS=("no audio devices"); ACTS=("none"); }
+    (( ${#ROWS[@]} )) || { ROWS=("nothing is playing"); ACTS=("none"); }
 }
 
-set_volume() {      # kind, id, percent (clamped to 0..100)
-    local v=$3
+set_volume() {      # stream index, percent (clamped to 0..100)
+    local v=$2
     (( v < 0 )) && v=0; (( v > 100 )) && v=100
-    if [ "$1" = sink ]; then pactl set-sink-volume "$2" "$v%"; else pactl set-sink-input-volume "$2" "$v%"; fi
-}
-
-set_default() {     # sink name: new default, and move what is playing onto it
-    local input
-    pactl set-default-sink "$1"
-    for input in $(pactl -f json list sink-inputs | jq -r '.[].index'); do
-        pactl move-sink-input "$input" "$1" 2>/dev/null
-    done
+    pactl set-sink-input-volume "$1" "$v%"
 }
 
 # menu through the shared engine; sets ROFI_CHOICE (row number) and ROFI_EXIT
@@ -95,7 +76,7 @@ app_levels() {      # index, current volume, muted
     [ "$ROFI_EXIT" = 0 ] || return
     case "$pick" in
         mute|unmute) pactl set-sink-input-mute "$1" toggle ;;
-        *%)          set_volume app "$1" "${pick//[ %]/}" ;;
+        *%)          set_volume "$1" "${pick//[ %]/}" ;;
     esac
 }
 
@@ -110,13 +91,10 @@ while true; do
     row=$ROFI_CHOICE
     IFS='|' read -r kind id vol mute <<< "${ACTS[$row]}"
     case "$ROFI_EXIT" in
-        0)  case "$kind" in
-                sink) set_default "$id" ;;
-                app)  app_levels "$id" "$vol" "$mute" ;;
-                *)    break ;;
-            esac ;;
-        10) [ "$kind" != none ] && set_volume "$kind" "$id" $(( vol - STEP )) ;;
-        11) [ "$kind" != none ] && set_volume "$kind" "$id" $(( vol + STEP )) ;;
+        0)  [ "$kind" = app ] || break
+            app_levels "$id" "$vol" "$mute" ;;
+        10) [ "$kind" = app ] && set_volume "$id" $(( vol - STEP )) ;;
+        11) [ "$kind" = app ] && set_volume "$id" $(( vol + STEP )) ;;
         *)  break ;;
     esac
 done

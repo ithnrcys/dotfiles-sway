@@ -171,7 +171,7 @@
   },
 
   // thin-line lever slider ⎯⎯⎯◈ ; scroll changes the volume, right click mutes,
-  // left click opens the mixer dropup (output devices + per-application levels)
+  // left click opens the mixer dropup (per-application levels)
   "custom/volume": {
     "exec": "~/.config/waybar/scripts/volume-bar.sh",
     "interval": 1,

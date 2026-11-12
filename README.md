@@ -110,7 +110,7 @@ MEMORY: 32Gib
     bin/ws-color: CLI to set a workspace icon colour — "ws-color" lists, "ws-color 3 ff9f0a" sets, "ws-color 3 none" clears, "ws-color rand" / "ws-color 3 rand" picks random colours; symlinked into ~/.local/bin, reloads waybar
     waybar: workspace icons slide to their new position on a workspace switch (8 eased steps of 16 ms in workspaces.sh — FRAMES / FRAME_TIME; sway itself cannot animate windows)
     waybar: focused workspace icon sits in [ brackets ]; wider gap between workspace icons; icons 9pt
-    waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) — output devices (Enter makes one the default) and every application playing sound (Enter picks a level or mutes); Left / Right changes the selected row by 5%. Mute moved to right click
+    waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
