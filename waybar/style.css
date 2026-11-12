@@ -30,7 +30,7 @@ window#waybar.bottom { border-top:    1px solid #4D4D5A; }
 #clock, #custom-weather, #custom-wifi, #custom-bt, #custom-power,
 #custom-music-prev, #custom-music-toggle, #custom-music-next,
 #custom-nowplaying, #custom-procs, #custom-uptime, #network, #tray,
-#custom-volume, #custom-brightness {
+#custom-volume, #custom-brightness, #custom-dnd, #custom-caffeine {
 	padding: 0;
 	color: #e3e2e9;
 }
@@ -41,5 +41,5 @@ window#waybar.bottom { border-top:    1px solid #4D4D5A; }
 #custom-power { padding-left: 10px; }
 
 #tray { padding-right: 20px; }
-#custom-brightness { padding-right: 20px; }
+#custom-caffeine { padding-right: 20px; }
 

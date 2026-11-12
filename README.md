@@ -104,6 +104,8 @@ MEMORY: 32Gib
     waybar: workspaces module shows one constant SF Symbols icon per workspace (scripts/workspace-icons.txt, same set as aeromenu on macOS) — focused workspace uses its second glyph at the centre, the others are dimmed; workspaces without an icon show their name
     sway: Bitwarden windows float
     dunst: notifications appear bottom-right (was bottom-left)
+    waybar: do-not-disturb toggle at the right end of the bottom bar (scripts/dnd-module.sh) — pauses dunst; held notifications appear when it is switched off
+    waybar: caffeine toggle next to it (scripts/caffeine-module.sh) — while on, the swayidle lock and screen-off timeouts in sway/autostart.sh are skipped; resets on reboot, lock-before-suspend unaffected
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:

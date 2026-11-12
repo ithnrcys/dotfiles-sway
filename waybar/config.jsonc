@@ -106,7 +106,7 @@
 
   "modules-left":   ["custom/power", "custom/music-prev", "custom/nowplaying", "custom/music-toggle", "custom/music-next"],
   "modules-center": ["custom/procs", "custom/uptime", "network"],
-  "modules-right":  ["custom/volume", "custom/brightness"],
+  "modules-right":  ["custom/volume", "custom/brightness", "custom/dnd", "custom/caffeine"],
 
   // power menu (rofi, opens upward from the corner) + vertical line before the music module
   "custom/power": {
@@ -186,6 +186,22 @@
     "interval": 5,
     "on-scroll-up": "ddcutil setvcp 10 + 10",
     "on-scroll-down": "ddcutil setvcp 10 - 10"
+  },
+
+  // do not disturb — click pauses/resumes dunst; vertical line separates the toggles from the sliders
+  "custom/dnd": {
+    "exec": "~/.config/waybar/scripts/dnd-module.sh",
+    "interval": 5, "signal": 10, "tooltip": false,
+    "format": "  <span color='#4D4D5A'>│</span>  <span size='11pt'>{}</span>   ",
+    "on-click": "~/.config/waybar/scripts/dnd-module.sh --toggle"
+  },
+
+  // caffeine — click keeps the screen awake (skips the idle lock and screen-off)
+  "custom/caffeine": {
+    "exec": "~/.config/waybar/scripts/caffeine-module.sh",
+    "interval": 5, "signal": 11, "tooltip": false,
+    "format": "<span size='11pt'>{}</span>",
+    "on-click": "~/.config/waybar/scripts/caffeine-module.sh --toggle"
   }
 }
 ]
