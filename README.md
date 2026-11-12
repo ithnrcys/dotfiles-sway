@@ -74,6 +74,7 @@ MEMORY: 32Gib
     waybar: clicking the updates count opens ghostty with the pending update list (zypper lu) and a y/N prompt to run sudo zypper dup; the count refreshes afterwards (signal 8)
     waybar: removed the wifi status module from the top bar; its access-point icon now sits before the wifi name on the bottom bar (the bottom module's click menu replaces it)
     waybar: bottom-bar wifi module shows signal strength (%) instead of the network name; "offline" when disconnected
+    waybar: wifi module no longer vanishes when the wifi radio is off — format-disabled added, so it shows "offline" and stays clickable; offline uses the same access-point icon
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:

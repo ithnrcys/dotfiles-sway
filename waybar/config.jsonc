@@ -130,7 +130,10 @@
   "network": {
     "format-wifi": "󰀂 \u2009{signalStrength}%  <span size='13pt'>✧</span>  󰓅  {bandwidthDownBits}",
     "format-ethernet": "󰈀 \u2009{ipaddr}",
-    "format-disconnected": "󰤭 \u2009offline",
+    "format-disconnected": "󰀂 \u2009offline",
+    // wifi radio switched off (rfkill): without this the module is empty and disappears,
+    // taking the click menu (and its "Turn ON" entry) with it
+    "format-disabled": "󰀂 \u2009offline",
     "interval": 3,
     "tooltip": false,
     // click: rofi network list opening upward from the bottom bar
