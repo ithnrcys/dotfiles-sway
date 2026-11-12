@@ -117,6 +117,7 @@ MEMORY: 32Gib
     waybar: external-drive module on the bottom bar, after the separator (scripts/drive-module.sh) — filled icon while a USB / hot-plug drive is connected; click opens a dropup to eject (unmount + power off via udisksctl) or mount
     waybar: network icon moved into its own module (custom/netstate, wifi-module.sh --icon) — shows the "no internet" glyph when NetworkManager's connectivity is anything but full (offline, or router up but internet down)
     waybar: bluetooth icon is one constant SF Symbols glyph; it no longer changes with the adapter state
+    waybar: drive, do-not-disturb, caffeine and bluetooth icons one step smaller (9pt / 10pt / 9pt / 9pt)
     waybar: external-drive icon nudged down 2px (style.css)
     waybar: tray icons nudged down 2px so they sit on the text line, 12px from the right edge (style.css)
     ghostty: colour palette — muted pastels instead of sixteen greys (ghostty/colors), so ls, git, bat and fzf output is coloured

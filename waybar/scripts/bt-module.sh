@@ -21,7 +21,7 @@ notify() { command -v dunstify >/dev/null && dunstify -a bluetooth "Bluetooth" "
 # MODE 1: status icon
 # ------------------------------------------
 if [[ "$1" == "--status" ]]; then
-    echo "<span font_family='SF Pro' size='10pt'>"$'\U0010070A'"</span>"
+    echo "<span font_family='SF Pro' size='9pt'>"$'\U0010070A'"</span>"
     exit 0
 fi
 

@@ -210,7 +210,7 @@
   "custom/drive": {
     "exec": "~/.config/waybar/scripts/drive-module.sh --status",
     "interval": 3, "signal": 13, "tooltip": false,
-    "format": "  <span color='#4D4D5A'>│</span>  <span size='10pt'>{}</span>   ",
+    "format": "  <span color='#4D4D5A'>│</span>  <span size='9pt'>{}</span>   ",
     "on-click": "~/.config/waybar/scripts/drive-module.sh"
   },
 
@@ -218,7 +218,7 @@
   "custom/dnd": {
     "exec": "~/.config/waybar/scripts/dnd-module.sh",
     "interval": 5, "signal": 10, "tooltip": false,
-    "format": "<span size='11pt'>{}</span>   ",
+    "format": "<span size='10pt'>{}</span>   ",
     "on-click": "~/.config/waybar/scripts/dnd-module.sh --toggle"
   },
 
@@ -226,7 +226,7 @@
   "custom/caffeine": {
     "exec": "~/.config/waybar/scripts/caffeine-module.sh",
     "interval": 5, "signal": 11, "tooltip": false,
-    "format": "<span size='10pt'>{}</span>",
+    "format": "<span size='9pt'>{}</span>",
     "on-click": "~/.config/waybar/scripts/caffeine-module.sh --toggle"
   }
 }
