@@ -140,7 +140,7 @@ MEMORY: 32Gib
     sddm: macOS-style login theme "glass" (sddm/theme/, plain QtQuick 2 — the Qt5 greeter here has no Controls / GraphicalEffects modules): sharp photo background, date and large clock on top, round profile picture + name + frosted password pill, Sleep / Restart / Shut Down buttons, session name bottom-right (click to switch)
         install: sddm/install.sh — copies SF Pro Display from ~/.local/share/fonts (not in the repo), cuts ~/Pictures/pfp.png into a round avatar, installs to /usr/share/sddm/themes/glass, writes /etc/sddm.conf.d/10-theme.conf, and makes the theme's backgrounds/ folder owned by the user; re-run after changing the theme or the profile picture
         photo:   sddm/wallpaper.sh replaces backgrounds/current.jpg and caption.txt — Wikimedia Commons Picture of the Day with its English caption (Bing photo of the day as fallback); run every six hours by systemd/login-wallpaper.timer (user units, symlinked into ~/.config/systemd/user)
-        layout:  power buttons top-left, photo caption bottom-centre, small password pill (140x24)
+        layout:  power buttons top-left, photo caption bottom-centre, small password pill (140x24), no placeholder text in it
         preview: sddm-greeter --test-mode --theme ~/.cache/sddm-glass   (after sddm/install.sh --build-only; it opens full screen and grabs the keyboard — close it with pkill sddm-greeter)
     lock: hyprlock replaces swaylock as the lock screen (hyprlock/hyprlock.conf, symlinked to ~/.config/hypr/) — same photo, caption, clock, profile picture and password pill as the login screen; sway/lock.sh starts it and falls back to swaylock if hyprlock is missing
     nvim: full config in nvim/ (symlinked to ~/.config/nvim), lazy.nvim plugin manager, leader = Space

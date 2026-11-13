@@ -171,14 +171,6 @@ Rectangle {
                 font.family: root.familyRegular; font.pixelSize: 12
                 Keys.onReturnPressed: root.login()
                 Keys.onEnterPressed: root.login()
-
-                Text {
-                    anchors.verticalCenter: parent.verticalCenter
-                    visible: password.text.length === 0
-                    text: "Enter Password"
-                    color: "#b0ffffff"
-                    font: password.font
-                }
             }
 
             // round arrow button, appears once something is typed
