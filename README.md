@@ -137,6 +137,11 @@ MEMORY: 32Gib
     sway: waybar now starts at login — the old "exec_always pkill waybar; waybar" line was split at the ; by sway, so waybar itself was never launched; replaced by sway/waybar.sh (also restarts the bars on config reload)
     waybar: workspace icons 6 and 7 swapped
     nvim: default editor everywhere — EDITOR / VISUAL=nvim in .zshrc and environment.d/editor.conf (symlinked into ~/.config/environment.d); applications/nvim-ghostty.desktop ("ghostty -e nvim %F", symlinked into ~/.local/share/applications) is the xdg default for text, source-code, config and script file types; HTML still opens in Firefox
+    nvim: full config in nvim/ (symlinked to ~/.config/nvim), lazy.nvim plugin manager, leader = Space
+        theme:    Kanagawa (wave)
+        plugins:  fzf-lua (find files / grep), neo-tree (file tree), nvim-treesitter (highlighting, 28 parsers), gitsigns, lualine, which-key, indent guides, mini.pairs, mini.surround, todo-comments, blink.cmp (completion), conform (format on save)
+        servers:  Mason installs lua_ls, basedpyright + ruff, ts_ls, html, cssls, jsonls, clangd, rust_analyzer, bashls, yamlls, taplo, marksman; tools: stylua, prettier, shfmt, shellcheck
+        new machine: start nvim once (plugins install themselves), then :MasonInstall happens automatically for the servers; needs git, gcc, node/npm, python3, tree-sitter CLI
     sway: window borders 3px black on the focused window only; unfocused windows keep the space but the border is transparent (none at all on Firefox / LibreWolf)
     zsh: plugins — autosuggestions, syntax highlighting, history substring search (Up / Down) and fzf-tab (Tab completions in an fzf popup). Not packaged by openSUSE: zsh/install-plugins.sh clones them into ~/.local/share/zsh/plugins (run it once on a new machine, again to update); .zshrc skips any that are missing
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
@@ -151,6 +156,7 @@ MEMORY: 32Gib
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts
+    nvim/        init.lua, lua/options.lua, lua/keymaps.lua, lua/plugins/{ui,editor,treesitter,lsp}.lua, lazy-lock.json (pinned plugin versions)
     zsh/         .zshrc, p10k-colors.zsh (prompt style and colours), install-plugins.sh (fetches the zsh plugins)
     fastfetch/   config.jsonc
     dunst/       dunstrc (notifications)
