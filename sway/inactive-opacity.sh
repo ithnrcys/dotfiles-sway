@@ -1,6 +1,6 @@
 #!/bin/sh
 # Makes every unfocused window see-through and the focused one solid. Started once per
-# session from fx.conf (SwayFX only: there is blur behind the see-through windows).
+# session from the sway config. Plain sway has no blur, so keep the level high.
 # Usage: inactive-opacity.sh [opacity of unfocused windows, default 0.80]
 
 INACTIVE="${1:-0.80}"

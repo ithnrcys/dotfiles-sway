@@ -132,12 +132,8 @@ MEMORY: 32Gib
     ghostty: colour scheme is the built-in theme "Belafonte Night" (theme line in ghostty/colors; browse with ghostty +list-themes; reload a running Ghostty with pkill -USR2 -x ghostty); prompt colours in zsh/p10k-colors.zsh re-matched to it
     zsh: prompt restyled as powerline blocks (zsh/p10k-colors.zsh, on top of ~/.p10k.zsh) — blue folder block, git block (olive clean / amber changed) with ahead, staged, modified and untracked counts; status, duration and clock blocks on the right; prompt character alone on the second line
     system: build tools and -devel packages installed for SwayFX (gcc, meson, ninja, scdoc, wlroots-devel, wayland / cairo / pango / libinput / libdrm / Mesa EGL+GLES / xcb devel ...)
-    swayfx: SwayFX 0.6 (sway fork with blur, rounded corners, shadows) built from source — sources in ~/.local/src/swayfx (scenefx 0.5 as a static subproject), installed to ~/.local/swayfx; picom is X11-only and cannot run under sway
-        build:   cd ~/.local/src/swayfx && meson setup build --prefix=$HOME/.local/swayfx --buildtype=release -Dscenefx:default_library=static && ninja -C build install
-        session: sway/swayfx.desktop copied to /usr/share/wayland-sessions/ — pick "SwayFX" at the login screen; sway/start-swayfx.sh starts it with sway/swayfx.config (= config + fx.conf) and falls back to plain sway if the binary cannot start (rebuild after a wlroots update)
-        effects: sway/fx.conf — square corners, blur, soft dark shadows, slight dimming of unfocused windows, gaps 8, blur + shadow on rofi menus and notifications
-        quirk:   SwayFX 0.6 stops drawing the left / right window borders after a config reload; sway/fix-borders.sh (exec_always in fx.conf) nudges the border colours to redraw them about 1.5 s later
-    swayfx: the focused window is solid, unfocused windows are 95% opaque with blur behind them (sway/inactive-opacity.sh, started from fx.conf); the terminal itself is opaque again
+    swayfx: tried SwayFX 0.6 (built from source) for blur, shadows and rounded corners, then rolled it back as unstable — binary, sources, session entry and its config files are removed; the build tools and -devel packages are still installed (picom is X11-only and cannot run under sway)
+    sway: effects that plain sway can do — the focused window is solid and unfocused windows are 95% opaque (sway/inactive-opacity.sh, started from the config); no blur, shadows or rounded corners
     sway: window borders 3px black on the focused window only; unfocused windows keep the space but the border is transparent (none at all on Firefox / LibreWolf)
     zsh: plugins — autosuggestions, syntax highlighting, history substring search (Up / Down) and fzf-tab (Tab completions in an fzf popup). Not packaged by openSUSE: zsh/install-plugins.sh clones them into ~/.local/share/zsh/plugins (run it once on a new machine, again to update); .zshrc skips any that are missing
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
@@ -145,7 +141,7 @@ MEMORY: 32Gib
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
-    sway/        config, autostart.sh, fx.conf + swayfx.config + start-swayfx.sh + swayfx.desktop + fix-borders.sh + inactive-opacity.sh (SwayFX session)
+    sway/        config, autostart.sh, lock.sh, inactive-opacity.sh (see-through unfocused windows)
     bin/         ws-color (workspace icon colours), spacedrive (launcher); ln -s into ~/.local/bin
     applications/ spacedrive.desktop; ln -s into ~/.local/share/applications
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)

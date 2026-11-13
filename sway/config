@@ -137,6 +137,8 @@ mode "resize" {
 }
 
 ### Autostart
+# unfocused windows slightly see-through, the focused one solid
+exec ~/.config/sway/inactive-opacity.sh 0.95
 exec pasystray
 exec "dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway; systemctl --user start sway-session.target"
 exec_always ~/.config/sway/autostart.sh

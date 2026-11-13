@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=SwayFX
-Comment=Sway with blur, rounded corners and shadows (falls back to plain sway)
-Exec=/home/ocx/.dotfiles/sway/start-swayfx.sh
-Type=Application
-DesktopNames=sway;wlroots
