@@ -118,6 +118,11 @@ MEMORY: 32Gib
     waybar: network icon moved into its own module (custom/netstate, wifi-module.sh --icon) — shows the "no internet" glyph when NetworkManager's connectivity is anything but full (offline, or router up but internet down)
     waybar: bluetooth icon is one constant SF Symbols glyph; it no longer changes with the adapter state
     waybar: drive, do-not-disturb, caffeine and bluetooth icons one step smaller (9pt / 10pt / 9pt / 9pt)
+    spacedrive: Spacedrive 0.4.3 as the file manager — no openSUSE package, so its Debian .deb is unpacked into ~/.local/opt/spacedrive (ar x + bsdtar), with Debian's libxdo.so.3 (libxdo3_3.20160805.1-5.1) copied into its usr/lib/Spacedrive because openSUSE only ships libxdo.so.4
+        launcher: bin/spacedrive (sets LD_LIBRARY_PATH), symlinked into ~/.local/bin; applications/spacedrive.desktop symlinked into ~/.local/share/applications; icons copied to ~/.local/share/icons/hicolor
+        default:  xdg-mime default spacedrive.desktop inode/directory (was Catfish)
+    xdg: XDG_DESKTOP_DIR set to ~/Desktop (was $HOME); Downloads / Documents / Music / Pictures / Videos / Projects unchanged
+    system: removed thunar, thunar-volman, thunar-archive-plugin and their lang / branding packages; MozillaThunderbird was already installed
     waybar: external-drive icon nudged down 2px (style.css)
     waybar: tray icons nudged down 2px so they sit on the text line, 12px from the right edge (style.css)
     ghostty: colour palette — muted pastels instead of sixteen greys (ghostty/colors), so ls, git, bat and fzf output is coloured
@@ -141,7 +146,8 @@ MEMORY: 32Gib
 
 ## Repo Layout:
     sway/        config, autostart.sh, fx.conf + swayfx.config + start-swayfx.sh + swayfx.desktop + fix-borders.sh + inactive-opacity.sh (SwayFX session)
-    bin/         ws-color (workspace icon colours); ln -s into ~/.local/bin
+    bin/         ws-color (workspace icon colours), spacedrive (launcher); ln -s into ~/.local/bin
+    applications/ spacedrive.desktop; ln -s into ~/.local/share/applications
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Spacedrive
+Comment=File explorer (0.4.3, unpacked into ~/.local/opt/spacedrive)
+Exec=/home/ocx/.local/bin/spacedrive %U
+Icon=spacedrive
+Terminal=false
+Categories=System;FileTools;FileManager;
+MimeType=inode/directory;x-scheme-handler/spacedrive;
+StartupWMClass=spacedrive
