@@ -134,6 +134,8 @@ MEMORY: 32Gib
     system: build tools and -devel packages installed for SwayFX (gcc, meson, ninja, scdoc, wlroots-devel, wayland / cairo / pango / libinput / libdrm / Mesa EGL+GLES / xcb devel ...)
     swayfx: tried SwayFX 0.6 (built from source) for blur, shadows and rounded corners, then rolled it back as unstable — binary, sources, session entry and its config files are removed; the build tools and -devel packages are still installed (picom is X11-only and cannot run under sway)
     sway: effects that plain sway can do — the focused window is solid and unfocused windows are 95% opaque (sway/inactive-opacity.sh, started from the config); no blur, shadows or rounded corners
+    sway: waybar now starts at login — the old "exec_always pkill waybar; waybar" line was split at the ; by sway, so waybar itself was never launched; replaced by sway/waybar.sh (also restarts the bars on config reload)
+    waybar: workspace icons 6 and 7 swapped
     sway: window borders 3px black on the focused window only; unfocused windows keep the space but the border is transparent (none at all on Firefox / LibreWolf)
     zsh: plugins — autosuggestions, syntax highlighting, history substring search (Up / Down) and fzf-tab (Tab completions in an fzf popup). Not packaged by openSUSE: zsh/install-plugins.sh clones them into ~/.local/share/zsh/plugins (run it once on a new machine, again to update); .zshrc skips any that are missing
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
@@ -141,7 +143,7 @@ MEMORY: 32Gib
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
 
 ## Repo Layout:
-    sway/        config, autostart.sh, lock.sh, inactive-opacity.sh (see-through unfocused windows)
+    sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
     bin/         ws-color (workspace icon colours), spacedrive (launcher); ln -s into ~/.local/bin
     applications/ spacedrive.desktop; ln -s into ~/.local/share/applications
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
