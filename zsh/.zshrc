@@ -33,6 +33,9 @@ zstyle ':completion:*' group-name ''
 
 bindkey -e
 
+# editor: nvim for anything that asks for one (git commit, sudoedit, crontab -e, less v ...)
+export EDITOR=nvim VISUAL=nvim
+
 # aliases
 alias ls='eza --icons --group-directories-first'
 alias ll='eza -l --icons --git'
