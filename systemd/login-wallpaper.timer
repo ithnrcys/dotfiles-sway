@@ -1,0 +1,11 @@
+[Unit]
+Description=Change the login / lock screen photo every six hours
+
+[Timer]
+OnStartupSec=3min
+OnCalendar=*-*-* 00/6:00:00
+Persistent=true
+RandomizedDelaySec=10min
+
+[Install]
+WantedBy=timers.target

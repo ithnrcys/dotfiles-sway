@@ -1,0 +1,7 @@
+[Unit]
+Description=Fetch a fresh photo for the login and lock screens
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.dotfiles/sddm/wallpaper.sh

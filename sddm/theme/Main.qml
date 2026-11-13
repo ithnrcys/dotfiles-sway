@@ -1,6 +1,6 @@
 // Glass — a macOS-style SDDM login screen.
 // Only plain QtQuick 2 is used: this system's Qt5 greeter has no Controls or GraphicalEffects
-// modules, so the wallpaper is blurred ahead of time (sddm/install.sh) rather than live.
+// modules, so the round avatar is cut ahead of time (sddm/install.sh) rather than masked live.
 import QtQuick 2.15
 import SddmComponents 2.0
 
@@ -55,7 +55,25 @@ Rectangle {
         fillMode: Image.PreserveAspectCrop
         asynchronous: false
     }
-    Rectangle { anchors.fill: parent; color: "#000000"; opacity: 0.18 }   // keeps white text readable
+    // the photo is shown sharp, so darken it a little, and more behind the clock and the
+    // login column, to keep the white text readable on any picture
+    Rectangle { anchors.fill: parent; color: "#000000"; opacity: 0.20 }
+    Rectangle {
+        anchors { left: parent.left; right: parent.right; top: parent.top }
+        height: parent.height * 0.38
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#66000000" }
+            GradientStop { position: 1.0; color: "#00000000" }
+        }
+    }
+    Rectangle {
+        anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
+        height: parent.height * 0.55
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#00000000" }
+            GradientStop { position: 1.0; color: "#80000000" }
+        }
+    }
 
     // ---------- date and clock, top centre ----------
     Column {
@@ -92,11 +110,11 @@ Rectangle {
         y: Math.round(parent.height * 0.60)
         spacing: 12
 
-        // avatar: initial on a soft gradient disc
+        // avatar: the round profile picture; underneath it, as a fallback, the initial on a disc
         Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             width: 96; height: 96; radius: 48
-            border.color: "#40ffffff"; border.width: 1
+            border.color: "#40ffffff"; border.width: avatarImage.status === Image.Ready ? 0 : 1
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "#b8bcc8" }
                 GradientStop { position: 1.0; color: "#6f7482" }
@@ -106,6 +124,13 @@ Rectangle {
                 text: root.userName.length ? root.userName.charAt(0).toUpperCase() : "?"
                 color: "#ffffff"
                 font.family: root.familySemibold; font.pixelSize: 44; font.weight: Font.DemiBold
+                visible: avatarImage.status !== Image.Ready
+            }
+            Image {
+                id: avatarImage
+                anchors.fill: parent
+                source: config.avatar ? Qt.resolvedUrl(config.avatar) : ""
+                smooth: true; mipmap: true
             }
         }
 
