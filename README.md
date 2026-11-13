@@ -137,6 +137,9 @@ MEMORY: 32Gib
     sway: waybar now starts at login — the old "exec_always pkill waybar; waybar" line was split at the ; by sway, so waybar itself was never launched; replaced by sway/waybar.sh (also restarts the bars on config reload)
     waybar: workspace icons 6 and 7 swapped
     nvim: default editor everywhere — EDITOR / VISUAL=nvim in .zshrc and environment.d/editor.conf (symlinked into ~/.config/environment.d); applications/nvim-ghostty.desktop ("ghostty -e nvim %F", symlinked into ~/.local/share/applications) is the xdg default for text, source-code, config and script file types; HTML still opens in Firefox
+    sddm: macOS-style login theme "glass" (sddm/theme/, plain QtQuick 2 — the Qt5 greeter here has no Controls / GraphicalEffects modules): pre-blurred wallpaper, date and large clock on top, avatar disc + name + frosted password pill, Sleep / Restart / Shut Down buttons, session name bottom-right (click to switch)
+        install: sddm/install.sh — blurs wallpapers/wallpaper.jpg, copies SF Pro Display from ~/.local/share/fonts (not in the repo), installs to /usr/share/sddm/themes/glass and writes /etc/sddm.conf.d/10-theme.conf; re-run after changing the wallpaper
+        preview: sddm-greeter --test-mode --theme ~/.cache/sddm-glass   (after sddm/install.sh --build-only; it opens full screen — close with $mod+q)
     nvim: full config in nvim/ (symlinked to ~/.config/nvim), lazy.nvim plugin manager, leader = Space
         theme:    Kanagawa (wave)
         plugins:  fzf-lua (find files / grep), neo-tree (file tree), nvim-treesitter (highlighting, 28 parsers), gitsigns, lualine, which-key, indent guides, mini.pairs, mini.surround, todo-comments, blink.cmp (completion), conform (format on save)
@@ -156,6 +159,7 @@ MEMORY: 32Gib
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts
+    sddm/        theme/ (Main.qml, metadata.desktop, theme.conf), install.sh
     nvim/        init.lua, lua/options.lua, lua/keymaps.lua, lua/plugins/{ui,editor,treesitter,lsp}.lua, lazy-lock.json (pinned plugin versions)
     zsh/         .zshrc, p10k-colors.zsh (prompt style and colours), install-plugins.sh (fetches the zsh plugins)
     fastfetch/   config.jsonc

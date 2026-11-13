@@ -1,0 +1,10 @@
+[SddmGreeterTheme]
+Name=Glass
+Description=macOS-style login: blurred wallpaper, large clock, avatar and a frosted password field
+Author=ocx dotfiles
+Type=sddm-theme
+Version=1.0
+MainScript=Main.qml
+ConfigFile=theme.conf
+Theme-Id=glass
+Theme-API=2.0
