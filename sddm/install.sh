@@ -29,6 +29,7 @@ fi
 # starting picture, used until wallpaper.sh has fetched one (kept if one is already installed)
 if [ -s "$THEME/backgrounds/current.jpg" ]; then
     cp "$THEME/backgrounds/current.jpg" "$BUILD/backgrounds/current.jpg"
+    cp "$THEME/backgrounds/caption.txt" "$BUILD/backgrounds/caption.txt" 2>/dev/null || true
 else
     magick "$WALL" -resize 1920x1080^ -gravity center -extent 1920x1080 -strip -quality 90 "$BUILD/backgrounds/current.jpg"
 fi

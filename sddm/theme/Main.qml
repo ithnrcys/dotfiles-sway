@@ -145,7 +145,7 @@ Rectangle {
         Rectangle {
             id: field
             anchors.horizontalCenter: parent.horizontalCenter
-            width: 220; height: 34; radius: 17
+            width: 140; height: 24; radius: 12
             color: "#38ffffff"
             border.color: password.activeFocus ? "#70ffffff" : "#30ffffff"; border.width: 1
 
@@ -160,7 +160,7 @@ Rectangle {
 
             TextInput {
                 id: password
-                anchors { left: parent.left; right: goButton.left; verticalCenter: parent.verticalCenter; leftMargin: 16; rightMargin: 6 }
+                anchors { left: parent.left; right: goButton.left; verticalCenter: parent.verticalCenter; leftMargin: 12; rightMargin: 4 }
                 echoMode: TextInput.Password
                 passwordCharacter: "•"
                 color: "#ffffff"
@@ -168,7 +168,7 @@ Rectangle {
                 clip: true
                 focus: true
                 enabled: !root.busy
-                font.family: root.familyRegular; font.pixelSize: 15
+                font.family: root.familyRegular; font.pixelSize: 12
                 Keys.onReturnPressed: root.login()
                 Keys.onEnterPressed: root.login()
 
@@ -184,12 +184,12 @@ Rectangle {
             // round arrow button, appears once something is typed
             Rectangle {
                 id: goButton
-                anchors { right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 5 }
-                width: 24; height: 24; radius: 12
+                anchors { right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 4 }
+                width: 16; height: 16; radius: 8
                 color: goArea.containsMouse ? "#90ffffff" : "#50ffffff"
                 opacity: password.text.length ? 1 : 0
                 Behavior on opacity { NumberAnimation { duration: 120 } }
-                Text { anchors.centerIn: parent; text: "→"; color: "#ffffff"; font.pixelSize: 15; font.family: root.familySemibold }
+                Text { anchors.centerIn: parent; text: "→"; color: "#ffffff"; font.pixelSize: 11; font.family: root.familySemibold }
                 MouseArea { id: goArea; anchors.fill: parent; hoverEnabled: true; onClicked: root.login() }
             }
         }
@@ -211,10 +211,10 @@ Rectangle {
         }
     }
 
-    // ---------- power buttons, bottom centre ----------
+    // ---------- power buttons, top left ----------
     Row {
-        anchors { horizontalCenter: parent.horizontalCenter; bottom: parent.bottom; bottomMargin: 46 }
-        spacing: 54
+        anchors { left: parent.left; top: parent.top; leftMargin: 28; topMargin: 24 }
+        spacing: 22
 
         Repeater {
             model: [
@@ -223,14 +223,14 @@ Rectangle {
                 { label: "Shut Down", glyph: "⏻", action: "powerOff", can: sddm.canPowerOff }
             ]
             delegate: Column {
-                spacing: 7
+                spacing: 5
                 visible: modelData.can
                 Rectangle {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: 40; height: 40; radius: 20
+                    width: 32; height: 32; radius: 16
                     color: area.containsMouse ? "#60ffffff" : "#30ffffff"
                     border.color: "#30ffffff"; border.width: 1
-                    Text { anchors.centerIn: parent; text: modelData.glyph; color: "#ffffff"; font.pixelSize: 18 }
+                    Text { anchors.centerIn: parent; text: modelData.glyph; color: "#ffffff"; font.pixelSize: 15 }
                     MouseArea {
                         id: area; anchors.fill: parent; hoverEnabled: true
                         onClicked: {
@@ -244,9 +244,30 @@ Rectangle {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: modelData.label
                     color: "#ffffff"; opacity: 0.8
-                    font.family: root.familyRegular; font.pixelSize: 12
+                    font.family: root.familyRegular; font.pixelSize: 11
                 }
             }
+        }
+    }
+
+    // ---------- photo caption, bottom centre ----------
+    // sddm/wallpaper.sh writes it to backgrounds/caption.txt next to the photo
+    Text {
+        id: caption
+        anchors { horizontalCenter: parent.horizontalCenter; bottom: parent.bottom; bottomMargin: 24 }
+        width: Math.min(parent.width * 0.6, implicitWidth)
+        horizontalAlignment: Text.AlignHCenter
+        wrapMode: Text.WordWrap
+        color: "#ffffff"; opacity: 0.75
+        font.family: root.familyRegular; font.pixelSize: 12
+        Component.onCompleted: {
+            var request = new XMLHttpRequest()
+            request.onreadystatechange = function() {
+                if (request.readyState === XMLHttpRequest.DONE)
+                    caption.text = (request.responseText || "").trim()
+            }
+            request.open("GET", Qt.resolvedUrl("backgrounds/caption.txt"))
+            request.send()
         }
     }
 
