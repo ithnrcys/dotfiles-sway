@@ -119,7 +119,7 @@ MEMORY: 32Gib
     waybar: bluetooth icon is one constant SF Symbols glyph; it no longer changes with the adapter state
     waybar: drive, do-not-disturb, caffeine and bluetooth icons one step smaller (9pt / 10pt / 9pt / 9pt)
     spacedrive: Spacedrive 0.4.3 as the file manager — no openSUSE package, so its Debian .deb is unpacked into ~/.local/opt/spacedrive (ar x + bsdtar), with Debian's libxdo.so.3 (libxdo3_3.20160805.1-5.1) copied into its usr/lib/Spacedrive because openSUSE only ships libxdo.so.4
-        launcher: bin/spacedrive (sets LD_LIBRARY_PATH), symlinked into ~/.local/bin; applications/spacedrive.desktop symlinked into ~/.local/share/applications; icons copied to ~/.local/share/icons/hicolor
+        launcher: bin/spacedrive (sets LD_LIBRARY_PATH, and GDK_BACKEND=x11 so it runs through XWayland without its own GTK title bar), symlinked into ~/.local/bin; applications/spacedrive.desktop symlinked into ~/.local/share/applications; icons copied to ~/.local/share/icons/hicolor
         default:  xdg-mime default spacedrive.desktop inode/directory (was Catfish)
     xdg: XDG_DESKTOP_DIR set to ~/Desktop (was $HOME); Downloads / Documents / Music / Pictures / Videos / Projects unchanged
     system: removed thunar, thunar-volman, thunar-archive-plugin and their lang / branding packages; MozillaThunderbird was already installed

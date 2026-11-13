@@ -3,5 +3,8 @@
 # (there is no openSUSE build). Points it at the libraries bundled next to it, which include
 # Debian's libxdo.so.3 — openSUSE only ships libxdo.so.4.
 P="$HOME/.local/opt/spacedrive/usr"
+# Run through XWayland: as a native Wayland window it draws its own GTK title bar (title and
+# three buttons) that sway cannot remove; as an X11 window sway gives it a plain border instead.
+export GDK_BACKEND=x11
 export LD_LIBRARY_PATH="$P/lib/Spacedrive${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 exec "$P/bin/spacedrive" "$@"
