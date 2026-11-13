@@ -136,6 +136,7 @@ MEMORY: 32Gib
     sway: effects that plain sway can do — the focused window is solid and unfocused windows are 95% opaque (sway/inactive-opacity.sh, started from the config); no blur, shadows or rounded corners
     sway: waybar now starts at login — the old "exec_always pkill waybar; waybar" line was split at the ; by sway, so waybar itself was never launched; replaced by sway/waybar.sh (also restarts the bars on config reload)
     waybar: workspace icons 6 and 7 swapped
+    nvim: default editor everywhere — EDITOR / VISUAL=nvim in .zshrc and environment.d/editor.conf (symlinked into ~/.config/environment.d); applications/nvim-ghostty.desktop ("ghostty -e nvim %F", symlinked into ~/.local/share/applications) is the xdg default for text, source-code, config and script file types; HTML still opens in Firefox
     sway: window borders 3px black on the focused window only; unfocused windows keep the space but the border is transparent (none at all on Firefox / LibreWolf)
     zsh: plugins — autosuggestions, syntax highlighting, history substring search (Up / Down) and fzf-tab (Tab completions in an fzf popup). Not packaged by openSUSE: zsh/install-plugins.sh clones them into ~/.local/share/zsh/plugins (run it once on a new machine, again to update); .zshrc skips any that are missing
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
@@ -145,7 +146,8 @@ MEMORY: 32Gib
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
     bin/         ws-color (workspace icon colours), spacedrive (launcher); ln -s into ~/.local/bin
-    applications/ spacedrive.desktop; ln -s into ~/.local/share/applications
+    applications/ spacedrive.desktop, nvim-ghostty.desktop; ln -s into ~/.local/share/applications
+    environment.d/ editor.conf; ln -s into ~/.config/environment.d
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts

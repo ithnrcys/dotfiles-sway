@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Neovim (Ghostty)
+GenericName=Text Editor
+Comment=Edit text files in nvim inside a Ghostty window
+Exec=ghostty -e nvim %F
+Icon=nvim
+Terminal=false
+Categories=Utility;TextEditor;
+MimeType=text/plain;text/english;text/markdown;text/x-markdown;text/x-log;text/csv;text/tab-separated-values;text/x-readme;text/x-changelog;text/x-diff;text/x-patch;text/x-makefile;text/x-cmake;text/x-meson;text/x-c;text/x-csrc;text/x-chdr;text/x-c++;text/x-c++src;text/x-c++hdr;text/x-java;text/x-python;text/x-python3;text/x-script.python;text/x-lua;text/x-rust;text/x-go;text/x-ruby;text/x-perl;text/x-php;text/x-tex;text/x-tcl;text/x-pascal;text/x-moc;text/x-scss;text/css;text/javascript;text/x-typescript;text/x-ini;text/x-systemd-unit;text/x-dockerfile;text/x-kotlin;text/x-csharp;text/x-haskell;text/x-vim;text/x-sql;text/vnd.trolltech.linguist;text/xml;text/x-shellscript;application/x-shellscript;application/x-zsh;application/json;application/x-ndjson;application/toml;application/yaml;application/x-yaml;application/xml;application/javascript;application/x-desktop;application/x-wine-extension-ini;application/x-php;application/x-perl;application/x-ruby;application/sql;application/x-zerosize;application/x-empty;
