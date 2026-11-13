@@ -147,5 +147,5 @@ exec swaymsg 'workspace 1; exec ghostty'
 bar bar-0 {
     mode invisible
 }
-exec_always pkill waybar; waybar
+exec_always ~/.config/sway/waybar.sh
 output * bg ~/.dotfiles/wallpapers/wallpaper.jpg fill
