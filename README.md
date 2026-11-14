@@ -153,10 +153,11 @@ MEMORY: 32Gib
     waybar: clicking the volume slider opens a mixer dropup (scripts/audio-module.sh, rofi/dropup-right.rasi) listing every application playing sound — Enter picks a level or mutes, Left / Right changes the selected one by 5%. Mute moved to right click
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
+    bin/ws-swap: CLI to swap the icons of two workspaces on the top bar — "ws-swap" lists, "ws-swap 6 7" trades the icons (colours travel with them), "ws-swap -k 6 7" trades the icons but keeps each workspace's colour; edits scripts/workspace-icons.txt, symlinked into ~/.local/bin, reloads waybar
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
-    bin/         ws-color (workspace icon colours), spacedrive (launcher); ln -s into ~/.local/bin
+    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher); ln -s into ~/.local/bin
     applications/ spacedrive.desktop, nvim-ghostty.desktop; ln -s into ~/.local/share/applications
     environment.d/ editor.conf; ln -s into ~/.config/environment.d
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
