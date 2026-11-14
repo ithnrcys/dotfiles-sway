@@ -154,12 +154,26 @@ MEMORY: 32Gib
     _rofi_engine.sh: ROFI_EXIT carries rofi's exit code (custom keys)
     _rofi_engine.sh: ROFI_LINES env var raises the row limit for long menus
     bin/ws-swap: CLI to swap the icons of two workspaces on the top bar — "ws-swap" lists, "ws-swap 6 7" trades the icons (colours travel with them), "ws-swap -k 6 7" trades the icons but keeps each workspace's colour; edits scripts/workspace-icons.txt, symlinked into ~/.local/bin, reloads waybar
+    theme: GTK and Qt programs now follow the bar — background #070708, text #e3e2e9, accent #BABAC6, 1px #4D4D5A borders, square corners, selected rows inverted as in rofi; set up by theme/install.sh (run once on a new machine)
+        packages: sudo zypper install kvantum-qt5 kvantum-qt6 kvantum-themes qt5ct qt6ct papirus-icon-theme
+        GTK 3:    adw-gtk3-dark v6.5 (downloaded into ~/.local/share/themes, not packaged by openSUSE) recoloured by theme/gtk.css
+        GTK 4:    libadwaita recoloured by theme/gtk4.css (imports gtk.css; the accent has to be set as CSS variables there)
+        Qt 5 / 6: Kvantum theme "Mizu" (kvantum/Mizu) picked through qt5ct / qt6ct; its widget pieces are drawn by kvantum/build-svg.py — change a colour there and run it again. QT_QPA_PLATFORMTHEME=qt5ct comes from environment.d/qt.conf, so programs started from the launcher are themed after the next login. Qt 5 programs run through XWayland (no Qt 5 Wayland plugin installed)
+        icons:    Papirus-Mizu = Papirus-Dark with grey folders, built into ~/.local/share/icons by the install script
+        fonts:    SF Pro Text 11 for interfaces, JetBrainsMono Nerd Font 11 for code (gsettings + qt5ct / qt6ct)
+        colour:   the only hues are muted red / yellow / green for delete buttons, warnings and success; radio buttons stay round so they differ from check boxes
+        flatpak:  user override lets flatpak programs read the GTK theme files and icons (flatpak override --user --show)
+        PrismLauncher: ApplicationTheme=system in ~/.local/share/PrismLauncher/prismlauncher.cfg (was its built-in "dark"), so it uses the Qt theme
+        checked:  test windows for GTK 3, GTK 4, Qt 5 and Qt 6 plus PrismLauncher, Konsole and lxqt-archiver rendered in a headless sway
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
     bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher); ln -s into ~/.local/bin
     applications/ spacedrive.desktop, nvim-ghostty.desktop; ln -s into ~/.local/share/applications
-    environment.d/ editor.conf; ln -s into ~/.config/environment.d
+    environment.d/ editor.conf, qt.conf (Qt programs use qt5ct / qt6ct); ln -s into ~/.config/environment.d
+    theme/       gtk.css (GTK 3 + shared rules), gtk4.css (GTK 4 / libadwaita), settings.ini, install.sh (fetches adw-gtk3, builds the icon theme, links everything, sets gsettings)
+    kvantum/     Mizu/ (Qt theme: Mizu.kvconfig, Mizu.svg), build-svg.py (draws Mizu.svg), kvantum.kvconfig; linked as ~/.config/Kvantum
+    qt5ct/ qt6ct/ qt5ct.conf, qt6ct.conf (style kvantum, icons, fonts)
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts
@@ -173,7 +187,8 @@ MEMORY: 32Gib
     swaylock/    config (lock screen)
     p10k/        powerlevel10k checkout
     wallpapers/  wallpaper.jpg
-Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, border #4D4D5A. Font: JetBrainsMono Nerd Font.
+Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, border #4D4D5A. Font: JetBrainsMono Nerd Font (bar, terminal, code); SF Pro Text in GTK and Qt programs.
+Shades used by the GTK / Qt theme: inputs #0B0B0D, buttons #131315, hover #1B1B20, pressed #2A2A32, dividers #2E2E37.
 
 ## Keybinds (sway):
     $mod = Super
@@ -210,6 +225,9 @@ Palette: background #070708, foreground #e3e2e9, accent #BABAC6, dim #7C7C84, bo
     - Bottom-bar uptime module shows nothing: this uptime has no -p option
     - mako is installed but unused now that dunst is configured — uninstall it
     - wallpaper.jpg is 30MB — compress it or keep it out of git
+    - Cursor theme: sway/config asks for Quintom_Ink but it is not installed anywhere, so the default cursor shows — install it into ~/.local/share/icons, then gsettings set org.gnome.desktop.interface cursor-theme Quintom_Ink
+    - Konsole's terminal area still uses its own Breeze colour scheme (only matters if Konsole gets used instead of Ghostty)
+    - ProtonUp-Qt (flatpak, Qt) is not themed: needs the org.kde.KStyle.Kvantum flatpak runtime plus access to ~/.config/Kvantum
 - System:
     - Bluetooth: pair and connect a real device through the bar menu (only tested against a stub so far)
     - 32-bit graphics libs: Mesa-libGL-32bit Mesa-libEGL-32bit (libvulkan_radeon-32bit done)

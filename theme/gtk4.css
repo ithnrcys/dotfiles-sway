@@ -1,0 +1,9 @@
+/* GTK 4 / libadwaita: the shared rules (gtk.css, linked next to this file as gtk-shared.css), plus the
+   accent as CSS variables — libadwaita no longer reads the accent from the colour names. */
+@import "gtk-shared.css";
+
+:root {
+  --accent-bg-color: #BABAC6;
+  --accent-fg-color: #070708;
+  --accent-color:    #BABAC6;
+}

@@ -1,0 +1,567 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2908" height="40" viewBox="0 0 2908 40">
+<rect id="button-normal-topleft" x="0" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="button-normal-top" x="1" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="button-normal-topright" x="11" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="button-normal-left" x="0" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="button-normal" x="1" y="1" width="10" height="10" fill="#131315"/>
+<rect id="button-normal-right" x="11" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="button-normal-bottomleft" x="0" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="button-normal-bottom" x="1" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="button-normal-bottomright" x="11" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="button-focused-topleft" x="16" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-focused-top" x="17" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="button-focused-topright" x="27" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-focused-left" x="16" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="button-focused" x="17" y="1" width="10" height="10" fill="#1B1B20"/>
+<rect id="button-focused-right" x="27" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="button-focused-bottomleft" x="16" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-focused-bottom" x="17" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="button-focused-bottomright" x="27" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-pressed-topleft" x="32" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-pressed-top" x="33" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="button-pressed-topright" x="43" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-pressed-left" x="32" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="button-pressed" x="33" y="1" width="10" height="10" fill="#2A2A32"/>
+<rect id="button-pressed-right" x="43" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="button-pressed-bottomleft" x="32" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-pressed-bottom" x="33" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="button-pressed-bottomright" x="43" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-toggled-topleft" x="48" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-toggled-top" x="49" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="button-toggled-topright" x="59" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-toggled-left" x="48" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="button-toggled" x="49" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="button-toggled-right" x="59" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="button-toggled-bottomleft" x="48" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="button-toggled-bottom" x="49" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="button-toggled-bottomright" x="59" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="tbutton-normal-topleft" x="64" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="tbutton-normal-top" x="65" y="0" width="10" height="1" fill="#000" fill-opacity="0"/>
+<rect id="tbutton-normal-topright" x="75" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="tbutton-normal-left" x="64" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tbutton-normal" x="65" y="1" width="10" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tbutton-normal-right" x="75" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tbutton-normal-bottomleft" x="64" y="11" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="tbutton-normal-bottom" x="65" y="11" width="10" height="1" fill="#000" fill-opacity="0"/>
+<rect id="tbutton-normal-bottomright" x="75" y="11" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="tbutton-focused-topleft" x="80" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-focused-top" x="81" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-focused-topright" x="91" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-focused-left" x="80" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="tbutton-focused" x="81" y="1" width="10" height="10" fill="#1B1B20"/>
+<rect id="tbutton-focused-right" x="91" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="tbutton-focused-bottomleft" x="80" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-focused-bottom" x="81" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-focused-bottomright" x="91" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-pressed-topleft" x="96" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="tbutton-pressed-top" x="97" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="tbutton-pressed-topright" x="107" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="tbutton-pressed-left" x="96" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="tbutton-pressed" x="97" y="1" width="10" height="10" fill="#2A2A32"/>
+<rect id="tbutton-pressed-right" x="107" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="tbutton-pressed-bottomleft" x="96" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="tbutton-pressed-bottom" x="97" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="tbutton-pressed-bottomright" x="107" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="tbutton-toggled-topleft" x="112" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-toggled-top" x="113" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-toggled-topright" x="123" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-toggled-left" x="112" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="tbutton-toggled" x="113" y="1" width="10" height="10" fill="#2A2A32"/>
+<rect id="tbutton-toggled-right" x="123" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="tbutton-toggled-bottomleft" x="112" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-toggled-bottom" x="113" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="tbutton-toggled-bottomright" x="123" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="lineedit-normal-topleft" x="128" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="lineedit-normal-top" x="129" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="lineedit-normal-topright" x="139" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="lineedit-normal-left" x="128" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="lineedit-normal" x="129" y="1" width="10" height="10" fill="#0B0B0D"/>
+<rect id="lineedit-normal-right" x="139" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="lineedit-normal-bottomleft" x="128" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="lineedit-normal-bottom" x="129" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="lineedit-normal-bottomright" x="139" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="lineedit-focused-topleft" x="144" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="lineedit-focused-top" x="145" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="lineedit-focused-topright" x="155" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="lineedit-focused-left" x="144" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="lineedit-focused" x="145" y="1" width="10" height="10" fill="#0B0B0D"/>
+<rect id="lineedit-focused-right" x="155" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="lineedit-focused-bottomleft" x="144" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="lineedit-focused-bottom" x="145" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="lineedit-focused-bottomright" x="155" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="common-normal-topleft" x="160" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="common-normal-top" x="161" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="common-normal-topright" x="171" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="common-normal-left" x="160" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="common-normal" x="161" y="1" width="10" height="10" fill="#000" fill-opacity="0"/>
+<rect id="common-normal-right" x="171" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="common-normal-bottomleft" x="160" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="common-normal-bottom" x="161" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="common-normal-bottomright" x="171" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="common-focused-topleft" x="176" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="common-focused-top" x="177" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="common-focused-topright" x="187" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="common-focused-left" x="176" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="common-focused" x="177" y="1" width="10" height="10" fill="#000" fill-opacity="0"/>
+<rect id="common-focused-right" x="187" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="common-focused-bottomleft" x="176" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="common-focused-bottom" x="177" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="common-focused-bottomright" x="187" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="group-normal-topleft" x="192" y="0" width="1" height="1" fill="#2E2E37"/>
+<rect id="group-normal-top" x="193" y="0" width="10" height="1" fill="#2E2E37"/>
+<rect id="group-normal-topright" x="203" y="0" width="1" height="1" fill="#2E2E37"/>
+<rect id="group-normal-left" x="192" y="1" width="1" height="10" fill="#2E2E37"/>
+<rect id="group-normal" x="193" y="1" width="10" height="10" fill="#000" fill-opacity="0"/>
+<rect id="group-normal-right" x="203" y="1" width="1" height="10" fill="#2E2E37"/>
+<rect id="group-normal-bottomleft" x="192" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="group-normal-bottom" x="193" y="11" width="10" height="1" fill="#2E2E37"/>
+<rect id="group-normal-bottomright" x="203" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="tabframe-normal-topleft" x="208" y="0" width="1" height="1" fill="#2E2E37"/>
+<rect id="tabframe-normal-top" x="209" y="0" width="10" height="1" fill="#2E2E37"/>
+<rect id="tabframe-normal-topright" x="219" y="0" width="1" height="1" fill="#2E2E37"/>
+<rect id="tabframe-normal-left" x="208" y="1" width="1" height="10" fill="#2E2E37"/>
+<rect id="tabframe-normal" x="209" y="1" width="10" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tabframe-normal-right" x="219" y="1" width="1" height="10" fill="#2E2E37"/>
+<rect id="tabframe-normal-bottomleft" x="208" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="tabframe-normal-bottom" x="209" y="11" width="10" height="1" fill="#2E2E37"/>
+<rect id="tabframe-normal-bottomright" x="219" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="dock-normal-topleft" x="224" y="0" width="1" height="1" fill="#2E2E37"/>
+<rect id="dock-normal-top" x="225" y="0" width="10" height="1" fill="#2E2E37"/>
+<rect id="dock-normal-topright" x="235" y="0" width="1" height="1" fill="#2E2E37"/>
+<rect id="dock-normal-left" x="224" y="1" width="1" height="10" fill="#2E2E37"/>
+<rect id="dock-normal" x="225" y="1" width="10" height="10" fill="#070708"/>
+<rect id="dock-normal-right" x="235" y="1" width="1" height="10" fill="#2E2E37"/>
+<rect id="dock-normal-bottomleft" x="224" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="dock-normal-bottom" x="225" y="11" width="10" height="1" fill="#2E2E37"/>
+<rect id="dock-normal-bottomright" x="235" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="dock-focused-topleft" x="240" y="0" width="1" height="1" fill="#2E2E37"/>
+<rect id="dock-focused-top" x="241" y="0" width="10" height="1" fill="#2E2E37"/>
+<rect id="dock-focused-topright" x="251" y="0" width="1" height="1" fill="#2E2E37"/>
+<rect id="dock-focused-left" x="240" y="1" width="1" height="10" fill="#2E2E37"/>
+<rect id="dock-focused" x="241" y="1" width="10" height="10" fill="#070708"/>
+<rect id="dock-focused-right" x="251" y="1" width="1" height="10" fill="#2E2E37"/>
+<rect id="dock-focused-bottomleft" x="240" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="dock-focused-bottom" x="241" y="11" width="10" height="1" fill="#2E2E37"/>
+<rect id="dock-focused-bottomright" x="251" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="focus-topleft" x="256" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="focus-top" x="257" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="focus-topright" x="267" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="focus-left" x="256" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="focus" x="257" y="1" width="10" height="10" fill="#000" fill-opacity="0"/>
+<rect id="focus-right" x="267" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="focus-bottomleft" x="256" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="focus-bottom" x="257" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="focus-bottomright" x="267" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="tooltip-normal-topleft" x="272" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tooltip-normal-top" x="273" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="tooltip-normal-topright" x="283" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tooltip-normal-left" x="272" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="tooltip-normal" x="273" y="1" width="10" height="10" fill="#070708"/>
+<rect id="tooltip-normal-right" x="283" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="tooltip-normal-bottomleft" x="272" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tooltip-normal-bottom" x="273" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="tooltip-normal-bottomright" x="283" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="tab-normal-topleft" x="288" y="0" width="2" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-normal-top" x="290" y="0" width="10" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-normal-topright" x="300" y="0" width="2" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-normal-left" x="288" y="2" width="2" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tab-normal" x="290" y="2" width="10" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tab-normal-right" x="300" y="2" width="2" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tab-normal-bottomleft" x="288" y="12" width="2" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-normal-bottom" x="290" y="12" width="10" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-normal-bottomright" x="300" y="12" width="2" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-focused-topleft" x="306" y="0" width="2" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-focused-top" x="308" y="0" width="10" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-focused-topright" x="318" y="0" width="2" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-focused-left" x="306" y="2" width="2" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tab-focused" x="308" y="2" width="10" height="10" fill="#131315"/>
+<rect id="tab-focused-right" x="318" y="2" width="2" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tab-focused-bottomleft" x="306" y="12" width="2" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-focused-bottom" x="308" y="12" width="10" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-focused-bottomright" x="318" y="12" width="2" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-toggled-topleft" x="324" y="0" width="2" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-toggled-top" x="326" y="0" width="10" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-toggled-topright" x="336" y="0" width="2" height="2" fill="#000" fill-opacity="0"/>
+<rect id="tab-toggled-left" x="324" y="2" width="2" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tab-toggled" x="326" y="2" width="10" height="10" fill="#070708"/>
+<rect id="tab-toggled-right" x="336" y="2" width="2" height="10" fill="#000" fill-opacity="0"/>
+<rect id="tab-toggled-bottomleft" x="324" y="12" width="2" height="2" fill="#BABAC6"/>
+<rect id="tab-toggled-bottom" x="326" y="12" width="10" height="2" fill="#BABAC6"/>
+<rect id="tab-toggled-bottomright" x="336" y="12" width="2" height="2" fill="#BABAC6"/>
+<rect id="menu-normal-topleft" x="342" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="menu-normal-top" x="343" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="menu-normal-topright" x="353" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="menu-normal-left" x="342" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="menu-normal" x="343" y="1" width="10" height="10" fill="#070708"/>
+<rect id="menu-normal-right" x="353" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="menu-normal-bottomleft" x="342" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="menu-normal-bottom" x="343" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="menu-normal-bottomright" x="353" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="menubar-normal-topleft" x="358" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="menubar-normal-top" x="359" y="0" width="10" height="1" fill="#000" fill-opacity="0"/>
+<rect id="menubar-normal-topright" x="369" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="menubar-normal-left" x="358" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="menubar-normal" x="359" y="1" width="10" height="10" fill="#070708"/>
+<rect id="menubar-normal-right" x="369" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="menubar-normal-bottomleft" x="358" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="menubar-normal-bottom" x="359" y="11" width="10" height="1" fill="#2E2E37"/>
+<rect id="menubar-normal-bottomright" x="369" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="toolbar-normal-topleft" x="374" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="toolbar-normal-top" x="375" y="0" width="10" height="1" fill="#000" fill-opacity="0"/>
+<rect id="toolbar-normal-topright" x="385" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="toolbar-normal-left" x="374" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="toolbar-normal" x="375" y="1" width="10" height="10" fill="#070708"/>
+<rect id="toolbar-normal-right" x="385" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="toolbar-normal-bottomleft" x="374" y="11" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="toolbar-normal-bottom" x="375" y="11" width="10" height="1" fill="#000" fill-opacity="0"/>
+<rect id="toolbar-normal-bottomright" x="385" y="11" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="menuitem-focused-topleft" x="390" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-focused-top" x="391" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="menuitem-focused-topright" x="401" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-focused-left" x="390" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="menuitem-focused" x="391" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="menuitem-focused-right" x="401" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="menuitem-focused-bottomleft" x="390" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-focused-bottom" x="391" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="menuitem-focused-bottomright" x="401" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-pressed-topleft" x="406" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-pressed-top" x="407" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="menuitem-pressed-topright" x="417" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-pressed-left" x="406" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="menuitem-pressed" x="407" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="menuitem-pressed-right" x="417" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="menuitem-pressed-bottomleft" x="406" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-pressed-bottom" x="407" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="menuitem-pressed-bottomright" x="417" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-toggled-topleft" x="422" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-toggled-top" x="423" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="menuitem-toggled-topright" x="433" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-toggled-left" x="422" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="menuitem-toggled" x="423" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="menuitem-toggled-right" x="433" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="menuitem-toggled-bottomleft" x="422" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="menuitem-toggled-bottom" x="423" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="menuitem-toggled-bottomright" x="433" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-focused-topleft" x="438" y="0" width="1" height="1" fill="#1B1B20"/>
+<rect id="menubaritem-focused-top" x="439" y="0" width="10" height="1" fill="#1B1B20"/>
+<rect id="menubaritem-focused-topright" x="449" y="0" width="1" height="1" fill="#1B1B20"/>
+<rect id="menubaritem-focused-left" x="438" y="1" width="1" height="10" fill="#1B1B20"/>
+<rect id="menubaritem-focused" x="439" y="1" width="10" height="10" fill="#1B1B20"/>
+<rect id="menubaritem-focused-right" x="449" y="1" width="1" height="10" fill="#1B1B20"/>
+<rect id="menubaritem-focused-bottomleft" x="438" y="11" width="1" height="1" fill="#1B1B20"/>
+<rect id="menubaritem-focused-bottom" x="439" y="11" width="10" height="1" fill="#1B1B20"/>
+<rect id="menubaritem-focused-bottomright" x="449" y="11" width="1" height="1" fill="#1B1B20"/>
+<rect id="menubaritem-pressed-topleft" x="454" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-pressed-top" x="455" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-pressed-topright" x="465" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-pressed-left" x="454" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="menubaritem-pressed" x="455" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="menubaritem-pressed-right" x="465" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="menubaritem-pressed-bottomleft" x="454" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-pressed-bottom" x="455" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-pressed-bottomright" x="465" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-toggled-topleft" x="470" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-toggled-top" x="471" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-toggled-topright" x="481" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-toggled-left" x="470" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="menubaritem-toggled" x="471" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="menubaritem-toggled-right" x="481" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="menubaritem-toggled-bottomleft" x="470" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-toggled-bottom" x="471" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="menubaritem-toggled-bottomright" x="481" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="itemview-focused-topleft" x="486" y="0" width="1" height="1" fill="#131315"/>
+<rect id="itemview-focused-top" x="487" y="0" width="10" height="1" fill="#131315"/>
+<rect id="itemview-focused-topright" x="497" y="0" width="1" height="1" fill="#131315"/>
+<rect id="itemview-focused-left" x="486" y="1" width="1" height="10" fill="#131315"/>
+<rect id="itemview-focused" x="487" y="1" width="10" height="10" fill="#131315"/>
+<rect id="itemview-focused-right" x="497" y="1" width="1" height="10" fill="#131315"/>
+<rect id="itemview-focused-bottomleft" x="486" y="11" width="1" height="1" fill="#131315"/>
+<rect id="itemview-focused-bottom" x="487" y="11" width="10" height="1" fill="#131315"/>
+<rect id="itemview-focused-bottomright" x="497" y="11" width="1" height="1" fill="#131315"/>
+<rect id="itemview-pressed-topleft" x="502" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="itemview-pressed-top" x="503" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="itemview-pressed-topright" x="513" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="itemview-pressed-left" x="502" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="itemview-pressed" x="503" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="itemview-pressed-right" x="513" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="itemview-pressed-bottomleft" x="502" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="itemview-pressed-bottom" x="503" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="itemview-pressed-bottomright" x="513" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="itemview-toggled-topleft" x="518" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="itemview-toggled-top" x="519" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="itemview-toggled-topright" x="529" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="itemview-toggled-left" x="518" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="itemview-toggled" x="519" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="itemview-toggled-right" x="529" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="itemview-toggled-bottomleft" x="518" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="itemview-toggled-bottom" x="519" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="itemview-toggled-bottomright" x="529" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="header-normal-topleft" x="534" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-normal-top" x="535" y="0" width="10" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-normal-topright" x="545" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-normal-left" x="534" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="header-normal" x="535" y="1" width="10" height="10" fill="#0B0B0D"/>
+<rect id="header-normal-right" x="545" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="header-normal-bottomleft" x="534" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="header-normal-bottom" x="535" y="11" width="10" height="1" fill="#2E2E37"/>
+<rect id="header-normal-bottomright" x="545" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="header-focused-topleft" x="550" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-focused-top" x="551" y="0" width="10" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-focused-topright" x="561" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-focused-left" x="550" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="header-focused" x="551" y="1" width="10" height="10" fill="#131315"/>
+<rect id="header-focused-right" x="561" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="header-focused-bottomleft" x="550" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="header-focused-bottom" x="551" y="11" width="10" height="1" fill="#2E2E37"/>
+<rect id="header-focused-bottomright" x="561" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="header-pressed-topleft" x="566" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-pressed-top" x="567" y="0" width="10" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-pressed-topright" x="577" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-pressed-left" x="566" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="header-pressed" x="567" y="1" width="10" height="10" fill="#1B1B20"/>
+<rect id="header-pressed-right" x="577" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="header-pressed-bottomleft" x="566" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="header-pressed-bottom" x="567" y="11" width="10" height="1" fill="#2E2E37"/>
+<rect id="header-pressed-bottomright" x="577" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="header-toggled-topleft" x="582" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-toggled-top" x="583" y="0" width="10" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-toggled-topright" x="593" y="0" width="1" height="1" fill="#000" fill-opacity="0"/>
+<rect id="header-toggled-left" x="582" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="header-toggled" x="583" y="1" width="10" height="10" fill="#131315"/>
+<rect id="header-toggled-right" x="593" y="1" width="1" height="10" fill="#000" fill-opacity="0"/>
+<rect id="header-toggled-bottomleft" x="582" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="header-toggled-bottom" x="583" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="header-toggled-bottomright" x="593" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="header-separator" x="598" y="0" width="1" height="10" fill="#2E2E37"/>
+<rect id="progress-normal-topleft" x="603" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="progress-normal-top" x="604" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="progress-normal-topright" x="614" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="progress-normal-left" x="603" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="progress-normal" x="604" y="1" width="10" height="10" fill="#0B0B0D"/>
+<rect id="progress-normal-right" x="614" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="progress-normal-bottomleft" x="603" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="progress-normal-bottom" x="604" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="progress-normal-bottomright" x="614" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="progress-pattern-normal-topleft" x="619" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="progress-pattern-normal-top" x="620" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="progress-pattern-normal-topright" x="630" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="progress-pattern-normal-left" x="619" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="progress-pattern-normal" x="620" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="progress-pattern-normal-right" x="630" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="progress-pattern-normal-bottomleft" x="619" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="progress-pattern-normal-bottom" x="620" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="progress-pattern-normal-bottomright" x="630" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="progress-pattern-disabled-topleft" x="635" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="progress-pattern-disabled-top" x="636" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="progress-pattern-disabled-topright" x="646" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="progress-pattern-disabled-left" x="635" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="progress-pattern-disabled" x="636" y="1" width="10" height="10" fill="#4D4D5A"/>
+<rect id="progress-pattern-disabled-right" x="646" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="progress-pattern-disabled-bottomleft" x="635" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="progress-pattern-disabled-bottom" x="636" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="progress-pattern-disabled-bottomright" x="646" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="slider-normal-topleft" x="651" y="0" width="1" height="1" fill="#2E2E37"/>
+<rect id="slider-normal-top" x="652" y="0" width="10" height="1" fill="#2E2E37"/>
+<rect id="slider-normal-topright" x="662" y="0" width="1" height="1" fill="#2E2E37"/>
+<rect id="slider-normal-left" x="651" y="1" width="1" height="10" fill="#2E2E37"/>
+<rect id="slider-normal" x="652" y="1" width="10" height="10" fill="#2E2E37"/>
+<rect id="slider-normal-right" x="662" y="1" width="1" height="10" fill="#2E2E37"/>
+<rect id="slider-normal-bottomleft" x="651" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="slider-normal-bottom" x="652" y="11" width="10" height="1" fill="#2E2E37"/>
+<rect id="slider-normal-bottomright" x="662" y="11" width="1" height="1" fill="#2E2E37"/>
+<rect id="slider-toggled-topleft" x="667" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="slider-toggled-top" x="668" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="slider-toggled-topright" x="678" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="slider-toggled-left" x="667" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="slider-toggled" x="668" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="slider-toggled-right" x="678" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="slider-toggled-bottomleft" x="667" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="slider-toggled-bottom" x="668" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="slider-toggled-bottomright" x="678" y="11" width="1" height="1" fill="#BABAC6"/>
+<g id="slidercursor-normal" transform="translate(683,0)"><rect width="14" height="14" fill="#000" fill-opacity="0"/><rect width="14" height="14" fill="#BABAC6"/></g>
+<g id="slidercursor-focused" transform="translate(701,0)"><rect width="14" height="14" fill="#000" fill-opacity="0"/><rect width="14" height="14" fill="#E3E2E9"/></g>
+<g id="slidercursor-pressed" transform="translate(719,0)"><rect width="14" height="14" fill="#000" fill-opacity="0"/><rect width="14" height="14" fill="#E3E2E9"/></g>
+<g id="slidercursor-disabled" transform="translate(737,0)"><rect width="14" height="14" fill="#000" fill-opacity="0"/><rect width="14" height="14" fill="#4D4D5A"/></g>
+<rect id="scrollbarslider-normal-topleft" x="755" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="scrollbarslider-normal-top" x="756" y="0" width="10" height="1" fill="#4D4D5A"/>
+<rect id="scrollbarslider-normal-topright" x="766" y="0" width="1" height="1" fill="#4D4D5A"/>
+<rect id="scrollbarslider-normal-left" x="755" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="scrollbarslider-normal" x="756" y="1" width="10" height="10" fill="#4D4D5A"/>
+<rect id="scrollbarslider-normal-right" x="766" y="1" width="1" height="10" fill="#4D4D5A"/>
+<rect id="scrollbarslider-normal-bottomleft" x="755" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="scrollbarslider-normal-bottom" x="756" y="11" width="10" height="1" fill="#4D4D5A"/>
+<rect id="scrollbarslider-normal-bottomright" x="766" y="11" width="1" height="1" fill="#4D4D5A"/>
+<rect id="scrollbarslider-focused-topleft" x="771" y="0" width="1" height="1" fill="#7C7C84"/>
+<rect id="scrollbarslider-focused-top" x="772" y="0" width="10" height="1" fill="#7C7C84"/>
+<rect id="scrollbarslider-focused-topright" x="782" y="0" width="1" height="1" fill="#7C7C84"/>
+<rect id="scrollbarslider-focused-left" x="771" y="1" width="1" height="10" fill="#7C7C84"/>
+<rect id="scrollbarslider-focused" x="772" y="1" width="10" height="10" fill="#7C7C84"/>
+<rect id="scrollbarslider-focused-right" x="782" y="1" width="1" height="10" fill="#7C7C84"/>
+<rect id="scrollbarslider-focused-bottomleft" x="771" y="11" width="1" height="1" fill="#7C7C84"/>
+<rect id="scrollbarslider-focused-bottom" x="772" y="11" width="10" height="1" fill="#7C7C84"/>
+<rect id="scrollbarslider-focused-bottomright" x="782" y="11" width="1" height="1" fill="#7C7C84"/>
+<rect id="scrollbarslider-pressed-topleft" x="787" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="scrollbarslider-pressed-top" x="788" y="0" width="10" height="1" fill="#BABAC6"/>
+<rect id="scrollbarslider-pressed-topright" x="798" y="0" width="1" height="1" fill="#BABAC6"/>
+<rect id="scrollbarslider-pressed-left" x="787" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="scrollbarslider-pressed" x="788" y="1" width="10" height="10" fill="#BABAC6"/>
+<rect id="scrollbarslider-pressed-right" x="798" y="1" width="1" height="10" fill="#BABAC6"/>
+<rect id="scrollbarslider-pressed-bottomleft" x="787" y="11" width="1" height="1" fill="#BABAC6"/>
+<rect id="scrollbarslider-pressed-bottom" x="788" y="11" width="10" height="1" fill="#BABAC6"/>
+<rect id="scrollbarslider-pressed-bottomright" x="798" y="11" width="1" height="1" fill="#BABAC6"/>
+<g id="checkbox-normal" transform="translate(803,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><rect width="16" height="16" fill="#4D4D5A"/><rect x="1" y="1" width="14" height="14" fill="#0B0B0D"/></g>
+<g id="checkbox-checked-normal" transform="translate(823,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><rect width="16" height="16" fill="#BABAC6"/><rect x="1" y="1" width="14" height="14" fill="#BABAC6"/><path d="M3.5 8.5 L6.5 11.5 L12.5 4.5" stroke="#070708" stroke-width="2" fill="none"/></g>
+<g id="checkbox-tristate-normal" transform="translate(843,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><rect width="16" height="16" fill="#BABAC6"/><rect x="1" y="1" width="14" height="14" fill="#BABAC6"/><rect x="4" y="7" width="8" height="2" fill="#070708"/></g>
+<g id="radio-normal" transform="translate(863,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><circle cx="8" cy="8" r="8" fill="#4D4D5A"/><circle cx="8" cy="8" r="7" fill="#0B0B0D"/></g>
+<g id="radio-checked-normal" transform="translate(883,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><circle cx="8" cy="8" r="8" fill="#BABAC6"/><circle cx="8" cy="8" r="7" fill="#BABAC6"/><circle cx="8" cy="8" r="3" fill="#070708"/></g>
+<g id="checkbox-focused" transform="translate(903,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><rect width="16" height="16" fill="#BABAC6"/><rect x="1" y="1" width="14" height="14" fill="#0B0B0D"/></g>
+<g id="checkbox-checked-focused" transform="translate(923,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><rect width="16" height="16" fill="#BABAC6"/><rect x="1" y="1" width="14" height="14" fill="#BABAC6"/><path d="M3.5 8.5 L6.5 11.5 L12.5 4.5" stroke="#070708" stroke-width="2" fill="none"/></g>
+<g id="checkbox-tristate-focused" transform="translate(943,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><rect width="16" height="16" fill="#BABAC6"/><rect x="1" y="1" width="14" height="14" fill="#BABAC6"/><rect x="4" y="7" width="8" height="2" fill="#070708"/></g>
+<g id="radio-focused" transform="translate(963,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><circle cx="8" cy="8" r="8" fill="#BABAC6"/><circle cx="8" cy="8" r="7" fill="#0B0B0D"/></g>
+<g id="radio-checked-focused" transform="translate(983,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><circle cx="8" cy="8" r="8" fill="#BABAC6"/><circle cx="8" cy="8" r="7" fill="#BABAC6"/><circle cx="8" cy="8" r="3" fill="#070708"/></g>
+<g id="checkbox-pressed" transform="translate(1003,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><rect width="16" height="16" fill="#BABAC6"/><rect x="1" y="1" width="14" height="14" fill="#0B0B0D"/></g>
+<g id="checkbox-checked-pressed" transform="translate(1023,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><rect width="16" height="16" fill="#BABAC6"/><rect x="1" y="1" width="14" height="14" fill="#BABAC6"/><path d="M3.5 8.5 L6.5 11.5 L12.5 4.5" stroke="#070708" stroke-width="2" fill="none"/></g>
+<g id="checkbox-tristate-pressed" transform="translate(1043,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><rect width="16" height="16" fill="#BABAC6"/><rect x="1" y="1" width="14" height="14" fill="#BABAC6"/><rect x="4" y="7" width="8" height="2" fill="#070708"/></g>
+<g id="radio-pressed" transform="translate(1063,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><circle cx="8" cy="8" r="8" fill="#BABAC6"/><circle cx="8" cy="8" r="7" fill="#0B0B0D"/></g>
+<g id="radio-checked-pressed" transform="translate(1083,0)"><rect width="16" height="16" fill="#000" fill-opacity="0"/><circle cx="8" cy="8" r="8" fill="#BABAC6"/><circle cx="8" cy="8" r="7" fill="#BABAC6"/><circle cx="8" cy="8" r="3" fill="#070708"/></g>
+<g id="arrow-up-normal" transform="translate(1103,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#E3E2E9"/></g>
+<g id="arrow-up-focused" transform="translate(1115,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#BABAC6"/></g>
+<g id="arrow-up-pressed" transform="translate(1127,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#BABAC6"/></g>
+<g id="arrow-up-disabled" transform="translate(1139,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#4D4D5A"/></g>
+<g id="arrow-down-normal" transform="translate(1151,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#E3E2E9"/></g>
+<g id="arrow-down-focused" transform="translate(1163,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="arrow-down-pressed" transform="translate(1175,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="arrow-down-disabled" transform="translate(1187,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#4D4D5A"/></g>
+<g id="arrow-left-normal" transform="translate(1199,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#E3E2E9"/></g>
+<g id="arrow-left-focused" transform="translate(1211,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#BABAC6"/></g>
+<g id="arrow-left-pressed" transform="translate(1223,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#BABAC6"/></g>
+<g id="arrow-left-disabled" transform="translate(1235,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#4D4D5A"/></g>
+<g id="arrow-right-normal" transform="translate(1247,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#E3E2E9"/></g>
+<g id="arrow-right-focused" transform="translate(1259,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="arrow-right-pressed" transform="translate(1271,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="arrow-right-disabled" transform="translate(1283,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#4D4D5A"/></g>
+<g id="arrow-plus-normal" transform="translate(1295,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#E3E2E9"/></g>
+<g id="arrow-plus-focused" transform="translate(1307,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="arrow-plus-pressed" transform="translate(1319,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="arrow-plus-disabled" transform="translate(1331,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#4D4D5A"/></g>
+<g id="arrow-minus-normal" transform="translate(1343,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#E3E2E9"/></g>
+<g id="arrow-minus-focused" transform="translate(1355,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="arrow-minus-pressed" transform="translate(1367,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="arrow-minus-disabled" transform="translate(1379,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#4D4D5A"/></g>
+<g id="flat-arrow-up-normal" transform="translate(1391,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#E3E2E9"/></g>
+<g id="flat-arrow-up-focused" transform="translate(1403,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#BABAC6"/></g>
+<g id="flat-arrow-up-pressed" transform="translate(1415,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#BABAC6"/></g>
+<g id="flat-arrow-up-disabled" transform="translate(1427,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#4D4D5A"/></g>
+<g id="flat-arrow-down-normal" transform="translate(1439,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#E3E2E9"/></g>
+<g id="flat-arrow-down-focused" transform="translate(1451,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="flat-arrow-down-pressed" transform="translate(1463,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="flat-arrow-down-disabled" transform="translate(1475,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#4D4D5A"/></g>
+<g id="flat-arrow-left-normal" transform="translate(1487,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#E3E2E9"/></g>
+<g id="flat-arrow-left-focused" transform="translate(1499,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#BABAC6"/></g>
+<g id="flat-arrow-left-pressed" transform="translate(1511,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#BABAC6"/></g>
+<g id="flat-arrow-left-disabled" transform="translate(1523,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#4D4D5A"/></g>
+<g id="flat-arrow-right-normal" transform="translate(1535,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#E3E2E9"/></g>
+<g id="flat-arrow-right-focused" transform="translate(1547,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="flat-arrow-right-pressed" transform="translate(1559,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="flat-arrow-right-disabled" transform="translate(1571,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#4D4D5A"/></g>
+<g id="flat-arrow-plus-normal" transform="translate(1583,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#E3E2E9"/></g>
+<g id="flat-arrow-plus-focused" transform="translate(1595,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="flat-arrow-plus-pressed" transform="translate(1607,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="flat-arrow-plus-disabled" transform="translate(1619,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#4D4D5A"/></g>
+<g id="flat-arrow-minus-normal" transform="translate(1631,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#E3E2E9"/></g>
+<g id="flat-arrow-minus-focused" transform="translate(1643,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="flat-arrow-minus-pressed" transform="translate(1655,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="flat-arrow-minus-disabled" transform="translate(1667,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#4D4D5A"/></g>
+<g id="tree-up-normal" transform="translate(1679,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#E3E2E9"/></g>
+<g id="tree-up-focused" transform="translate(1691,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#BABAC6"/></g>
+<g id="tree-up-pressed" transform="translate(1703,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#BABAC6"/></g>
+<g id="tree-up-disabled" transform="translate(1715,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#4D4D5A"/></g>
+<g id="tree-down-normal" transform="translate(1727,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#E3E2E9"/></g>
+<g id="tree-down-focused" transform="translate(1739,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="tree-down-pressed" transform="translate(1751,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="tree-down-disabled" transform="translate(1763,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#4D4D5A"/></g>
+<g id="tree-left-normal" transform="translate(1775,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#E3E2E9"/></g>
+<g id="tree-left-focused" transform="translate(1787,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#BABAC6"/></g>
+<g id="tree-left-pressed" transform="translate(1799,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#BABAC6"/></g>
+<g id="tree-left-disabled" transform="translate(1811,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#4D4D5A"/></g>
+<g id="tree-right-normal" transform="translate(1823,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#E3E2E9"/></g>
+<g id="tree-right-focused" transform="translate(1835,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="tree-right-pressed" transform="translate(1847,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="tree-right-disabled" transform="translate(1859,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#4D4D5A"/></g>
+<g id="tree-plus-normal" transform="translate(1871,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#E3E2E9"/></g>
+<g id="tree-plus-focused" transform="translate(1883,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="tree-plus-pressed" transform="translate(1895,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="tree-plus-disabled" transform="translate(1907,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#4D4D5A"/></g>
+<g id="tree-minus-normal" transform="translate(1919,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#E3E2E9"/></g>
+<g id="tree-minus-focused" transform="translate(1931,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="tree-minus-pressed" transform="translate(1943,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="tree-minus-disabled" transform="translate(1955,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#4D4D5A"/></g>
+<g id="spin-up-normal" transform="translate(1967,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#E3E2E9"/></g>
+<g id="spin-up-focused" transform="translate(1979,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#BABAC6"/></g>
+<g id="spin-up-pressed" transform="translate(1991,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#BABAC6"/></g>
+<g id="spin-up-disabled" transform="translate(2003,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,6 4,2 7,6" fill="#4D4D5A"/></g>
+<g id="spin-down-normal" transform="translate(2015,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#E3E2E9"/></g>
+<g id="spin-down-focused" transform="translate(2027,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="spin-down-pressed" transform="translate(2039,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="spin-down-disabled" transform="translate(2051,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#4D4D5A"/></g>
+<g id="spin-left-normal" transform="translate(2063,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#E3E2E9"/></g>
+<g id="spin-left-focused" transform="translate(2075,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#BABAC6"/></g>
+<g id="spin-left-pressed" transform="translate(2087,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#BABAC6"/></g>
+<g id="spin-left-disabled" transform="translate(2099,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#4D4D5A"/></g>
+<g id="spin-right-normal" transform="translate(2111,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#E3E2E9"/></g>
+<g id="spin-right-focused" transform="translate(2123,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="spin-right-pressed" transform="translate(2135,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="spin-right-disabled" transform="translate(2147,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#4D4D5A"/></g>
+<g id="spin-plus-normal" transform="translate(2159,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#E3E2E9"/></g>
+<g id="spin-plus-focused" transform="translate(2171,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="spin-plus-pressed" transform="translate(2183,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#BABAC6"/></g>
+<g id="spin-plus-disabled" transform="translate(2195,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#4D4D5A"/></g>
+<g id="spin-minus-normal" transform="translate(2207,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#E3E2E9"/></g>
+<g id="spin-minus-focused" transform="translate(2219,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="spin-minus-pressed" transform="translate(2231,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#BABAC6"/></g>
+<g id="spin-minus-disabled" transform="translate(2243,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="1,2 4,6 7,2" fill="#4D4D5A"/></g>
+<g id="menuitem-left-normal" transform="translate(2255,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#E3E2E9"/></g>
+<g id="menuitem-left-focused" transform="translate(2267,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#070708"/></g>
+<g id="menuitem-left-pressed" transform="translate(2279,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#070708"/></g>
+<g id="menuitem-left-toggled" transform="translate(2291,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="6,1 2,4 6,7" fill="#070708"/></g>
+<g id="menuitem-right-normal" transform="translate(2303,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#E3E2E9"/></g>
+<g id="menuitem-right-focused" transform="translate(2315,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#070708"/></g>
+<g id="menuitem-right-pressed" transform="translate(2327,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#070708"/></g>
+<g id="menuitem-right-toggled" transform="translate(2339,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="2,1 6,4 2,7" fill="#070708"/></g>
+<g id="splitter-grip-normal" transform="translate(2351,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><rect x="3" y="0" width="2" height="2" fill="#4D4D5A"/><rect x="3" y="3" width="2" height="2" fill="#4D4D5A"/><rect x="3" y="6" width="2" height="2" fill="#4D4D5A"/></g>
+<g id="splitter-grip-focused" transform="translate(2363,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><rect x="3" y="0" width="2" height="2" fill="#BABAC6"/><rect x="3" y="3" width="2" height="2" fill="#BABAC6"/><rect x="3" y="6" width="2" height="2" fill="#BABAC6"/></g>
+<g id="splitter-grip-pressed" transform="translate(2375,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><rect x="3" y="0" width="2" height="2" fill="#BABAC6"/><rect x="3" y="3" width="2" height="2" fill="#BABAC6"/><rect x="3" y="6" width="2" height="2" fill="#BABAC6"/></g>
+<g id="toolbar-handle" transform="translate(2387,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><rect x="3" y="0" width="2" height="2" fill="#4D4D5A"/><rect x="3" y="3" width="2" height="2" fill="#4D4D5A"/><rect x="3" y="6" width="2" height="2" fill="#4D4D5A"/></g>
+<g id="toolbar-separator" transform="translate(2399,0)"><rect width="9" height="9" fill="#000" fill-opacity="0"/><rect x="4" width="1" height="9" fill="#2E2E37"/></g>
+<g id="resize-grip-normal" transform="translate(2412,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="8,0 8,8 0,8" fill="#4D4D5A"/></g>
+<g id="resize-grip-focused" transform="translate(2424,0)"><rect width="8" height="8" fill="#000" fill-opacity="0"/><polygon points="8,0 8,8 0,8" fill="#BABAC6"/></g>
+<g id="dial" transform="translate(2436,0)"><rect width="32" height="32" fill="#000" fill-opacity="0"/><circle cx="16" cy="16" r="16" fill="#4D4D5A"/><circle cx="16" cy="16" r="15" fill="#131315"/></g>
+<g id="dial-handle" transform="translate(2472,0)"><rect width="32" height="32" fill="#000" fill-opacity="0"/><rect x="15" y="2" width="2" height="9" fill="#BABAC6"/></g>
+<g id="dial-notches" transform="translate(2508,0)"><rect width="32" height="32" fill="#000" fill-opacity="0"/></g>
+<g id="mdi-close-normal" transform="translate(2544,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><path d="M2 2 L8 8 M8 2 L2 8" stroke="#E3E2E9" stroke-width="1.5"/></g>
+<g id="mdi-close-focused" transform="translate(2558,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><path d="M2 2 L8 8 M8 2 L2 8" stroke="#BABAC6" stroke-width="1.5"/></g>
+<g id="mdi-close-pressed" transform="translate(2572,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><path d="M2 2 L8 8 M8 2 L2 8" stroke="#BABAC6" stroke-width="1.5"/></g>
+<g id="mdi-close-disabled" transform="translate(2586,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><path d="M2 2 L8 8 M8 2 L2 8" stroke="#4D4D5A" stroke-width="1.5"/></g>
+<g id="mdi-maximize-normal" transform="translate(2600,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="2" y="2" width="6" height="6" stroke="#E3E2E9" fill="none"/></g>
+<g id="mdi-maximize-focused" transform="translate(2614,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="2" y="2" width="6" height="6" stroke="#BABAC6" fill="none"/></g>
+<g id="mdi-maximize-pressed" transform="translate(2628,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="2" y="2" width="6" height="6" stroke="#BABAC6" fill="none"/></g>
+<g id="mdi-maximize-disabled" transform="translate(2642,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="2" y="2" width="6" height="6" stroke="#4D4D5A" fill="none"/></g>
+<g id="mdi-restore-normal" transform="translate(2656,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="3" y="3" width="4" height="4" stroke="#E3E2E9" fill="none"/></g>
+<g id="mdi-restore-focused" transform="translate(2670,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="3" y="3" width="4" height="4" stroke="#BABAC6" fill="none"/></g>
+<g id="mdi-restore-pressed" transform="translate(2684,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="3" y="3" width="4" height="4" stroke="#BABAC6" fill="none"/></g>
+<g id="mdi-restore-disabled" transform="translate(2698,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="3" y="3" width="4" height="4" stroke="#4D4D5A" fill="none"/></g>
+<g id="mdi-minimize-normal" transform="translate(2712,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="2" y="7" width="6" height="1.5" fill="#E3E2E9"/></g>
+<g id="mdi-minimize-focused" transform="translate(2726,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="2" y="7" width="6" height="1.5" fill="#BABAC6"/></g>
+<g id="mdi-minimize-pressed" transform="translate(2740,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="2" y="7" width="6" height="1.5" fill="#BABAC6"/></g>
+<g id="mdi-minimize-disabled" transform="translate(2754,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><rect x="2" y="7" width="6" height="1.5" fill="#4D4D5A"/></g>
+<g id="mdi-shade-normal" transform="translate(2768,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><polygon points="2,7 5,3 8,7" fill="#E3E2E9"/></g>
+<g id="mdi-shade-focused" transform="translate(2782,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><polygon points="2,7 5,3 8,7" fill="#BABAC6"/></g>
+<g id="mdi-shade-pressed" transform="translate(2796,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><polygon points="2,7 5,3 8,7" fill="#BABAC6"/></g>
+<g id="mdi-shade-disabled" transform="translate(2810,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><polygon points="2,7 5,3 8,7" fill="#4D4D5A"/></g>
+<g id="mdi-menu-normal" transform="translate(2824,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><polygon points="2,3 8,3 5,7" fill="#E3E2E9"/></g>
+<g id="mdi-menu-focused" transform="translate(2838,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><polygon points="2,3 8,3 5,7" fill="#BABAC6"/></g>
+<g id="mdi-menu-pressed" transform="translate(2852,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><polygon points="2,3 8,3 5,7" fill="#BABAC6"/></g>
+<g id="mdi-menu-disabled" transform="translate(2866,0)"><rect width="10" height="10" fill="#000" fill-opacity="0"/><polygon points="2,3 8,3 5,7" fill="#4D4D5A"/></g>
+<rect id="titlebar-normal" x="2880" y="0" width="10" height="10" fill="#070708"/>
+<rect id="titlebar-focused" x="2894" y="0" width="10" height="10" fill="#131315"/>
+</svg>

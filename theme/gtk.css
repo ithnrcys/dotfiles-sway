@@ -1,0 +1,103 @@
+/* GTK 3 and GTK 4 / libadwaita (through gtk4.css) in the waybar palette: near-black, grey-lavender accent, square corners.
+   Linked into ~/.config/gtk-3.0 and ~/.config/gtk-4.0 by theme/install.sh.
+   GTK 3 needs the adw-gtk3-dark theme underneath (it understands the same colour names as libadwaita). */
+
+@define-color accent_color       #BABAC6;
+@define-color accent_bg_color    #BABAC6;
+@define-color accent_fg_color    #070708;
+
+/* the only hues: muted, so a delete button or an error can still be told apart */
+@define-color destructive_color    #C98A92;
+@define-color destructive_bg_color #8F4A54;
+@define-color destructive_fg_color #E3E2E9;
+@define-color error_color          #C98A92;
+@define-color error_bg_color       #8F4A54;
+@define-color error_fg_color       #E3E2E9;
+@define-color warning_color        #C9BC8A;
+@define-color warning_bg_color     #8A7C45;
+@define-color warning_fg_color     #E3E2E9;
+@define-color success_color        #93B8A0;
+@define-color success_bg_color     #4C7A5C;
+@define-color success_fg_color     #E3E2E9;
+
+@define-color window_bg_color    #070708;
+@define-color window_fg_color    #E3E2E9;
+@define-color view_bg_color      #0B0B0D;
+@define-color view_fg_color      #E3E2E9;
+@define-color headerbar_bg_color       #070708;
+@define-color headerbar_fg_color       #E3E2E9;
+@define-color headerbar_border_color   #E3E2E9;
+@define-color headerbar_backdrop_color #070708;
+@define-color headerbar_shade_color    #4D4D5A;
+@define-color headerbar_darker_shade_color #4D4D5A;
+@define-color sidebar_bg_color         #0B0B0D;
+@define-color sidebar_fg_color         #E3E2E9;
+@define-color sidebar_backdrop_color   #0B0B0D;
+@define-color sidebar_shade_color      #2E2E37;
+@define-color sidebar_border_color     #2E2E37;
+@define-color secondary_sidebar_bg_color       #0B0B0D;
+@define-color secondary_sidebar_fg_color       #E3E2E9;
+@define-color secondary_sidebar_backdrop_color #0B0B0D;
+@define-color secondary_sidebar_shade_color    #2E2E37;
+@define-color secondary_sidebar_border_color   #2E2E37;
+@define-color card_bg_color      #131315;
+@define-color card_fg_color      #E3E2E9;
+@define-color card_shade_color   #2E2E37;
+@define-color dialog_bg_color    #070708;
+@define-color dialog_fg_color    #E3E2E9;
+@define-color popover_bg_color   #070708;
+@define-color popover_fg_color   #E3E2E9;
+@define-color popover_shade_color #2E2E37;
+@define-color thumbnail_bg_color #131315;
+@define-color thumbnail_fg_color #E3E2E9;
+@define-color shade_color        #2E2E37;
+@define-color scrollbar_outline_color #070708;
+
+/* square, like the bar — radio buttons stay round so they do not look like check boxes */
+* { border-radius: 0; }
+radio { border-radius: 100%; }
+
+/* buttons: 1px border like every other control, accent on hover; flat (toolbar-style) buttons stay bare */
+button { border: 1px solid #4D4D5A; box-shadow: none; }
+button:hover, button:checked { border-color: #BABAC6; }
+button.flat, button.flat:hover, button.titlebutton, windowcontrols button, tab button, calendar button,
+spinbutton > button, scrollbar button, row button.flat { border-color: transparent; }
+button.suggested-action, button.suggested-action label { color: #070708; }
+
+/* code and terminal-like text use the bar's font */
+.monospace { font-family: "JetBrainsMono Nerd Font", monospace; }
+
+/* text fields: 1px border, accent when focused (instead of the glow ring) */
+entry, spinbutton, searchbar entry, .linked > entry {
+  border: 1px solid #4D4D5A;
+  background-color: #0B0B0D;
+  outline: none;
+  box-shadow: none;
+}
+entry:focus, entry:focus-within, spinbutton:focus, spinbutton:focus-within { border-color: #BABAC6; }
+spinbutton > text, spinbutton > entry, spinbutton > button { border: none; }
+
+/* menus, popovers and tooltips: flat panel with the bar's border, no shadow */
+popover > contents, popover > arrow, popover.background, menu, .menu, .context-menu {
+  border: 1px solid #4D4D5A;
+  box-shadow: none;
+  background-color: #070708;
+}
+tooltip, tooltip.background {
+  border: 1px solid #4D4D5A;
+  box-shadow: none;
+  background-color: #070708;
+  color: #E3E2E9;
+}
+tooltip label { color: #E3E2E9; }
+
+/* the selected row is inverted, as in the rofi menus */
+treeview.view:selected, list > row:selected, listview > row:selected,
+columnview > listview > row:selected, .navigation-sidebar > row:selected,
+popover modelbutton:hover, menuitem:hover {
+  background-color: #BABAC6;
+  color: #070708;
+}
+
+/* header bars and tool bars end in the same hairline as the bar */
+headerbar { border-bottom: 1px solid #4D4D5A; box-shadow: none; }
