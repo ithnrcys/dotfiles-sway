@@ -23,8 +23,10 @@ pgrep -x swayidle || swayidle -w \
          resume 'swaymsg "output * power on"' \
     before-sleep "$HOME/.config/sway/lock.sh" &
 
-# --- Clipboard: the last copied text survives closing the window it came from (one item, in memory, no history)
-pgrep -f 'bin/clip-persist$' || "$HOME/.local/bin/clip-persist" &
+# --- Clipboard: the last copy (text, formatting, pictures) survives closing the window it came from
+# one item, in memory, no history; entries a password manager marks as sensitive are left alone
+pgrep -x wl-clip-persist || "$HOME/.local/bin/wl-clip-persist" --clipboard regular \
+    --all-mime-type-regex '^(?!x-kde-passwordManagerHint).+' &
 
 # --- Polkit agent (GUI auth prompts) ---
 pgrep -f polkit-gnome-authentication || /usr/libexec/polkit-gnome-authentication-agent-1 &
