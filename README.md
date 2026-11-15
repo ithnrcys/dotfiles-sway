@@ -199,6 +199,16 @@ MEMORY: 32Gib
         why:     programs built on KDE's libraries take view backgrounds and icon colours from kdeglobals, not from the Qt style; without it Gwenview had a white picture area and dark-on-black toolbar icons
         also:    [KDE] contrast=0 in kdeglobals — KDE computes its "mid" grey from the window colour, and the default made Gwenview's location bar #6B6B72; now #202024
         checked: Gwenview's view and browse modes rendered in a headless sway
+    media player: VLC 3.0.24 from Packman (sudo zypper install --from packman vlc vlc-codecs) is the default for audio and video files — all 134 audio/*, video/* and container types in vlc.desktop (xdg-mime default vlc.desktop …)
+        theme:   VLC is a Qt 5 program, so menus, buttons and dialogs already come from Kvantum "Mizu"; the seek bar and the volume control were its own blue and green-to-red drawings
+        fix:     vlc/vlc-qt-interface.conf — the toolbar layouts with the "shiny" flag (-4) removed from the seek slider (33) and the volume control (35), so both are plain theme sliders; same as Tools → Customise Interface → "Native Slider"
+        also:    vlc/vlcrc — no first-run privacy question, no fetching of cover art / metadata from the network
+        new machine: cp ~/.dotfiles/vlc/* ~/.config/vlc/ before the first start (copies, not links: VLC rewrites both files with window size and recent files)
+        left:    VLC's toolbar icons are built-in dark-grey pictures, dim on the black bar; VLC 3 cannot take them from the icon theme
+        checked: main window with a file open, rendered in a headless sway (XWayland)
+    archiver: extra back-ends for lxqt-archiver — sudo zypper install lz4 lzop lzip lrzip arj lhasa unar ncompress squashfs zoo
+        already there: 7zip (7z, zip, iso, cab …), unrar (extract only), zip / unzip, tar with gzip / bzip2 / xz / zstd, rpm, cpio, bsdtar
+        not possible:  creating .rar — needs the proprietary rar program, not packaged by openSUSE
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
@@ -211,6 +221,7 @@ MEMORY: 32Gib
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts
+    vlc/         vlc-qt-interface.conf (toolbar layout with theme sliders), vlcrc; copied into ~/.config/vlc once
     firefox/     user.js (preferences re-applied at every start); ln -s into the Firefox profile directory
     sddm/        theme/ (Main.qml, metadata.desktop, theme.conf), install.sh, wallpaper.sh (rotating photo)
     hyprlock/    hyprlock.conf (lock screen); ln -s into ~/.config/hypr
