@@ -5,6 +5,7 @@
 #   GTK 3        adw-gtk3-dark (downloaded here) + theme/gtk.css
 #   GTK 4        libadwaita / adw-gtk3-dark      + theme/gtk4.css (imports gtk.css)
 #   Qt 5, Qt 6   Kvantum theme "Mizu" (kvantum/), chosen through qt5ct / qt6ct; QT_QPA_PLATFORMTHEME in environment.d/qt.conf
+#   KDE programs theme/Mizu.colors, copied into ~/.config/kdeglobals (view backgrounds, icon colours)
 #   icons        Papirus-Mizu = Papirus-Dark with grey folders (built here, in ~/.local/share/icons)
 #   fonts        SF Pro Text for interfaces, JetBrainsMono Nerd Font for code
 
@@ -70,6 +71,21 @@ link kvantum             "$CONF/Kvantum"
 link qt5ct/qt5ct.conf    "$CONF/qt5ct/qt5ct.conf"
 link qt6ct/qt6ct.conf    "$CONF/qt6ct/qt6ct.conf"
 link environment.d/qt.conf "$CONF/environment.d/qt.conf"
+link theme/Mizu.colors   "$DATA/color-schemes/Mizu.colors"
+
+# --- KDE programs (Gwenview, Konsole, KDE Connect) read their colours from kdeglobals, not from the Qt style:
+#     drop any colour groups already in it and append the ones from Mizu.colors; other settings in the file are kept
+KG="$CONF/kdeglobals"
+touch "$KG"
+awk '/^\[/ { skip = ($0 ~ /^\[(Colors:|ColorEffects:|WM\])/) } !skip' "$KG" > "$KG.new"
+awk '/^\[/ { keep = ($0 ~ /^\[(Colors:|ColorEffects:|WM\])/) } keep' "$REPO/theme/Mizu.colors" >> "$KG.new"
+mv "$KG.new" "$KG"
+if command -v kwriteconfig6 >/dev/null; then
+    kwriteconfig6 --file kdeglobals --group General --key ColorScheme Mizu
+    kwriteconfig6 --file kdeglobals --group Icons   --key Theme "$ICONS"
+    # KDE derives its "mid" grey (Gwenview's location bar) from the window colour; the default contrast of 7 gives #6B6B72 on black, 0 gives #202024
+    kwriteconfig6 --file kdeglobals --group KDE     --key contrast 0
+fi
 
 # --- what GTK programs read on Wayland
 g() { gsettings set org.gnome.desktop.interface "$@"; }

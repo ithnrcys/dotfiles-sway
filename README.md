@@ -194,13 +194,18 @@ MEMORY: 32Gib
     sway: autostart.sh started the polkit agent from /usr/lib/…, which does not exist — it lives in /usr/libexec/polkit-gnome-authentication-agent-1. Password prompts for firewall-cmd, mounting, etc. never appeared ("Authorization failed"); fixed
     firefox: firefox/user.js, symlinked into the profile — strict tracking protection stays, with Mozilla's two exception lists for sites known to break under it (the "convenience" one had been switched off)
         new machine: ln -s ~/.dotfiles/firefox/user.js ~/.config/mozilla/firefox/<profile>/user.js; takes effect at the next Firefox start
+    image viewer: Gwenview (sudo zypper install gwenview) is the default for image files — png, jpeg, webp, gif, svg, avif, heif, jxl, tiff, bmp, ico and the rest (xdg-mime default org.kde.gwenview.desktop …, stored in ~/.config/mimeapps.list); they opened in Chromium before
+    theme: KDE programs are in the palette too — theme/Mizu.colors, a KDE colour scheme, linked into ~/.local/share/color-schemes and copied into ~/.config/kdeglobals by theme/install.sh
+        why:     programs built on KDE's libraries take view backgrounds and icon colours from kdeglobals, not from the Qt style; without it Gwenview had a white picture area and dark-on-black toolbar icons
+        also:    [KDE] contrast=0 in kdeglobals — KDE computes its "mid" grey from the window colour, and the default made Gwenview's location bar #6B6B72; now #202024
+        checked: Gwenview's view and browse modes rendered in a headless sway
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
     bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher); ln -s into ~/.local/bin
     applications/ spacedrive.desktop, nvim-ghostty.desktop; ln -s into ~/.local/share/applications
     environment.d/ editor.conf, qt.conf (Qt programs use qt5ct / qt6ct); ln -s into ~/.config/environment.d
-    theme/       gtk.css (GTK 3 + shared rules), gtk4.css (GTK 4 / libadwaita), settings.ini, install.sh (fetches adw-gtk3, builds the icon theme, links everything, sets gsettings)
+    theme/       gtk.css (GTK 3 + shared rules), gtk4.css (GTK 4 / libadwaita), settings.ini, Mizu.colors (KDE colour scheme), install.sh (fetches adw-gtk3, builds the icon theme, links everything, sets gsettings)
     kvantum/     Mizu/ (Qt theme: Mizu.kvconfig, Mizu.svg), build-svg.py (draws Mizu.svg), kvantum.kvconfig; linked as ~/.config/Kvantum
     qt5ct/ qt6ct/ qt5ct.conf, qt6ct.conf (style kvantum, icons, fonts)
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
