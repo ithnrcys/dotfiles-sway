@@ -36,6 +36,14 @@ for_window [app_id="swaynag"] floating enable
 for_window [app_id="(?i)bitwarden"] floating enable
 for_window [class="(?i)bitwarden"] floating enable
 for_window [class="steam_app_244210" title="^Content Manager"] floating enable, resize set 100ppt 100ppt, move position 0 0
+# every other Content Manager window (car / track picker, dialogs) floats too: a tiled window is drawn
+# underneath the floating main window and cannot be reached. The game itself ("Assetto Corsa") is left alone
+for_window [class="steam_app_244210" title="^(?!Assetto Corsa$)"] floating enable
+# file archiver: all its windows float; the main window is 960x600 in the centre, prompts keep their own smaller size
+for_window [app_id="lxqt-archiver"] floating enable
+for_window [app_id="lxqt-archiver" title="File Archiver$"] resize set 960 600, move position center
+# Bitwarden is the Firefox extension here: its own windows (popped-out vault, login and passkey prompts) float
+for_window [app_id="firefox" title="^Extension: \(Bitwarden Password Manager\)"] floating enable, move position center
 
 ### Idle — a fullscreen window (game, video) keeps the screen from locking or turning off
 for_window [app_id=".*"] inhibit_idle fullscreen

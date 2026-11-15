@@ -209,6 +209,12 @@ MEMORY: 32Gib
     archiver: extra back-ends for lxqt-archiver — sudo zypper install lz4 lzop lzip lrzip arj lhasa unar ncompress squashfs zoo
         already there: 7zip (7z, zip, iso, cab …), unrar (extract only), zip / unzip, tar with gzip / bzip2 / xz / zstd, rpm, cpio, bsdtar
         not possible:  creating .rar — needs the proprietary rar program, not packaged by openSUSE
+    sway: three window rules (sway/config, "Floating")
+        archiver: every lxqt-archiver window floats; the main window (title ends in "File Archiver") is 960x600 in the centre, a quarter of the screen; prompts keep their own smaller size
+            the archiver restores its own remembered size after sway places it, so ~/.config/lxqt/archiver.conf has WindowSize=@Size(960 600) as well
+        Bitwarden: the Firefox extension's own windows (title starts "Extension: (Bitwarden Password Manager)") float in the centre — the two older Bitwarden rules only match the desktop program, which is not installed
+        Content Manager: every steam_app_244210 window except the game ("Assetto Corsa") floats — the car / track picker opened tiled, and tiled windows are drawn underneath the floating full-screen main window
+        checked: archiver rule in a headless sway (960x600 at 320,150). Bitwarden and Content Manager rules not yet seen against a real window
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
