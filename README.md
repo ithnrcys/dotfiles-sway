@@ -209,6 +209,13 @@ MEMORY: 32Gib
     archiver: extra back-ends for lxqt-archiver — sudo zypper install lz4 lzop lzip lrzip arj lhasa unar ncompress squashfs zoo
         already there: 7zip (7z, zip, iso, cab …), unrar (extract only), zip / unzip, tar with gzip / bzip2 / xz / zstd, rpm, cpio, bsdtar
         not possible:  creating .rar — needs the proprietary rar program, not packaged by openSUSE
+    clipboard: bin/clip-persist — the last copied text stays available after the window it was copied from closes (on Wayland the clipboard otherwise empties with its owner)
+        how:     two wl-paste --watch processes report clipboard changes; the script keeps the current text in a shell variable and puts it back with wl-copy the moment the clipboard goes empty
+        kept:    one item only, in memory — no history, nothing on disk, gone at logout; entries a password manager marks as sensitive are not kept
+        while the source is open it remains the owner, so formatted text, pictures and files paste as before; after it closes only the plain text is left (a picture or file copy is not kept)
+        limit:   a program that empties the clipboard on purpose looks the same as one that closed, so the text comes back
+        started by sway/autostart.sh; symlinked into ~/.local/bin; needs wl-clipboard
+        checked: text, two copies in a row, picture, sensitive and killed-holder cases in a headless sway
     sway: three window rules (sway/config, "Floating")
         archiver: every lxqt-archiver window floats; the main window (title ends in "File Archiver") is 960x600 in the centre, a quarter of the screen; prompts keep their own smaller size
             the archiver restores its own remembered size after sway places it, so ~/.config/lxqt/archiver.conf has WindowSize=@Size(960 600) as well
@@ -218,7 +225,7 @@ MEMORY: 32Gib
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
-    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher); ln -s into ~/.local/bin
+    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), clip-persist (keeps the last copied text), spacedrive (launcher); ln -s into ~/.local/bin
     applications/ spacedrive.desktop, nvim-ghostty.desktop; ln -s into ~/.local/share/applications
     environment.d/ editor.conf, qt.conf (Qt programs use qt5ct / qt6ct); ln -s into ~/.config/environment.d
     theme/       gtk.css (GTK 3 + shared rules), gtk4.css (GTK 4 / libadwaita), settings.ini, Mizu.colors (KDE colour scheme), install.sh (fetches adw-gtk3, builds the icon theme, links everything, sets gsettings)

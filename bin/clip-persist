@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# clip-persist — keep the last copied text available after the window it came from closes.
+#
+# On Wayland the clipboard belongs to the program you copied from; when that program exits,
+# the clipboard goes empty. This remembers the current clipboard text in memory and, at the
+# moment the clipboard goes empty, puts that text back.
+#
+#   - one item only, held in a shell variable: no history, nothing written to disk
+#   - while the source program is alive it stays the owner, so formatted text, images and
+#     files paste as usual; only plain text survives the program closing
+#   - anything marked sensitive by a password manager is forgotten, not kept
+#   - forgotten at logout
+#
+# Started by sway/autostart.sh. Needs wl-clipboard.
+
+fifo="${XDG_RUNTIME_DIR:-/tmp}/clip-persist.fifo"
+
+# --event: run by wl-paste on every clipboard change; reports it to the main loop
+if [ "$1" = --event ]; then
+    case "$CLIPBOARD_STATE" in
+        data)                                     # new content: keep it if it has a plain-text form, else forget
+            if wl-paste --list-types 2>/dev/null | grep -qE '^(text/plain|UTF8_STRING|STRING|TEXT)'; then
+                printf 'D%s\n' "$(wl-paste --no-newline --type text 2>/dev/null | base64 -w0)"
+            else
+                printf 'F\n'
+            fi ;;
+        nil)                                      # no text on offer: either truly empty (owner closed) ...
+            if wl-paste --list-types >/dev/null 2>&1; then
+                printf 'F\n'                      # ... or something without a text form, e.g. an image: leave it, forget ours
+            else
+                printf 'N\n'
+            fi ;;
+        *)    printf 'F\n' ;;                     # sensitive, or cleared on purpose: forget
+    esac > "$fifo"
+    exit 0
+fi
+
+# --image: run by a second wl-paste that only reports pictures (the text watcher never sees them)
+if [ "$1" = --image ]; then
+    [ "$CLIPBOARD_STATE" = data ] && printf 'F\n' > "$fifo"   # a picture was copied: forget the older text
+    exit 0
+fi
+
+rm -f "$fifo"; mkfifo -m 600 "$fifo" || exit 1
+exec 3<>"$fifo"
+trap 'kill $watcher 2>/dev/null; rm -f "$fifo"' EXIT
+trap 'exit 0' TERM INT
+
+wl-paste --watch "$0" --event < /dev/null &
+watcher=$!
+wl-paste --type image --watch "$0" --image < /dev/null &
+watcher="$watcher $!"
+
+last=
+while IFS= read -r -u 3 line; do
+    case "$line" in
+        D*) last="${line#D}" ;;
+        N)  [ -n "$last" ] && base64 -d <<< "$last" | wl-copy ;;
+        F)  last= ;;
+    esac
+done

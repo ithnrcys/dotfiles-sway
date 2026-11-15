@@ -23,6 +23,9 @@ pgrep -x swayidle || swayidle -w \
          resume 'swaymsg "output * power on"' \
     before-sleep "$HOME/.config/sway/lock.sh" &
 
+# --- Clipboard: the last copied text survives closing the window it came from (one item, in memory, no history)
+pgrep -f 'bin/clip-persist$' || "$HOME/.local/bin/clip-persist" &
+
 # --- Polkit agent (GUI auth prompts) ---
 pgrep -f polkit-gnome-authentication || /usr/libexec/polkit-gnome-authentication-agent-1 &
 
