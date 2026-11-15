@@ -165,6 +165,25 @@ MEMORY: 32Gib
         flatpak:  user override lets flatpak programs read the GTK theme files and icons (flatpak override --user --show)
         PrismLauncher: ApplicationTheme=system in ~/.local/share/PrismLauncher/prismlauncher.cfg (was its built-in "dark"), so it uses the Qt theme
         checked:  test windows for GTK 3, GTK 4, Qt 5 and Qt 6 plus PrismLauncher, Konsole and lxqt-archiver rendered in a headless sway
+- System Tuning (2026-11-13 / 14):
+    wifi: lag spikes in Deadlock and PoE2 (60 → 150 ms, rubber-banding) traced to Wi-Fi power saving on the RTL8852CE (rtw89 driver) — not the ISP, not waybar, not Bluetooth
+        measured: ping to the router 192.168.0.1 was 23–52 ms avg, 230–570 ms spikes, 2–14% loss (2.4 and 5 GHz alike); with power saving off 0.8 ms avg, 5.5 ms max, 0% loss
+        fix:      /etc/NetworkManager/conf.d/wifi-powersave-off.conf — [connection] wifi.powersave = 2; then systemctl restart NetworkManager
+        check:    iw dev wlp9s0 get power_save → "Power save: off";  ping -c 150 -i 0.2 -q 192.168.0.1
+        5 GHz:    nmcli con modify <5 GHz network> connection.autoconnect-priority 10 — preferred over the crowded 2.4 GHz <2.4 GHz network> (channel 2)
+    hostname: mizu (hostnamectl set-hostname mizu; was localhost)
+    32-bit graphics: nothing to install — the packages are named Mesa-libGL1-32bit / Mesa-libEGL1-32bit here (with a 1) and are present, along with Mesa-32bit, Mesa-dri-32bit, libvulkan1-32bit and libvulkan_radeon-32bit
+    vulkan-tools: rpm -V vulkan-tools is clean now
+    display: 1920x1080 @ 180 Hz confirmed as the panel's native mode — the EDID's preferred timing is 1080p180 on a 527x296 mm (24") panel; 2560x1440 @ 75 is a scaled-up "virtual" mode the monitor offers, so sway/config stays as it is
+    Windows leftovers removed (2026-11-14):
+        sudo rm -rf /boot/efi/EFI/Microsoft              — old Windows boot files (Boot, Recovery) on the EFI partition
+        sudo efibootmgr -b 0000 -B                       — firmware entry "Windows Boot Manager"; boot order is now 0002 (opensuse-secureboot), 0001
+        sudo grub2-mkconfig -o /boot/grub2/grub.cfg      — GRUB menu regenerated: kernels 7.3.3 and 7.2.9 + UEFI Firmware Settings, no Windows entry
+        left alone: nvme0n1p2 (16 MB Microsoft reserved) and nvme0n1p4 (730 MB NTFS recovery) — harmless, and too small to be worth repartitioning
+    zypper dup → Tumbleweed 20261111: 32 packages, all Mesa / Vulkan packages (64- and 32-bit) now on 26.2.6; also ffmpeg libs, xwayland 24.1.14, dracut
+    BIOS, verified from Linux (no change needed):
+        Above 4G Decoding + Resizable BAR: on — the RX 9070 XT exposes a 16 GB BAR (/sys/bus/pci/devices/0000:03:00.0/resource)
+        SVM Mode: on — /dev/kvm exists
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
@@ -230,11 +249,11 @@ Shades used by the GTK / Qt theme: inputs #0B0B0D, buttons #131315, hover #1B1B2
     - ProtonUp-Qt (flatpak, Qt) is not themed: needs the org.kde.KStyle.Kvantum flatpak runtime plus access to ~/.config/Kvantum
 - System:
     - Bluetooth: pair and connect a real device through the bar menu (only tested against a stub so far)
-    - 32-bit graphics libs: Mesa-libGL-32bit Mesa-libEGL-32bit (libvulkan_radeon-32bit done)
-    - Set the hostname — still localhost
-    - BIOS: Above 4G Decoding + Resizable BAR, SVM Mode, PBO or 105W cTDP
-    - Optionally re-enable Secure Boot
-    - Remove leftover /boot/efi/EFI/Microsoft and regenerate grub.cfg
-    - Confirm native resolution — currently 1080p180, panel also offers 1440p75
+    - BIOS: PBO or 105W cTDP — the only BIOS item left; cannot be checked from Linux without root
+        Gigabyte B850M: Del at boot → Tweaker → Precision Boost Overdrive → "AMD ECO Mode / TDP to 105W" (or PBO: Enabled); expect higher temperatures, watch them in btop
+    - Secure Boot (optional) — currently disabled and the firmware is in Setup Mode (no keys enrolled)
+        ready on the Linux side: boots through the signed shim (Boot0002 opensuse-secureboot), SECURE_BOOT="yes" in /etc/sysconfig/bootloader, no out-of-tree kernel modules
+        BIOS: Boot → CSM Support: Disabled → Secure Boot → Secure Boot Mode: Custom → Restore Factory Keys → Mode back to Standard → Secure Boot: Enabled
+        check:  mokutil --sb-state → "SecureBoot enabled"
+        if it does not boot: same menu, Secure Boot: Disabled — nothing on disk changes
     - Ethernet enp10s0 still shows no link — cable or router
-    - rpm -V vulkan-tools — reported an error on install
