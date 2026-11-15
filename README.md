@@ -184,6 +184,16 @@ MEMORY: 32Gib
     BIOS, verified from Linux (no change needed):
         Above 4G Decoding + Resizable BAR: on — the RX 9070 XT exposes a 16 GB BAR (/sys/bus/pci/devices/0000:03:00.0/resource)
         SVM Mode: on — /dev/kvm exists
+- Desktop QoL — fonts, Firefox, network (2026-11-15):
+    audit: what was checked, and what turned out to need nothing
+        fonts:    only Latin / Greek / Cyrillic were covered — Hindi and the other Indian scripts, Chinese / Japanese / Korean, Arabic, Hebrew and Thai had no font at all (empty boxes in Firefox); emoji (Noto Color Emoji) was already there
+        firefox:  the profile (~/.config/mozilla/firefox/zasqhewv.default-release) had no user.js and no userChrome — sites break because of stacked extensions, mostly Popup Blocker Ultimate, which switches off every popup opened by a click (login and payment windows), plus CanvasBlocker, Cookie AutoDelete and four more trackers-blockers on top of uBlock Origin
+        video:    H.264 / AAC play (ffmpeg libraries from packman), Widevine DRM is on, OpenH264 present
+        portals:  xdg-desktop-portal, -wlr and -gtk all running (file chooser, screen sharing)
+        network:  router ping 0.8 ms avg, 0% loss; DNS (8.8.8.8 from the router) answers in 6 ms; clock synced by chrony; firewalld active, Wi-Fi in the "public" zone; no IPv6 from the ISP
+    sway: autostart.sh started the polkit agent from /usr/lib/…, which does not exist — it lives in /usr/libexec/polkit-gnome-authentication-agent-1. Password prompts for firewall-cmd, mounting, etc. never appeared ("Authorization failed"); fixed
+    firefox: firefox/user.js, symlinked into the profile — strict tracking protection stays, with Mozilla's two exception lists for sites known to break under it (the "convenience" one had been switched off)
+        new machine: ln -s ~/.dotfiles/firefox/user.js ~/.config/mozilla/firefox/<profile>/user.js; takes effect at the next Firefox start
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
@@ -196,6 +206,7 @@ MEMORY: 32Gib
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts
+    firefox/     user.js (preferences re-applied at every start); ln -s into the Firefox profile directory
     sddm/        theme/ (Main.qml, metadata.desktop, theme.conf), install.sh, wallpaper.sh (rotating photo)
     hyprlock/    hyprlock.conf (lock screen); ln -s into ~/.config/hypr
     systemd/     login-wallpaper.service + .timer; ln -s into ~/.config/systemd/user
@@ -248,6 +259,18 @@ Shades used by the GTK / Qt theme: inputs #0B0B0D, buttons #131315, hover #1B1B2
     - Konsole's terminal area still uses its own Breeze colour scheme (only matters if Konsole gets used instead of Ghostty)
     - ProtonUp-Qt (flatpak, Qt) is not themed: needs the org.kde.KStyle.Kvantum flatpak runtime plus access to ~/.config/Kvantum
 - System:
+    - Fonts and spell-check dictionaries (needs the password, so not done yet):
+        sudo zypper install google-noto-fonts google-noto-sans-cjk-fonts google-carlito-fonts google-caladea-fonts myspell-en_US myspell-en_GB myspell-hi_IN
+        google-noto-fonts = every script except Chinese / Japanese / Korean; carlito / caladea stand in for Calibri / Cambria in documents
+        check:  fc-match :lang=hi → Noto Sans Devanagari;  fc-match :lang=ja → Noto Sans CJK JP
+    - Hardware clock still on local time, a leftover from Windows:  sudo timedatectl set-local-rtc 0
+    - Firewall rules could not be read without the password:  sudo firewall-cmd --list-all  — expect only dhcpv6-client (and maybe ssh) under services
+        mpd listens on every interface (port 6600) and Steam Remote Play on 27036; the public zone should be blocking both from the network
+    - Firefox extensions to remove in about:addons (Firefox must do this itself, the files cannot be edited safely while it runs):
+        breaks sites:   Popup Blocker Ultimate, PopUpOFF, Quick Redirect Blocker (author "Your Name", id …@example.com), CanvasBlocker, Cookie AutoDelete
+        duplicates uBlock Origin / Firefox's own protection:  Ghostery, Privacy Badger, Disconnect, Decentraleyes, ClearURLs, Reddit Ad Remover
+        pick one:       Simple Translate or TWP (Firefox also translates pages by itself)
+        15 unused black themes are installed next to the active one
     - Bluetooth: pair and connect a real device through the bar menu (only tested against a stub so far)
     - BIOS: PBO or 105W cTDP — the only BIOS item left; cannot be checked from Linux without root
         Gigabyte B850M: Del at boot → Tweaker → Precision Boost Overdrive → "AMD ECO Mode / TDP to 105W" (or PBO: Enabled); expect higher temperatures, watch them in btop
