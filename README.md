@@ -186,11 +186,18 @@ MEMORY: 32Gib
         SVM Mode: on — /dev/kvm exists
 - Desktop QoL — fonts, Firefox, network (2026-11-15):
     audit: what was checked, and what turned out to need nothing
-        fonts:    only Latin / Greek / Cyrillic were covered — Hindi and the other Indian scripts, Chinese / Japanese / Korean, Arabic, Hebrew and Thai had no font at all (empty boxes in Firefox); emoji (Noto Color Emoji) was already there
+        fonts:    only Latin / Greek / Cyrillic were covered — Hindi and the other Indian scripts, Chinese / Japanese / Korean, Arabic, Hebrew and Thai had no font at all (empty boxes in Firefox); emoji (Noto Color Emoji) was already there. Fixed below
         firefox:  the profile (~/.config/mozilla/firefox/zasqhewv.default-release) had no user.js and no userChrome — sites break because of stacked extensions, mostly Popup Blocker Ultimate, which switches off every popup opened by a click (login and payment windows), plus CanvasBlocker, Cookie AutoDelete and four more trackers-blockers on top of uBlock Origin
         video:    H.264 / AAC play (ffmpeg libraries from packman), Widevine DRM is on, OpenH264 present
         portals:  xdg-desktop-portal, -wlr and -gtk all running (file chooser, screen sharing)
         network:  router ping 0.8 ms avg, 0% loss; DNS (8.8.8.8 from the router) answers in 6 ms; clock synced by chrony; firewalld active, Wi-Fi in the "public" zone; no IPv6 from the ISP
+    fonts: installed — sudo zypper install google-noto-fonts google-noto-sans-cjk-fonts google-carlito-fonts google-caladea-fonts myspell-en_US myspell-en_GB myspell-hi_IN
+        google-noto-fonts = every script except Chinese / Japanese / Korean; carlito / caladea stand in for Calibri / Cambria in documents; myspell = spell-check dictionaries (English, Hindi)
+        check:  fc-match :lang=hi → Noto Sans Devanagari;  fc-match :lang=ja → Noto Sans CJK JP
+    clock: hardware clock moved from local time (a Windows leftover) to UTC — sudo timedatectl set-local-rtc 0
+    firefox extensions removed in about:addons — they, not a user.js, were what broke sites:
+        broke sites:  Popup Blocker Ultimate (switched off every popup opened by a click), PopUpOFF, Quick Redirect Blocker, CanvasBlocker, Cookie AutoDelete
+        duplicated uBlock Origin / Firefox's own protection:  Ghostery, Privacy Badger, Disconnect, Decentraleyes, ClearURLs, Reddit Ad Remover
     sway: autostart.sh started the polkit agent from /usr/lib/…, which does not exist — it lives in /usr/libexec/polkit-gnome-authentication-agent-1. Password prompts for firewall-cmd, mounting, etc. never appeared ("Authorization failed"); fixed
     firefox: firefox/user.js, symlinked into the profile — strict tracking protection stays, with Mozilla's two exception lists for sites known to break under it (the "convenience" one had been switched off)
         new machine: ln -s ~/.dotfiles/firefox/user.js ~/.config/mozilla/firefox/<profile>/user.js; takes effect at the next Firefox start
@@ -213,7 +220,7 @@ MEMORY: 32Gib
         kept:    one item only, in memory — no history, nothing on disk, gone at logout; text, formatted text and pictures all survive
         how:     it takes over every copy as it happens and offers the same data types itself; started by sway/autostart.sh with --clipboard regular
         passwords: --all-mime-type-regex '^(?!x-kde-passwordManagerHint).+' — entries a password manager marks as sensitive are not taken over, so they vanish with their source
-        build:   not packaged by openSUSE. sudo zypper install cargo; git clone --branch v0.5.0 https://github.com/Linus789/wl-clip-persist; cargo build --release --locked; install -m 755 target/release/wl-clip-persist ~/.local/bin/
+        build:   not packaged by openSUSE. sudo zypper install cargo (installed 2026-11-15); git clone --branch v0.5.0 https://github.com/Linus789/wl-clip-persist; cargo build --release --locked; install -m 755 target/release/wl-clip-persist ~/.local/bin/
         replaced bin/clip-persist, a wl-paste / wl-copy script from the same day that kept plain text only
         checked: text, formatted text, a picture (byte-identical), a sensitive entry and two copies in a row, in a headless sway
     spacedrive: restyled and shown as "Files" — spacedrive/patch.py rewrites the interface files stored inside the program (~/.local/opt/spacedrive/usr/bin/spacedrive)
@@ -300,18 +307,11 @@ Shades used by the GTK / Qt theme: inputs #0B0B0D, buttons #131315, hover #1B1B2
     - Konsole's terminal area still uses its own Breeze colour scheme (only matters if Konsole gets used instead of Ghostty)
     - ProtonUp-Qt (flatpak, Qt) is not themed: needs the org.kde.KStyle.Kvantum flatpak runtime plus access to ~/.config/Kvantum
 - System:
-    - Fonts and spell-check dictionaries (needs the password, so not done yet):
-        sudo zypper install google-noto-fonts google-noto-sans-cjk-fonts google-carlito-fonts google-caladea-fonts myspell-en_US myspell-en_GB myspell-hi_IN
-        google-noto-fonts = every script except Chinese / Japanese / Korean; carlito / caladea stand in for Calibri / Cambria in documents
-        check:  fc-match :lang=hi → Noto Sans Devanagari;  fc-match :lang=ja → Noto Sans CJK JP
-    - Hardware clock still on local time, a leftover from Windows:  sudo timedatectl set-local-rtc 0
-    - Firewall rules could not be read without the password:  sudo firewall-cmd --list-all  — expect only dhcpv6-client (and maybe ssh) under services
+    - Firewall rules still unread (needs the password):  sudo firewall-cmd --list-all  — expect only dhcpv6-client (and maybe ssh) under services
         mpd listens on every interface (port 6600) and Steam Remote Play on 27036; the public zone should be blocking both from the network
-    - Firefox extensions to remove in about:addons (Firefox must do this itself, the files cannot be edited safely while it runs):
-        breaks sites:   Popup Blocker Ultimate, PopUpOFF, Quick Redirect Blocker (author "Your Name", id …@example.com), CanvasBlocker, Cookie AutoDelete
-        duplicates uBlock Origin / Firefox's own protection:  Ghostery, Privacy Badger, Disconnect, Decentraleyes, ClearURLs, Reddit Ad Remover
-        pick one:       Simple Translate or TWP (Firefox also translates pages by itself)
-        15 unused black themes are installed next to the active one
+    - Firefox: two translators installed (Simple Translate and TWP) — keep one; 15 unused black themes next to the active one
+    - Window rules not yet seen against a real window: Bitwarden extension windows (title pattern), Content Manager car / track picker
+    - cargo + rust (1.4 GB) are only needed to rebuild wl-clip-persist:  sudo zypper remove --clean-deps cargo
     - Bluetooth: pair and connect a real device through the bar menu (only tested against a stub so far)
     - BIOS: PBO or 105W cTDP — the only BIOS item left; cannot be checked from Linux without root
         Gigabyte B850M: Del at boot → Tweaker → Precision Boost Overdrive → "AMD ECO Mode / TDP to 105W" (or PBO: Enabled); expect higher temperatures, watch them in btop
