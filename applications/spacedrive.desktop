@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Spacedrive
-Comment=File explorer (0.4.3, unpacked into ~/.local/opt/spacedrive)
+Name=Files
+Comment=File manager (Spacedrive 0.4.3, unpacked into ~/.local/opt/spacedrive, restyled by spacedrive/patch.py)
 Exec=/home/ocx/.local/bin/spacedrive %U
 Icon=spacedrive
 Terminal=false

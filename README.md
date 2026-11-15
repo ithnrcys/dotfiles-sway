@@ -216,6 +216,17 @@ MEMORY: 32Gib
         build:   not packaged by openSUSE. sudo zypper install cargo; git clone --branch v0.5.0 https://github.com/Linus789/wl-clip-persist; cargo build --release --locked; install -m 755 target/release/wl-clip-persist ~/.local/bin/
         replaced bin/clip-persist, a wl-paste / wl-copy script from the same day that kept plain text only
         checked: text, formatted text, a picture (byte-identical), a sensitive entry and two copies in a row, in a headless sway
+    spacedrive: restyled and shown as "Files" — spacedrive/patch.py rewrites the interface files stored inside the program (~/.local/opt/spacedrive/usr/bin/spacedrive)
+        why a patch: Spacedrive 0.4.3 is a Tauri program; its stylesheets, scripts and 166 icon pictures are not on disk but inside the executable, as a table of brotli-compressed files (name, data pointer, length)
+        colours: the dark theme's variables set to the waybar palette — sidebar and menus #070708, file area #0B0B0D, hover #1B1B20, selected #2A2A32, lines #2E2E37, text #E3E2E9
+            accent is #6A6A75, not the palette's #BABAC6: Spacedrive writes white text on its accent colour
+        font:    SF Pro Text in front of "system-ui" and of the bundled IBM Plex Sans
+        icons:   every icon picture converted to grey, shapes unchanged (the folders come out close to macOS system grey); onboarding decorations and the logo left in colour
+        menu:    "Reveal in file manager" removed from the right-click menu of files / folders and of the path bar
+        name:    applications/spacedrive.desktop Name=Files (launcher); the window title and window class stay "Spacedrive", so sway rules still match
+        run:     python3 ~/.dotfiles/spacedrive/patch.py (needs python3-Brotli, python3-Pillow); --restore puts the original back. The original is kept as spacedrive.orig and every run starts from it
+        update:  a new Spacedrive version replaces the program and renames its files — delete spacedrive.orig, look up the new file names (CSS / JS_EXPLORER at the top of the script), run again
+        checked: patched copy run on a copy of the library in a headless sway — grid view, list view, settings, right-click menu
     sway: three window rules (sway/config, "Floating")
         archiver: every lxqt-archiver window floats; the main window (title ends in "File Archiver") is 960x600 in the centre, a quarter of the screen; prompts keep their own smaller size
             the archiver restores its own remembered size after sway places it, so ~/.config/lxqt/archiver.conf has WindowSize=@Size(960 600) as well
@@ -234,6 +245,7 @@ MEMORY: 32Gib
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts
+    spacedrive/  patch.py (recolours Spacedrive, grey icons, SF Pro, removes a menu entry)
     vlc/         vlc-qt-interface.conf (toolbar layout with theme sliders), vlcrc; copied into ~/.config/vlc once
     firefox/     user.js (preferences re-applied at every start); ln -s into the Firefox profile directory
     sddm/        theme/ (Main.qml, metadata.desktop, theme.conf), install.sh, wallpaper.sh (rotating photo)
