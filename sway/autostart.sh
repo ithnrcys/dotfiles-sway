@@ -24,7 +24,7 @@ pgrep -x swayidle || swayidle -w \
     before-sleep "$HOME/.config/sway/lock.sh" &
 
 # --- Polkit agent (GUI auth prompts) ---
-pgrep -f polkit-gnome-authentication || /usr/lib/polkit-gnome-authentication-agent-1 &
+pgrep -f polkit-gnome-authentication || /usr/libexec/polkit-gnome-authentication-agent-1 &
 
 # --- Steam: start in the tray, no main window ---
 pgrep -x steam || steam -silent &
