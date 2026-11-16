@@ -25,6 +25,10 @@
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true                       # empty line between commands
   typeset -g POWERLEVEL9K_SHOW_RULER=false
+  # mark where each prompt starts and ends (OSC 133) so Ghostty knows which lines are the
+  # prompt: on a window resize it clears them and zsh draws the prompt once, instead of the
+  # old prompt being re-wrapped and left behind as copies
+  typeset -g POWERLEVEL9K_TERM_SHELL_INTEGRATION=true
 
   # --- prompt character: no block around it ---
   typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND=

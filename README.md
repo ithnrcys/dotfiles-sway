@@ -243,6 +243,7 @@ MEMORY: 32Gib
     Installed: bottom (btm) and ncdu from the openSUSE repos; bandwhich 0.23.1 is not packaged, so its GitHub release binary sits in ~/.local/bin
     waybar: cpu module click opens bottom, memory module click opens ncdu on the home folder (both in ghostty) — the rofi cpu / memory panels are gone (scripts/cpu-module.sh, scripts/mem-module.sh, rofi/dropdown-left.rasi and the hidden custom/cpusnap module removed)
     waybar: download speed is its own module (network#speed) — click opens bandwhich in ghostty through sudo (it needs root to watch traffic); the signal % and the network icon still open the wifi menu
+    zsh: resizing the terminal no longer leaves copies of the prompt behind — POWERLEVEL9K_TERM_SHELL_INTEGRATION=true in zsh/p10k-colors.zsh marks the prompt (OSC 133), so Ghostty clears it on resize and zsh draws it once; checked in a headless sway by resizing a Ghostty window six times
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
