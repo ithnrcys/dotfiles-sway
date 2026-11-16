@@ -1,0 +1,12 @@
+#!/bin/sh
+# Screen as a webcam: starts OBS in the tray with its virtual camera running, so the whole
+# screen is available as the camera "OBS Virtual Camera" (/dev/video10) in Discord, Firefox
+# and anything else that takes a webcam. Run it again to stop (quits OBS).
+# OBS's scene "Scene" holds one source, "Screen" (PipeWire screen capture of DP-2 — the
+# output is picked by ~/.config/xdg-desktop-portal-wlr/config, no chooser appears).
+# Open OBS normally (obs) to record, or to change what the camera shows.
+if pgrep -x obs >/dev/null; then
+    pkill -x obs
+else
+    exec obs --startvirtualcam --minimize-to-tray --disable-shutdown-check
+fi

@@ -251,10 +251,16 @@ MEMORY: 32Gib
         mouse:   expose/mouse.patch (applied by install.sh; upstream is keyboard-only and hides the pointer) — the window under the pointer is picked, a left click jumps to it, a click on the background closes
         history: first tried its predecessor exposway — dropped the same day: its daemon took a grim screenshot on every title change of the focused window (14 in 10 s with an animated terminal title), only showed windows that had been focused since it started, and its arrow keys also fired on key release
     waybar: the workspaces module is now three modules side by side (left icons, focused icon, right icons — workspaces.sh left / focused / right) so only the focused icon is clickable; the bar looks the same, pixel for pixel
+    obs: OBS Studio 33.0.1 (packman) for screen recording, and as a way to get the screen into Discord — installed with v4l2loopback-kmp-default, v4l2loopback-utils (v4l2loopback-autoload loads the module at boot; it is openSUSE's own signed package, not a self-built module)
+        camera:  /etc/modprobe.d/v4l2loopback.conf (copy of obs/v4l2loopback.conf) — one loopback device, /dev/video10, named "OBS Virtual Camera", exclusive_caps=1 so Chromium-based programs list it
+        scene:   "Scene" with one source "Screen" (PipeWire screen capture of DP-2 through xdg-desktop-portal-wlr, which picks the output without a chooser); canvas and output 1920x1080 at 30 fps; recordings go to ~/Videos. Copies of the scene and profile are in obs/basic/ (the live ones are ~/.config/obs-studio/basic/)
+        bin/screencam: starts OBS in the tray with the virtual camera running; run again to stop. In Discord: turn on Video and pick the camera "OBS Virtual Camera"
+        checked: frames read back from /dev/video10 show the desktop at 1920x1080; the Discord side is not yet tried in a call
+        Discord's own screen share was not debugged further: the portal itself works (a ScreenCast session returns a 1920x1080 stream) and Discord 1.0.169 contains the portal / PipeWire capture code
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
-    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher), expose (window overview); ln -s into ~/.local/bin
+    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher), expose (window overview), screencam (screen as a webcam through OBS); ln -s into ~/.local/bin
     applications/ spacedrive.desktop, nvim-ghostty.desktop; ln -s into ~/.local/share/applications
     environment.d/ editor.conf, qt.conf (Qt programs use qt5ct / qt6ct); ln -s into ~/.config/environment.d
     theme/       gtk.css (GTK 3 + shared rules), gtk4.css (GTK 4 / libadwaita), settings.ini, Mizu.colors (KDE colour scheme), install.sh (fetches adw-gtk3, builds the icon theme, links everything, sets gsettings)
@@ -273,6 +279,7 @@ MEMORY: 32Gib
     zsh/         .zshrc, p10k-colors.zsh (prompt style and colours), install-plugins.sh (fetches the zsh plugins)
     fastfetch/   config.jsonc
     dunst/       dunstrc (notifications)
+    obs/         v4l2loopback.conf (virtual camera module options, copied to /etc/modprobe.d), basic/ (scene and profile, copied from ~/.config/obs-studio)
     expose/      install.sh (builds the window overview from source), mouse.patch (adds hover and click)
     swaylock/    config (lock screen)
     p10k/        powerlevel10k checkout
