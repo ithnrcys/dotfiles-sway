@@ -28,9 +28,6 @@ pgrep -x swayidle || swayidle -w \
 pgrep -x wl-clip-persist || "$HOME/.local/bin/wl-clip-persist" --clipboard regular \
     --all-mime-type-regex '^(?!x-kde-passwordManagerHint).+' &
 
-# --- Window overview: exposwayd keeps a snapshot of each window for bin/expose ($mod+Tab) ---
-pgrep -x exposwayd || "$HOME/.local/bin/expose" --daemon &
-
 # --- Polkit agent (GUI auth prompts) ---
 pgrep -f polkit-gnome-authentication || /usr/libexec/polkit-gnome-authentication-agent-1 &
 

@@ -245,11 +245,11 @@ MEMORY: 32Gib
     waybar: download speed is its own module (network#speed) — click opens bandwhich in ghostty through sudo (it needs root to watch traffic); the signal % and the network icon still open the wifi menu
     zsh: resizing the terminal no longer leaves copies of the prompt behind — POWERLEVEL9K_TERM_SHELL_INTEGRATION=true in zsh/p10k-colors.zsh marks the prompt (OSC 133), so Ghostty clears it on resize and zsh draws it once; checked in a headless sway by resizing a Ghostty window six times
     zsh: fastfetch is only shown while the window can hold it (105 columns x 22 rows) — a fresh terminal resized smaller is cleared instead of showing a re-wrapped logo, and the summary returns when it fits again (TRAPWINCH in .zshrc); after the first command it is left alone as scrollback; a terminal that opens too small skips it
-    exposway: window overview (https://github.com/radionoisee/exposway) — no openSUSE package, built from source into ~/.local/bin by exposway/install.sh (sources in ~/.local/src/exposway)
-        open:    $mod+Tab, or a click on the focused workspace icon in the top bar; the same again closes it. Arrow keys pick a window, space jumps to it, Esc closes
-        daemon:  exposwayd starts with the session (sway/autostart.sh) and takes a grim snapshot of each window when it gets focus — a window appears in the overview once it has been focused; snapshots are kept in /run/user/1000/exposway (memory, gone at logout)
-        bin/expose wraps both (sets EXPOSWAYDIR / EXPOSWAYMON, toggles the overview)
-        mouse:   exposway/mouse.patch (applied by install.sh; upstream is keyboard-only) — the window under the pointer gets the frame, a left click jumps to it and its workspace, a click on the empty background closes the overview
+    expose: window overview on $mod+Tab and on a click on the focused workspace icon in the top bar (bin/expose; the same again closes it) — live thumbnails of every window on every workspace
+        program: "windows" (https://github.com/RadioNoiseE/windows), no openSUSE package — built from source into ~/.local/bin by expose/install.sh (sources in ~/.local/src/windows); bin/expose runs it and focuses the picked window through its foreign_toplevel_identifier in the sway tree
+        keys:    arrow keys pick a window, Enter or space jumps to it and its workspace, Esc closes
+        mouse:   expose/mouse.patch (applied by install.sh; upstream is keyboard-only and hides the pointer) — the window under the pointer is picked, a left click jumps to it, a click on the background closes
+        history: first tried its predecessor exposway — dropped the same day: its daemon took a grim screenshot on every title change of the focused window (14 in 10 s with an animated terminal title), only showed windows that had been focused since it started, and its arrow keys also fired on key release
     waybar: the workspaces module is now three modules side by side (left icons, focused icon, right icons — workspaces.sh left / focused / right) so only the focused icon is clickable; the bar looks the same, pixel for pixel
 
 ## Repo Layout:
@@ -273,7 +273,7 @@ MEMORY: 32Gib
     zsh/         .zshrc, p10k-colors.zsh (prompt style and colours), install-plugins.sh (fetches the zsh plugins)
     fastfetch/   config.jsonc
     dunst/       dunstrc (notifications)
-    exposway/    install.sh (builds the window overview from source), mouse.patch (adds hover and click)
+    expose/      install.sh (builds the window overview from source), mouse.patch (adds hover and click)
     swaylock/    config (lock screen)
     p10k/        powerlevel10k checkout
     wallpapers/  wallpaper.jpg
@@ -285,7 +285,7 @@ Shades used by the GTK / Qt theme: inputs #0B0B0D, buttons #131315, hover #1B1B2
     ctrl+space            rofi launcher
     $mod+space / Return   ghostty
     $mod+q                kill window
-    $mod+Tab              window overview (exposway)
+    $mod+Tab              window overview
     $mod+arrows           focus; +Shift to move
     $mod+1..0             workspace; +Shift to move the window there
     $mod+f / s / w / e    fullscreen / stacking / tabbed / toggle split

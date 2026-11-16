@@ -1,0 +1,140 @@
+diff --git a/input_device.c b/input_device.c
+index 46cebef..3ccf18d 100644
+--- a/input_device.c
++++ b/input_device.c
+@@ -4,8 +4,12 @@ static void pointer_listener_enter (void *data, struct wl_pointer *pointer,
+                                     uint32_t serial, struct wl_surface *surface,
+                                     wl_fixed_t surface_x,
+                                     wl_fixed_t surface_y) {
+-  // hide the cursor (at least for now)
+-  wl_pointer_set_cursor (pointer, serial, NULL, 0, 0);
++  // the cursor stays visible: the window under it is selected, a click picks it
++  struct input_device_seat *ids = data;
++
++  if (ids->id->motion)
++    ids->id->motion (ids->id->data, wl_fixed_to_double (surface_x),
++                     wl_fixed_to_double (surface_y));
+ }
+ 
+ static void pointer_listener_leave (void *data, struct wl_pointer *pointer,
+@@ -14,11 +18,24 @@ static void pointer_listener_leave (void *data, struct wl_pointer *pointer,
+ 
+ static void pointer_listener_motion (void *data, struct wl_pointer *pointer,
+                                      uint32_t time, wl_fixed_t surface_x,
+-                                     wl_fixed_t surface_y) {}
++                                     wl_fixed_t surface_y) {
++  struct input_device_seat *ids = data;
++
++  if (ids->id->motion)
++    ids->id->motion (ids->id->data, wl_fixed_to_double (surface_x),
++                     wl_fixed_to_double (surface_y));
++}
+ 
+ static void pointer_listener_button (void *data, struct wl_pointer *pointer,
+                                      uint32_t serial, uint32_t time,
+-                                     uint32_t button, uint32_t state) {}
++                                     uint32_t button, uint32_t state) {
++  struct input_device_seat *ids = data;
++
++  // 0x110 is BTN_LEFT
++  if (button == 0x110 && state == WL_POINTER_BUTTON_STATE_PRESSED &&
++      ids->id->click)
++    ids->id->click (ids->id->data);
++}
+ 
+ static void pointer_listener_axis (void *data, struct wl_pointer *pointer,
+                                    uint32_t time, uint32_t axis,
+@@ -86,6 +103,7 @@ static void input_device_keyboard_dispatch (struct input_device_seat *ids,
+       id->down (id->data);
+     break;
+   case XKB_KEY_Return:
++  case XKB_KEY_space:
+     if (id->enter)
+       id->enter (id->data);
+     break;
+diff --git a/input_device.h b/input_device.h
+index 4f30114..1ab036a 100644
+--- a/input_device.h
++++ b/input_device.h
+@@ -18,6 +18,8 @@ struct input_device {
+   void (*up) (void *);
+   void (*down) (void *);
+   void (*enter) (void *);
++  void (*motion) (void *, double, double);
++  void (*click) (void *);
+ };
+ 
+ struct input_device_seat {
+diff --git a/windows.c b/windows.c
+index 0e6c19d..9a670b8 100644
+--- a/windows.c
++++ b/windows.c
+@@ -166,6 +166,59 @@ static void enter (void *data) {
+     }
+ }
+ 
++// mouse: the window under the pointer is selected; pointer position is in
++// surface coordinates, the layout in buffer pixels
++static double pointer_x = -1, pointer_y = -1;
++
++static int32_t window_at_pointer (struct windows *w) {
++  float  scale = w->xs->scale > 0 ? w->xs->scale : 1;
++  double x = pointer_x * scale, y = pointer_y * scale;
++
++  for (uint32_t i = 0; i < w->ea->window_count; i++) {
++    struct expose_algorithm_window *eaw = &w->ea->eaw[i];
++
++    if (x >= eaw->x && x < eaw->x + eaw->width * eaw->scale && y >= eaw->y &&
++        y < eaw->y + eaw->height * eaw->scale)
++      return i;
++  }
++
++  return -1;
++}
++
++static void motion (void *data, double x, double y) {
++  struct windows *w = data;
++
++  pointer_x = x;
++  pointer_y = y;
++
++  int32_t hit = window_at_pointer (w);
++
++  if (hit < 0 || w->ea->eaw[hit].focused)
++    return;
++
++  for (uint32_t i = 0; i < w->ea->window_count; i++)
++    w->ea->eaw[i].focused = false;
++
++  w->ea->eaw[hit].focused = true;
++  w->render               = true;
++}
++
++// a click on a window picks it, a click on the background closes the overview
++static void click (void *data) {
++  struct windows *w = data;
++
++  int32_t hit = window_at_pointer (w);
++
++  if (hit >= 0) {
++    for (uint32_t i = 0; i < w->ea->window_count; i++)
++      w->ea->eaw[i].focused = false;
++
++    w->ea->eaw[hit].focused = true;
++    enter (w);
++  } else
++    w->xs->close = true;
++}
++
+ int32_t main (int32_t argc, char **argv) {
+   // remove this when debugging
+   sigaction (SIGSEGV, &(struct sigaction){.sa_handler = crash}, NULL);
+@@ -240,6 +293,8 @@ int32_t main (int32_t argc, char **argv) {
+   w.id->up     = up;
+   w.id->down   = down;
+   w.id->enter  = enter;
++  w.id->motion = motion;
++  w.id->click  = click;
+ 
+   struct toplevel_list_object *tlo;
+ 

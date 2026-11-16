@@ -1,20 +1,17 @@
 #!/bin/sh
-# Window overview (exposway): thumbnails of the open windows; arrow keys pick one, space
-# jumps to it, Esc closes; with the mouse, a click on a window jumps to it and a click on
-# the background closes. Running this while the overview is open closes it.
-#   expose            open / close the overview   ($mod+Tab, click on the focused workspace icon)
-#   expose --daemon   start exposwayd, which snapshots each window when it gets focus
-#                     (sway/autostart.sh) — a window shows up once it has been focused
-# The snapshots live in memory under /run/user and are gone at logout. The path is kept
-# short on purpose: exposwayd builds its grim command in a 72-character buffer.
-export EXPOSWAYDIR="$XDG_RUNTIME_DIR/exposway/"
-export EXPOSWAYMON="${EXPOSWAYDIR}output"
+# Window overview: live thumbnails of every open window on every workspace
+# ("windows", built by expose/install.sh). Bound to $mod+Tab and to a click on the focused
+# workspace icon in the top bar; running this while the overview is open closes it.
+#   keyboard: arrow keys pick a window, Enter or space jumps to it, Esc closes
+#   mouse:    the window under the pointer is picked, a click jumps to it,
+#             a click on the background closes
+pkill -x windows && exit 0
 
-case "$1" in
-    --daemon)
-        mkdir -p "$EXPOSWAYDIR"
-        pkill -x exposwayd
-        exec "$HOME/.local/bin/exposwayd" ;;
-    *)
-        pkill -x exposway || exec "$HOME/.local/bin/exposway" ;;
-esac
+output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
+# windows prints the picked window's identifier, or nothing when closed without a pick
+picked=$("$HOME/.local/bin/windows" -o "$output") || exit 0
+[ -n "$picked" ] || exit 0
+
+con=$(swaymsg -t get_tree | jq -r --arg id "$picked" \
+    '.. | objects | select(.foreign_toplevel_identifier? == $id) | .id' | head -n 1)
+[ -n "$con" ] && swaymsg -q "[con_id=$con] focus"
