@@ -38,6 +38,7 @@ build() {
         ROWS+=("$I_APP  $(label "$name")  $(level "$vol" "$mute")")
         ACTS+=("app|$id|$vol|$mute")
     done < <(pactl -f json list sink-inputs 2>/dev/null | jq -r '.[] |
+        select(.properties["node.name"] != "hd599_eq.output") |   # the headphone EQ itself is not a program
         (.properties["application.name"] // .properties["application.process.binary"] // "unknown") as $app |
         (.properties["media.name"] // "") as $media |
         [.index, ([.volume[].value_percent | rtrimstr("%") | tonumber] | max), .mute,
