@@ -240,6 +240,9 @@ MEMORY: 32Gib
         Bitwarden: the Firefox extension's own windows (title starts "Extension: (Bitwarden Password Manager)") float in the centre — the two older Bitwarden rules only match the desktop program, which is not installed
         Content Manager: every steam_app_244210 window except the game ("Assetto Corsa") floats — the car / track picker opened tiled, and tiled windows are drawn underneath the floating full-screen main window
         checked: archiver rule in a headless sway (960x600 at 320,150). Bitwarden and Content Manager rules not yet seen against a real window
+    Installed: bottom (btm) and ncdu from the openSUSE repos; bandwhich 0.23.1 is not packaged, so its GitHub release binary sits in ~/.local/bin
+    waybar: cpu module click opens bottom, memory module click opens ncdu on the home folder (both in ghostty) — the rofi cpu / memory panels are gone (scripts/cpu-module.sh, scripts/mem-module.sh, rofi/dropdown-left.rasi and the hidden custom/cpusnap module removed)
+    waybar: download speed is its own module (network#speed) — click opens bandwhich in ghostty through sudo (it needs root to watch traffic); the signal % and the network icon still open the wifi menu
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
@@ -250,7 +253,7 @@ MEMORY: 32Gib
     kvantum/     Mizu/ (Qt theme: Mizu.kvconfig, Mizu.svg), build-svg.py (draws Mizu.svg), kvantum.kvconfig; linked as ~/.config/Kvantum
     qt5ct/ qt6ct/ qt5ct.conf, qt6ct.conf (style kvantum, icons, fonts)
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
-    rofi/        config.rasi (launcher), dropdown.rasi / dropdown-left.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / top-left / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
+    rofi/        config.rasi (launcher), dropdown.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts
     spacedrive/  patch.py (recolours Spacedrive, grey icons, SF Pro, removes a menu entry)
     vlc/         vlc-qt-interface.conf (toolbar layout with theme sliders), vlcrc; copied into ~/.config/vlc once
