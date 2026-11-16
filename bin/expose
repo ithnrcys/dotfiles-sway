@@ -1,6 +1,7 @@
 #!/bin/sh
 # Window overview (exposway): thumbnails of the open windows; arrow keys pick one, space
-# jumps to it, Esc closes. Running this while the overview is open closes it.
+# jumps to it, Esc closes; with the mouse, a click on a window jumps to it and a click on
+# the background closes. Running this while the overview is open closes it.
 #   expose            open / close the overview   ($mod+Tab, click on the focused workspace icon)
 #   expose --daemon   start exposwayd, which snapshots each window when it gets focus
 #                     (sway/autostart.sh) — a window shows up once it has been focused

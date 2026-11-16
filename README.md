@@ -249,6 +249,7 @@ MEMORY: 32Gib
         open:    $mod+Tab, or a click on the focused workspace icon in the top bar; the same again closes it. Arrow keys pick a window, space jumps to it, Esc closes
         daemon:  exposwayd starts with the session (sway/autostart.sh) and takes a grim snapshot of each window when it gets focus — a window appears in the overview once it has been focused; snapshots are kept in /run/user/1000/exposway (memory, gone at logout)
         bin/expose wraps both (sets EXPOSWAYDIR / EXPOSWAYMON, toggles the overview)
+        mouse:   exposway/mouse.patch (applied by install.sh; upstream is keyboard-only) — the window under the pointer gets the frame, a left click jumps to it and its workspace, a click on the empty background closes the overview
     waybar: the workspaces module is now three modules side by side (left icons, focused icon, right icons — workspaces.sh left / focused / right) so only the focused icon is clickable; the bar looks the same, pixel for pixel
 
 ## Repo Layout:
@@ -272,7 +273,7 @@ MEMORY: 32Gib
     zsh/         .zshrc, p10k-colors.zsh (prompt style and colours), install-plugins.sh (fetches the zsh plugins)
     fastfetch/   config.jsonc
     dunst/       dunstrc (notifications)
-    exposway/    install.sh (builds the window overview from source)
+    exposway/    install.sh (builds the window overview from source), mouse.patch (adds hover and click)
     swaylock/    config (lock screen)
     p10k/        powerlevel10k checkout
     wallpapers/  wallpaper.jpg
