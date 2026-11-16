@@ -1,7 +1,42 @@
 # system summary at the top of every new terminal — has to run before the p10k instant
-# prompt below, which does not allow output once it has started
-# (the empty line after it keeps the first prompt off the logo)
-[[ -o interactive ]] && command -v fastfetch >/dev/null && { fastfetch; print; }
+# prompt below, which does not allow output once it has started.
+# It is only shown while the window is big enough to hold it: if a fresh terminal (nothing
+# run yet) is resized too small, the screen is cleared instead of leaving a re-wrapped,
+# broken logo, and the summary comes back when the window is big enough again. After the
+# first command it is ordinary scrollback and is left alone.
+if [[ -o interactive ]] && (( $+commands[fastfetch] )); then
+  _ff_out=$(fastfetch --pipe false)
+  () {  # size of the summary: widest line (escape codes do not count) and number of lines
+    emulate -L zsh; setopt extendedglob
+    local line; local -a match mbegin mend
+    typeset -gi _ff_cols=0 _ff_rows=0
+    for line in "${(@f)_ff_out}"; do
+      local -i pad=0
+      # "ESC[<n>G" jumps to column n: whatever is before it only counts up to there
+      if [[ $line == (#b)*$'\e['(<->)G(*) ]]; then pad=$(( match[1] - 1 )); line=$match[2]; fi
+      line=${line//$'\e'\[[0-9;]#[a-zA-Z]/}
+      (( pad + ${(m)#line} > _ff_cols )) && _ff_cols=$(( pad + ${(m)#line} ))
+      (( ++_ff_rows ))
+    done
+  }
+  # room for the summary, the empty line under it and the two-line prompt
+  _ff_fits() { (( COLUMNS >= _ff_cols && LINES >= _ff_rows + 3 )) }
+  # the empty line after it keeps the first prompt off the logo
+  _ff_fits && { print -r -- $_ff_out; print; typeset -gi _ff_shown=1 } || typeset -gi _ff_shown=0
+
+  TRAPWINCH() {
+    _ff_fits; local -i fits=$(( ! $? ))
+    (( fits == _ff_shown )) && return
+    _ff_shown=$fits
+    zle && zle -I                       # the prompt is redrawn after this output
+    print -n -- '\e[H\e[2J\e[3J'        # clear the screen and the scrollback
+    (( fits )) && print -r -- $_ff_out   # no empty line here: the redrawn prompt brings its own
+    return 0
+  }
+  # once a command has run the summary is history: stop watching the window size
+  _ff_done() { unfunction TRAPWINCH 2>/dev/null; add-zsh-hook -d preexec _ff_done; unset _ff_out }
+  autoload -Uz add-zsh-hook && add-zsh-hook preexec _ff_done
+fi
 
 # p10k instant prompt — must stay at the top
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
