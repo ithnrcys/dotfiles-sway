@@ -1,0 +1,21 @@
+#!/bin/sh
+# HDR on / off for the monitor (HDR10: BT.2020 + PQ, 10-bit).
+#   hdr          toggle        hdr on | hdr off        hdr status
+# Only works in the "Sway (HDR)" login session (pick it on the login screen): HDR needs
+# sway's Vulkan renderer, which wlroots still calls experimental, so the normal session
+# keeps the default renderer. The monitor's own HDR mode switches on by itself.
+OUT=DP-2
+supported=$(swaymsg -t get_outputs | jq -r --arg o "$OUT" '.[] | select(.name == $o) | .features.hdr')
+state=$(swaymsg -t get_outputs | jq -r --arg o "$OUT" '.[] | select(.name == $o) | .hdr')
+
+if [ "$1" = status ]; then
+    echo "HDR available in this session: $supported; currently on: $state"
+    exit 0
+fi
+if [ "$supported" != true ]; then
+    msg='HDR is not available in this session — log out and choose "Sway (HDR)" on the login screen'
+    echo "$msg" >&2; notify-send "HDR" "$msg" 2>/dev/null
+    exit 1
+fi
+swaymsg -q output "$OUT" hdr "${1:-toggle}" &&
+    notify-send "HDR" "now $(swaymsg -t get_outputs | jq -r --arg o "$OUT" '.[] | select(.name == $o) | if .hdr then "on" else "off" end')" 2>/dev/null

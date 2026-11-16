@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Sway (HDR)
+Comment=Sway with the Vulkan renderer, which HDR needs (experimental in wlroots)
+Exec=env WLR_RENDERER=vulkan sway
+Type=Application
+DesktopNames=sway;wlroots

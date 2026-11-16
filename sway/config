@@ -8,7 +8,7 @@ tiling_drag modifier
 gaps inner 3
 
 ### Output & input — new, replaces autorandr
-output DP-2 mode 1920x1080@180Hz adaptive_sync on
+output DP-2 mode 1920x1080@180Hz adaptive_sync on render_bit_depth 10
 seat seat0 xcursor_theme Quintom_Ink 24
 
 ### Borders

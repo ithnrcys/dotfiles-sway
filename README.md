@@ -257,10 +257,19 @@ MEMORY: 32Gib
         bin/screencam: starts OBS in the tray with the virtual camera running; run again to stop. In Discord: turn on Video and pick the camera "OBS Virtual Camera"
         checked: frames read back from /dev/video10 show the desktop at 1920x1080; the Discord side is not yet tried in a call
         Discord's own screen share was not debugged further: the portal itself works (a ScreenCast session returns a 1920x1080 stream) and Discord 1.0.169 contains the portal / PipeWire capture code
+    audio: headphone EQ and PipeWire quality settings (pipewire/, linked into ~/.config/pipewire/) — DAC is a TI PCM2900C USB codec (16-bit, 32 / 44.1 / 48 kHz, class-compliant, no driver to install), headphones Sennheiser HD 599
+        eq:      virtual output "HD 599 EQ" (hd599_eq) = PipeWire filter-chain with the AutoEq correction for oratory1990's HD 599 measurement (pipewire/hd599-oratory1990.txt: ten filters, -6.2 dB preamp) feeding the DAC; run by the filter-chain user service; it is the default output, the DAC sits behind it at 100%
+        checked: response measured through the running EQ with -62 dBFS test tones at 11 frequencies — within 0.06 dB of the curve
+        rates:   44.1 kHz allowed next to 48 kHz (pipewire/quality.conf) so 44.1 kHz music is not resampled; resample quality 10 for the cases that still convert (takes full effect at the next login)
+        waybar:  the EQ's own stream is hidden from the volume dropup's program list
+        to bypass: choose the DAC itself as output in pavucontrol
+    sway: output is 10-bit (render_bit_depth 10 — the kernel reports an XR30 framebuffer); 1920x1080@180 with adaptive sync (48-180 Hz) was already set; screenshots and OBS capture still work
+    sway: HDR prepared as an opt-in — login session "Sway (HDR)" (sway/sway-hdr.desktop, copied to /usr/local/share/wayland-sessions) starts sway with WLR_RENDERER=vulkan, which HDR needs and wlroots calls experimental; bin/hdr toggles HDR10 there (hdr / hdr on / hdr off / hdr status). The monitor reports HDR10 (PQ, BT.2020) with a peak around 300 nits. The Vulkan renderer starts on this machine in a headless test; HDR itself is not yet tried on the monitor
 
 ## Repo Layout:
-    sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
-    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher), expose (window overview), screencam (screen as a webcam through OBS); ln -s into ~/.local/bin
+    pipewire/    hd599-eq.conf + hd599-oratory1990.txt (headphone EQ), quality.conf, client-quality.conf (sample rates, resampler); ln -s into ~/.config/pipewire/*.conf.d
+    sway/        sway-hdr.desktop (HDR login session), config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
+    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher), expose (window overview), screencam (screen as a webcam through OBS), hdr (HDR toggle); ln -s into ~/.local/bin
     applications/ spacedrive.desktop, nvim-ghostty.desktop; ln -s into ~/.local/share/applications
     environment.d/ editor.conf, qt.conf (Qt programs use qt5ct / qt6ct); ln -s into ~/.config/environment.d
     theme/       gtk.css (GTK 3 + shared rules), gtk4.css (GTK 4 / libadwaita), settings.ini, Mizu.colors (KDE colour scheme), install.sh (fetches adw-gtk3, builds the icon theme, links everything, sets gsettings)
