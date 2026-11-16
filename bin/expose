@@ -1,0 +1,19 @@
+#!/bin/sh
+# Window overview (exposway): thumbnails of the open windows; arrow keys pick one, space
+# jumps to it, Esc closes. Running this while the overview is open closes it.
+#   expose            open / close the overview   ($mod+Tab, click on the focused workspace icon)
+#   expose --daemon   start exposwayd, which snapshots each window when it gets focus
+#                     (sway/autostart.sh) — a window shows up once it has been focused
+# The snapshots live in memory under /run/user and are gone at logout. The path is kept
+# short on purpose: exposwayd builds its grim command in a 72-character buffer.
+export EXPOSWAYDIR="$XDG_RUNTIME_DIR/exposway/"
+export EXPOSWAYMON="${EXPOSWAYDIR}output"
+
+case "$1" in
+    --daemon)
+        mkdir -p "$EXPOSWAYDIR"
+        pkill -x exposwayd
+        exec "$HOME/.local/bin/exposwayd" ;;
+    *)
+        pkill -x exposway || exec "$HOME/.local/bin/exposway" ;;
+esac

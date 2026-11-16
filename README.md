@@ -245,10 +245,15 @@ MEMORY: 32Gib
     waybar: download speed is its own module (network#speed) — click opens bandwhich in ghostty through sudo (it needs root to watch traffic); the signal % and the network icon still open the wifi menu
     zsh: resizing the terminal no longer leaves copies of the prompt behind — POWERLEVEL9K_TERM_SHELL_INTEGRATION=true in zsh/p10k-colors.zsh marks the prompt (OSC 133), so Ghostty clears it on resize and zsh draws it once; checked in a headless sway by resizing a Ghostty window six times
     zsh: fastfetch is only shown while the window can hold it (105 columns x 22 rows) — a fresh terminal resized smaller is cleared instead of showing a re-wrapped logo, and the summary returns when it fits again (TRAPWINCH in .zshrc); after the first command it is left alone as scrollback; a terminal that opens too small skips it
+    exposway: window overview (https://github.com/radionoisee/exposway) — no openSUSE package, built from source into ~/.local/bin by exposway/install.sh (sources in ~/.local/src/exposway)
+        open:    $mod+Tab, or a click on the focused workspace icon in the top bar; the same again closes it. Arrow keys pick a window, space jumps to it, Esc closes
+        daemon:  exposwayd starts with the session (sway/autostart.sh) and takes a grim snapshot of each window when it gets focus — a window appears in the overview once it has been focused; snapshots are kept in /run/user/1000/exposway (memory, gone at logout)
+        bin/expose wraps both (sets EXPOSWAYDIR / EXPOSWAYMON, toggles the overview)
+    waybar: the workspaces module is now three modules side by side (left icons, focused icon, right icons — workspaces.sh left / focused / right) so only the focused icon is clickable; the bar looks the same, pixel for pixel
 
 ## Repo Layout:
     sway/        config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
-    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher); ln -s into ~/.local/bin
+    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher), expose (window overview); ln -s into ~/.local/bin
     applications/ spacedrive.desktop, nvim-ghostty.desktop; ln -s into ~/.local/share/applications
     environment.d/ editor.conf, qt.conf (Qt programs use qt5ct / qt6ct); ln -s into ~/.config/environment.d
     theme/       gtk.css (GTK 3 + shared rules), gtk4.css (GTK 4 / libadwaita), settings.ini, Mizu.colors (KDE colour scheme), install.sh (fetches adw-gtk3, builds the icon theme, links everything, sets gsettings)
@@ -267,6 +272,7 @@ MEMORY: 32Gib
     zsh/         .zshrc, p10k-colors.zsh (prompt style and colours), install-plugins.sh (fetches the zsh plugins)
     fastfetch/   config.jsonc
     dunst/       dunstrc (notifications)
+    exposway/    install.sh (builds the window overview from source)
     swaylock/    config (lock screen)
     p10k/        powerlevel10k checkout
     wallpapers/  wallpaper.jpg
@@ -278,6 +284,7 @@ Shades used by the GTK / Qt theme: inputs #0B0B0D, buttons #131315, hover #1B1B2
     ctrl+space            rofi launcher
     $mod+space / Return   ghostty
     $mod+q                kill window
+    $mod+Tab              window overview (exposway)
     $mod+arrows           focus; +Shift to move
     $mod+1..0             workspace; +Shift to move the window there
     $mod+f / s / w / e    fullscreen / stacking / tabbed / toggle split

@@ -85,6 +85,7 @@ bindsym ctrl+space exec $menu
 bindsym $mod+Shift+p exec gnome-calculator
 bindsym $mod+l exec ~/.config/sway/lock.sh
 bindsym $mod+space exec $term
+bindsym $mod+Tab exec ~/.local/bin/expose
 bindsym $mod+F4 exec firefox
 bindsym $mod+F9 exec $term -e ncmpcpp
 bindsym $mod+F6 exec ~/.config/sway/scripts/power-menu.sh

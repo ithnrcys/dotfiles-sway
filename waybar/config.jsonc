@@ -9,7 +9,7 @@
   "height": 28,
 
   "modules-left":   ["sway/window", "cpu", "memory", "temperature", "custom/updates"],
-  "modules-center": ["custom/workspaces"],
+  "modules-center": ["custom/workspaces#left", "custom/workspaces#focused", "custom/workspaces#right"],
   "modules-right":  ["clock", "custom/weather", "custom/bt", "tray"],
 
   // focused window — λ + app name, reverse-DNS ids shortened
@@ -29,12 +29,13 @@
   }
   },
 
-  // workspaces — custom script: one constant SF Symbols icon per workspace, focused one centred
-  "custom/workspaces": {
-    "exec": "~/.config/waybar/scripts/workspaces.sh",
-    "format": "{}",
-    "tooltip": false
-  },
+  // workspaces — custom script: one constant SF Symbols icon per workspace, focused one centred.
+  // Three modules side by side (icons left of the focused one, the focused one, icons right
+  // of it) so that only the focused icon is clickable: it opens the window overview.
+  "custom/workspaces#left":    { "exec": "~/.config/waybar/scripts/workspaces.sh left",  "format": "{}", "tooltip": false },
+  "custom/workspaces#focused": { "exec": "~/.config/waybar/scripts/workspaces.sh focused", "format": "{}", "tooltip": false,
+                                 "on-click": "~/.local/bin/expose" },
+  "custom/workspaces#right":   { "exec": "~/.config/waybar/scripts/workspaces.sh right", "format": "{}", "tooltip": false },
 
   // click: bottom (btm) in a terminal
   "cpu":    { "interval": 1, "format": "<span size='9pt'></span> \u2009{usage}%  <span size='13pt'>✧</span>  ", "tooltip": false,

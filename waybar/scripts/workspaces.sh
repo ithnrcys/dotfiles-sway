@@ -5,9 +5,14 @@
 # The brackets never move: each side of the focused icon is padded with invisible copies of
 # the icons on the other side, so both sides are exactly as wide and the centre stays put.
 #
+# The bar runs this three times — "left", "focused" and "right" — as three modules side by
+# side, so the focused icon is its own module and can have a click action of its own.
+# Without an argument the whole line is printed.
+#
 # The icons are SF Symbols characters and need the SF Pro font in ~/.local/share/fonts
 # (Apple-licensed, deliberately not in this repo).
 
+PART="$1"
 FONT="SF Pro"
 ICON_SIZE="9pt"
 DIM="#7C7C84"         # every unfocused icon
@@ -61,7 +66,12 @@ print_ws() {
     # mirror each side invisibly onto the other: left and right end up the same width
     for (( i = ${#rghost[@]} - 1; i >= 0; i-- )); do left="${rghost[i]}$GAP$left"; done
     for (( i = ${#lghost[@]} - 1; i >= 0; i-- )); do right+="$GAP${lghost[i]}"; done
-    echo "$left$centre$right"
+    case "$PART" in
+        left)    echo "$left" ;;
+        focused) echo "$centre" ;;
+        right)   echo "$right" ;;
+        *)       echo "$left$centre$right" ;;
+    esac
 }
 
 print_ws
