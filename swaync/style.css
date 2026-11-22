@@ -1,0 +1,252 @@
+/* ~/.config/swaync/style.css — the old dunst look: black, square, 1px grey frame,
+   JetBrainsMono 10, bold summary over the body. Same palette as the bars and rofi.
+   Reload after editing:  swaync-client -rs */
+
+:root {
+  --bg:          #070708;
+  --bg-alt:      #131315;   /* hover, inputs — rofi background-alt */
+  --fg:          #e3e2e9;
+  --fg-low:      #9A9AA4;   /* low-urgency text */
+  --dim:         #7C7C84;   /* timestamps, placeholders */
+  --frame:       #4D4D5A;
+  --frame-crit:  #BABAC6;   /* critical frame, selection, active toggles */
+
+  --font: "JetBrainsMono Nerd Font";
+  --font-size: 10pt;
+
+  /* names swaync's own widgets still look up */
+  --noti-bg: 7, 7, 8;
+  --noti-bg-alpha: 1;
+  --noti-bg-alt: #131315;
+  --text-color: #e3e2e9;
+  --text-color-disabled: #7C7C84;
+  --notification-icon-size: 32px;
+  --notification-app-icon-size: 14px;
+  --notification-group-icon-size: 20px;
+  --mpris-album-art-icon-size: 64px;
+  --widget-volume-row-icon-size: 18px;
+}
+
+* {
+  font-family: var(--font);
+  font-size: var(--font-size);
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+notificationwindow, blankwindow, .blank-window, .floating-notifications {
+  background: transparent;
+}
+
+/* ───────────────────────── notifications ───────────────────────── */
+
+/* the padding is the gap: 10px from the screen edge, 6px between popups */
+.notification-row { background: none; outline: none; }
+.notification-row:focus { background: none; }
+.notification-row .notification-background { padding: 3px 10px; }
+.floating-notifications .notification-row:last-child .notification-background { padding-bottom: 10px; }
+
+.notification-row .notification-background .notification {
+  background: var(--bg);
+  border: 1px solid var(--frame);
+  padding: 0;
+}
+.notification-row .notification-background .notification.critical { border-color: var(--frame-crit); }
+
+.notification-row .notification-background .notification .notification-default-action {
+  padding: 10px 12px;
+  margin: 0;
+  background: transparent;
+  border: none;
+  color: var(--fg);
+  transition: background 0.1s ease-in-out;
+}
+.notification-row .notification-background .notification .notification-default-action:hover {
+  background: var(--bg-alt);
+}
+
+.notification-content { background: transparent; padding: 0; }
+
+/* icon on the left, 32px at most, 10px from the text */
+.notification-content .image {
+  -gtk-icon-filter: none;
+  -gtk-icon-size: var(--notification-icon-size);
+  margin: 0 10px 0 0;
+}
+.notification-content .app-icon {
+  -gtk-icon-filter: none;
+  -gtk-icon-size: var(--notification-app-icon-size);
+  margin: 2px;
+}
+
+.notification-content .text-box label { filter: none; }
+.notification-content .text-box .summary {
+  font-weight: bold;
+  color: var(--fg);
+}
+.notification-content .text-box .body {
+  font-weight: normal;
+  color: var(--fg);
+  margin-top: 2px;
+}
+.notification-content .text-box .time {
+  color: var(--dim);
+  font-weight: normal;
+  margin-right: 22px;   /* room for the close button */
+}
+
+.notification.low .notification-content .text-box .summary,
+.notification.low .notification-content .text-box .body { color: var(--fg-low); }
+
+.notification-content progressbar { margin-top: 6px; min-height: 2px; }
+.notification-content progressbar trough   { background: var(--frame); min-height: 2px; border: none; }
+.notification-content progressbar progress { background: var(--fg); min-height: 2px; border: none; }
+
+.notification-content .body-image { margin-top: 6px; background-color: transparent; -gtk-icon-filter: none; }
+
+/* close button: a bare dim ×, top-right, only on hover */
+.close-button {
+  background: transparent;
+  color: var(--dim);
+  border: none;
+  padding: 0;
+  margin: 6px 6px 0 0;
+  min-width: 18px;
+  min-height: 18px;
+}
+.close-button:hover { background: var(--frame-crit); color: var(--bg); }
+
+/* action buttons under the text (reply, open, …) */
+.notification-alt-actions { background: none; padding: 0 8px 8px 8px; }
+.notification-action { margin: 0 4px 0 0; padding: 0; }
+.notification-action > button {
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--frame);
+  padding: 2px 8px;
+}
+.notification-action > button:hover { background: var(--frame-crit); color: var(--bg); }
+
+.inline-reply { margin-top: 6px; }
+.inline-reply .inline-reply-entry {
+  background: var(--bg-alt);
+  color: var(--fg);
+  caret-color: var(--fg);
+  border: 1px solid var(--frame);
+}
+.inline-reply .inline-reply-button {
+  margin-left: 4px;
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--frame);
+}
+.inline-reply .inline-reply-button:disabled { color: var(--dim); }
+.inline-reply .inline-reply-button:hover { background: var(--frame-crit); color: var(--bg); }
+
+/* grouped notifications (several from one app) */
+.notification-group { transition: opacity 200ms ease-in-out; }
+.notification-group:focus { background: none; }
+.notification-group .notification-group-buttons,
+.notification-group .notification-group-headers { margin: 0 10px; color: var(--fg); }
+.notification-group .notification-group-headers .notification-group-icon {
+  color: var(--fg);
+  -gtk-icon-size: var(--notification-group-icon-size);
+}
+.notification-group .notification-group-headers .notification-group-header { color: var(--dim); }
+.notification-group .notification-group-close-button .close-button { margin: 8px 14px; }
+.notification-group.collapsed.not-expanded { opacity: 0.4; }
+.notification-group.collapsed .notification-row .notification { background: var(--bg); }
+.notification-group.collapsed .notification-row:not(:last-child) .notification-action,
+.notification-group.collapsed .notification-row:not(:last-child) .notification-default-action { opacity: 0; }
+.notification-group.collapsed:hover .notification-row:not(:only-child) .notification { background: var(--bg-alt); }
+
+/* ───────────────────────── panel (control center) ───────────────────────── */
+
+/* flush under the top bar against the right edge, like the rofi dropdowns */
+.control-center {
+  background: var(--bg);
+  color: var(--fg);
+  border-left: 1px solid var(--frame);
+  border-bottom: 1px solid var(--frame);
+}
+.control-center .control-center-list { background: transparent; }
+.control-center .control-center-list-placeholder { color: var(--dim); opacity: 1; }
+.control-center .control-center-list .notification-row .notification-background { padding: 3px 10px; }
+
+.widget { margin: 0; padding: 8px 12px; }
+
+/* "notifications ............ clear" */
+.widget-title > label { color: var(--dim); margin-right: 8px; }
+.widget-title > button,
+.widget-inhibitors > button {
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--frame);
+  padding: 1px 10px;
+  margin-left: 8px;
+}
+.widget-title > button:hover,
+.widget-inhibitors > button:hover { background: var(--frame-crit); color: var(--bg); }
+.widget-inhibitors > label { color: var(--dim); margin-right: 8px; }
+
+/* do not disturb — square switch, inverted when on */
+.widget-dnd { border-bottom: 1px solid var(--frame); }
+.widget-dnd label { color: var(--fg); margin-right: 8px; }
+.widget-dnd switch {
+  background: var(--bg-alt);
+  border: 1px solid var(--frame);
+  margin-left: 8px;
+  min-height: 14px;
+}
+.widget-dnd switch:checked { background: var(--frame-crit); }
+.widget-dnd switch slider {
+  background: var(--fg);
+  border: none;
+  min-width: 14px;
+  min-height: 14px;
+  margin: 1px;
+}
+.widget-dnd switch:checked slider { background: var(--bg); }
+
+.widget-label > label { color: var(--fg); }
+
+/* buttons grid — square tiles, inverted when a toggle is on */
+.widget-buttons-grid flowboxchild > button {
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--frame);
+  padding: 8px;
+}
+.widget-buttons-grid flowboxchild > button:hover { background: var(--bg-alt); }
+.widget-buttons-grid flowboxchild > button.toggle:checked {
+  background: var(--frame-crit);
+  color: var(--bg);
+  border-color: var(--frame-crit);
+}
+
+/* menubar, sliders, volume, mpris — kept in the same palette */
+.widget-menubar > .menu-button-bar > .widget-menubar-container button,
+.widget-menubar > revealer * button {
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--frame);
+  margin: 0 4px;
+}
+.widget-menubar > revealer * button:hover { background: var(--frame-crit); color: var(--bg); }
+
+scale trough     { background: var(--frame); min-height: 2px; border: none; }
+scale highlight  { background: var(--fg); border: none; }
+scale slider     { background: var(--fg); min-width: 10px; min-height: 10px; border: none; margin: -4px 0; }
+.widget-slider label { font-size: inherit; color: var(--fg); }
+.widget-volume row image { -gtk-icon-size: var(--widget-volume-row-icon-size); }
+.per-app-volume { background: var(--bg-alt); margin: 8px 0 0 0; }
+
+.widget-mpris { padding: 0; }
+.widget-mpris .widget-mpris-player { margin: 8px 12px; border: 1px solid var(--frame); }
+.widget-mpris .widget-mpris-player .mpris-background { filter: blur(10px); }
+.widget-mpris .widget-mpris-player .mpris-overlay { padding: 10px; background-color: rgba(7, 7, 8, 0.75); }
+.widget-mpris .widget-mpris-player .mpris-overlay button:hover { background: var(--bg-alt); }
+.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-album-art { -gtk-icon-size: var(--mpris-album-art-icon-size); }
+.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-title { font-weight: bold; }
+.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-subtitle { color: var(--fg-low); }

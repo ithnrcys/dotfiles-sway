@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # --- Notifications ---
-pgrep -x dunst || dunst &
+pgrep -x swaync || swaync &
 
 # --- Tiling & device management ---
 pgrep -f autotiling-rs || autotiling-rs &

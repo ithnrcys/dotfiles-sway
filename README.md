@@ -265,6 +265,10 @@ MEMORY: 32Gib
         to bypass: choose the DAC itself as output in pavucontrol
     sway: output is 10-bit (render_bit_depth 10 — the kernel reports an XR30 framebuffer); 1920x1080@180 with adaptive sync (48-180 Hz) was already set; screenshots and OBS capture still work
     sway: HDR prepared as an opt-in — login session "Sway (HDR)" (sway/sway-hdr.desktop, copied to /usr/local/share/wayland-sessions) starts sway with WLR_RENDERER=vulkan, which HDR needs and wlroots calls experimental; bin/hdr toggles HDR10 there (hdr / hdr on / hdr off / hdr status). The monitor reports HDR10 (PQ, BT.2020) with a peak around 300 nits. The Vulkan renderer starts on this machine in a headless test; HDR itself is not yet tried on the monitor
+    notifications: dunst replaced by SwayNotificationCenter (swaync 0.12.6) — swaync/config.json + style.css, ~/.config/swaync symlinked to it; ~/.config/dunst and dunst/dunstrc removed
+        popups: same look as the dunst ones — black, square, 1px #4D4D5A frame (#BABAC6 for critical), JetBrainsMono 10, bold summary over the body, 32px icon on the left, low urgency in #9A9AA4; bottom-right, 10px from the edges, 6px apart; timeouts 4 / 6 / never
+        panel:  swaync-client -t opens it flush under the top bar on the right (410px, like the rofi dropdowns): title + clear, do-not-disturb switch, notification history; the base for the quick access menu
+        sway/autostart.sh starts swaync instead of dunst
 
 ## Repo Layout:
     pipewire/    hd599-eq.conf + hd599-oratory1990.txt (headphone EQ), quality.conf, client-quality.conf (sample rates, resampler); ln -s into ~/.config/pipewire/*.conf.d
@@ -287,7 +291,7 @@ MEMORY: 32Gib
     nvim/        init.lua, lua/options.lua, lua/keymaps.lua, lua/plugins/{ui,editor,treesitter,lsp}.lua, lazy-lock.json (pinned plugin versions)
     zsh/         .zshrc, p10k-colors.zsh (prompt style and colours), install-plugins.sh (fetches the zsh plugins)
     fastfetch/   config.jsonc
-    dunst/       dunstrc (notifications)
+    swaync/      config.json, style.css (notification popups + the panel); ln -s ~/.dotfiles/swaync ~/.config/swaync
     obs/         v4l2loopback.conf (virtual camera module options, copied to /etc/modprobe.d), basic/ (scene and profile, copied from ~/.config/obs-studio)
     expose/      install.sh (builds the window overview from source), mouse.patch (adds hover and click)
     swaylock/    config (lock screen)
@@ -330,7 +334,8 @@ Shades used by the GTK / Qt theme: inputs #0B0B0D, buttons #131315, hover #1B1B2
     - Waybar temperature uses a fixed hwmon4 path that can shift between boots
     - Clean out leftover Polybar/Alacritty comments in the scripts
     - Bottom-bar uptime module shows nothing: this uptime has no -p option
-    - mako is installed but unused now that dunst is configured — uninstall it
+    - dunst and mako are installed but unused now that swaync handles notifications:  sudo zypper remove dunst mako
+    - Quick access menu: the top-bar bluetooth module becomes a swaync panel with toggles — bluetooth, screenshot, screen recorder, pomodoro, KDE Connect, notepad / calculator
     - wallpaper.jpg is 30MB — compress it or keep it out of git
     - Cursor theme: sway/config asks for Quintom_Ink but it is not installed anywhere, so the default cursor shows — install it into ~/.local/share/icons, then gsettings set org.gnome.desktop.interface cursor-theme Quintom_Ink
     - Konsole's terminal area still uses its own Breeze colour scheme (only matters if Konsole gets used instead of Ghostty)
