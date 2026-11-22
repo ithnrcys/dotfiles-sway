@@ -48,7 +48,7 @@ fi
 # ------------------------------------------
 # MODE 2: THE EXECUTOR (Runs only on click)
 # ------------------------------------------
-notify() { command -v dunstify >/dev/null && dunstify -a wifi "Wi-Fi" "$1"; }
+notify() { notify-send -a wifi "Wi-Fi" "$1"; }
 
 strength_icon() {
     if   [ "$1" -ge 75 ]; then echo "󰤨"

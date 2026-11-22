@@ -15,7 +15,7 @@ SEP="─────────────────────────
 bt() { timeout 5 bluetoothctl "$@" 2>/dev/null; }
 have_bt() { command -v bluetoothctl >/dev/null; }
 powered() { bt show | grep -q "Powered: yes"; }
-notify() { command -v dunstify >/dev/null && dunstify -a bluetooth "Bluetooth" "$1"; }
+notify() { notify-send -a bluetooth "Bluetooth" "$1"; }
 
 # ------------------------------------------
 # MODE 1: status icon

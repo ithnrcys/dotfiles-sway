@@ -269,6 +269,7 @@ MEMORY: 32Gib
         popups: same look as the dunst ones — black, square, 1px #4D4D5A frame (#BABAC6 for critical), JetBrainsMono 10, bold summary over the body, 32px icon on the left, low urgency in #9A9AA4; bottom-right, 10px from the edges, 6px apart; timeouts 4 / 6 / never
         panel:  swaync-client -t opens it flush under the top bar on the right (410px, like the rofi dropdowns): title + clear, do-not-disturb switch, notification history; the base for the quick access menu
         sway/autostart.sh starts swaync instead of dunst
+    waybar: do-not-disturb module uses swaync (swaync-client -d / -D) instead of dunstctl; wifi and bluetooth menus send their messages with notify-send instead of dunstify
 
 ## Repo Layout:
     pipewire/    hd599-eq.conf + hd599-oratory1990.txt (headphone EQ), quality.conf, client-quality.conf (sample rates, resampler); ln -s into ~/.config/pipewire/*.conf.d
