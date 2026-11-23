@@ -284,6 +284,7 @@ MEMORY: 32Gib
         checked: notepad window moved and resized, closed, reopened at the same place and size
     system: installed bluetui (bluetooth tile of the quick access panel); removed dunst, dunst-bash-completion, dunst-zsh-completion and mako (swaync handles notifications)
     waybar: quick access icon back to the old bluetooth module's SF Symbols glyph (U+10070A)
+    swaync: the panel opens over the right end of the top bar, like the rofi launcher over its left end — overlay layer, no exclusive zone; the "quick access" heading is a 27px row on the bar's text line, and the panel lost its frame, so bar and panel are one black piece with no line between them. While it is open the clock / weather / quick icon are covered: Esc or a click outside closes it
 
 ## Repo Layout:
     pipewire/    hd599-eq.conf + hd599-oratory1990.txt (headphone EQ), quality.conf, client-quality.conf (sample rates, resampler); ln -s into ~/.config/pipewire/*.conf.d
