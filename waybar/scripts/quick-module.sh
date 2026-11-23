@@ -4,7 +4,7 @@
 # Prints the panel icon, preceded while they run by the recording mark and the pomodoro time.
 
 S=~/.config/waybar/scripts
-ICON="<span size='11pt'>󰘮</span>"
+ICON="<span font_family='SF Pro' size='9pt'>"$'\U0010070A'"</span>"   # SF Symbols, same glyph as the old bluetooth module
 out=""
 
 if pgrep -x obs >/dev/null && [ "$("$S/obs-record.py" status)" = true ]; then
