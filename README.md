@@ -282,6 +282,7 @@ MEMORY: 32Gib
         checked: pomodoro start / bar countdown / stop; a 4 s recording started and stopped from the script (OBS launched and quit); panel screenshots
     sway: notes (app_id quick.notepad) and the GMNB calculator float — 760x520 / 420x640 in the centre the first time; sway/float-memory.py (started by autostart.sh) saves each one's position and size when it closes and puts the next one back there (~/.local/state/float-memory.json). Move: $mod + left drag, resize: $mod + right drag
         checked: notepad window moved and resized, closed, reopened at the same place and size
+    system: installed bluetui (bluetooth tile of the quick access panel); removed dunst, dunst-bash-completion, dunst-zsh-completion and mako (swaync handles notifications)
 
 ## Repo Layout:
     pipewire/    hd599-eq.conf + hd599-oratory1990.txt (headphone EQ), quality.conf, client-quality.conf (sample rates, resampler); ln -s into ~/.config/pipewire/*.conf.d
@@ -347,8 +348,6 @@ Shades used by the GTK / Qt theme: inputs #0B0B0D, buttons #131315, hover #1B1B2
     - Waybar temperature uses a fixed hwmon4 path that can shift between boots
     - Clean out leftover Polybar/Alacritty comments in the scripts
     - Bottom-bar uptime module shows nothing: this uptime has no -p option
-    - dunst and mako are installed but unused now that swaync handles notifications:  sudo zypper remove dunst mako
-    - Quick access: install bluetui for the bluetooth tile:  sudo zypper install bluetui
     - Quick access: a greyscale theme for the GMNB calculator (out of the box it has a blue accent)
     - Quick access: screenshot and notes tiles not yet tried by hand (both need a mouse / keyboard)
     - wallpaper.jpg is 30MB — compress it or keep it out of git
