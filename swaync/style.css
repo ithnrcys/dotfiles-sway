@@ -163,11 +163,12 @@ notificationwindow, blankwindow, .blank-window, .floating-notifications {
 
 /* ───────────────────────── panel (control center) ───────────────────────── */
 
-/* opens over the top bar's right end, like the rofi launcher over its left end: the heading row
-   takes the bar's place (same height, same black), so bar and panel read as one piece. No frame */
+/* a card of its own: 10px below the top bar and from the right edge (the gap the popups use),
+   framed like a notification */
 .control-center {
   background: var(--bg);
   color: var(--fg);
+  border: 1px solid var(--frame);
 }
 .control-center .control-center-list { background: transparent; }
 .control-center .control-center-list-placeholder { color: var(--dim); opacity: 1; }
@@ -212,7 +213,7 @@ notificationwindow, blankwindow, .blank-window, .floating-notifications {
 .widget-label > label { color: var(--fg); }
 
 /* "quick access" heading over the tiles, dim like the notifications heading */
-.widget-label.quick { padding: 5px 12px 0 12px; min-height: 22px; }   /* 27px row, text on the bar's baseline */
+.widget-label.quick { padding: 10px 12px 0 12px; }
 .widget-label.quick > label { color: var(--dim); }
 
 /* buttons grid — square tiles, inverted when a toggle is on */
