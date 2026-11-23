@@ -42,11 +42,54 @@
   "script-fail-notify": true,
 
   "widgets": [
-    "title",
+    "label#quick",
+    "buttons-grid#quick",
     "dnd",
+    "title",
     "notifications"
   ],
   "widget-config": {
+    "label#quick": {
+      "text": "quick access",
+      "max-lines": 1
+    },
+    "buttons-grid#quick": {
+      "buttons-per-row": 4,
+      "actions": [
+        {
+          "label": "󰂯",
+          "command": "sh -c 'swaync-client -cp; if command -v bluetui >/dev/null; then exec ghostty --class=quick.bluetui --title=bluetooth -e bluetui; else exec $HOME/.config/waybar/scripts/bt-module.sh --menu; fi'"
+        },
+        {
+          "label": "󰄀",
+          "command": "sh -c 'exec $HOME/.config/waybar/scripts/screenshot.sh'"
+        },
+        {
+          "label": "󰑋",
+          "type": "toggle",
+          "command": "sh -c 'swaync-client -cp; exec $HOME/.config/waybar/scripts/obs-record.py toggle'",
+          "update-command": "sh -c 'exec $HOME/.config/waybar/scripts/obs-record.py status'"
+        },
+        {
+          "label": "󱎫",
+          "type": "toggle",
+          "command": "sh -c 'exec $HOME/.config/waybar/scripts/pomodoro.sh toggle'",
+          "update-command": "sh -c 'exec $HOME/.config/waybar/scripts/pomodoro.sh status'"
+        },
+        {
+          "label": "󰄜",
+          "command": "sh -c 'swaync-client -cp; exec kdeconnect-app'"
+        },
+        {
+          "label": "󰧭",
+          "command": "sh -c 'exec $HOME/.config/waybar/scripts/notes.sh'"
+        },
+        {
+          "label": "󰃬",
+          "command": "sh -c 'swaync-client -cp; exec flatpak run io.github.Go08er.GlazeMyNumbersBaby'"
+        }
+      ]
+    },
     "title": {
       "text": "notifications",
       "clear-all-button": true,

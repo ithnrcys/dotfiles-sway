@@ -172,7 +172,8 @@ notificationwindow, blankwindow, .blank-window, .floating-notifications {
 }
 .control-center .control-center-list { background: transparent; }
 .control-center .control-center-list-placeholder { color: var(--dim); opacity: 1; }
-.control-center .control-center-list .notification-row .notification-background { padding: 3px 10px; }
+.control-center .control-center-list .notification-row .notification-background { padding: 3px 0; }
+.control-center .control-center-list { margin: 0 12px; }
 
 .widget { margin: 0; padding: 8px 12px; }
 
@@ -211,15 +212,25 @@ notificationwindow, blankwindow, .blank-window, .floating-notifications {
 
 .widget-label > label { color: var(--fg); }
 
+/* "quick access" heading over the tiles, dim like the notifications heading */
+.widget-label.quick { padding-bottom: 0; }
+.widget-label.quick > label { color: var(--dim); }
+
 /* buttons grid — square tiles, inverted when a toggle is on */
+.widget-buttons-grid { padding-top: 6px; padding-bottom: 10px; }
+.widget-buttons-grid flowboxchild { padding: 3px; }
 .widget-buttons-grid flowboxchild > button {
   background: var(--bg);
   color: var(--fg);
   border: 1px solid var(--frame);
-  padding: 8px;
+  padding: 0;
+  min-height: 48px;
 }
+/* swaync sizes the tile labels itself and ignores font-size here, so the glyphs are scaled up instead */
+.widget-buttons-grid flowboxchild > button label { transform: scale(1.5); }
 .widget-buttons-grid flowboxchild > button:hover { background: var(--bg-alt); }
-.widget-buttons-grid flowboxchild > button.toggle:checked {
+.widget-buttons-grid flowboxchild > button.toggle:checked,
+.widget-buttons-grid flowboxchild > button.active {
   background: var(--frame-crit);
   color: var(--bg);
   border-color: var(--frame-crit);

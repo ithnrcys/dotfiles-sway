@@ -10,7 +10,7 @@
 
   "modules-left":   ["sway/window", "cpu", "memory", "temperature", "custom/updates"],
   "modules-center": ["custom/workspaces#left", "custom/workspaces#focused", "custom/workspaces#right"],
-  "modules-right":  ["clock", "custom/weather", "custom/bt", "tray"],
+  "modules-right":  ["clock", "custom/weather", "custom/quick", "tray"],
 
   // focused window — λ + app name, reverse-DNS ids shortened
   "sway/window": {
@@ -82,13 +82,17 @@
     "format": "{}  <span size='13pt'>✧</span>  "
   },
 
-  // bluetooth — click for rofi device menu
-  "custom/bt": {
-    "exec": "~/.config/waybar/scripts/bt-module.sh --status",
-    "interval": 5,
+  // quick access (was the bluetooth module) — click opens the swaync panel: bluetooth, screenshot,
+  // screen recording, pomodoro, KDE Connect, notes, calculator, then notifications.
+  // Shows "● REC" and the pomodoro time left in front of the icon while they run;
+  // the scripts refresh it at once through signal 12, the 1 s interval drives the countdown
+  "custom/quick": {
+    "exec": "~/.config/waybar/scripts/quick-module.sh",
+    "interval": 1,
+    "signal": 12,
     "tooltip": false,
     "format": "{}  <span size='13pt'>✧</span>  ",
-    "on-click": "~/.config/waybar/scripts/bt-module.sh --menu"
+    "on-click": "swaync-client -t -sw"
   },
 
   // tray (background apps) at the right edge; edge gap comes from CSS padding-right

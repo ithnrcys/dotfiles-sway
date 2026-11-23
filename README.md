@@ -270,6 +270,16 @@ MEMORY: 32Gib
         panel:  swaync-client -t opens it flush under the top bar on the right (410px, like the rofi dropdowns): title + clear, do-not-disturb switch, notification history; the base for the quick access menu
         sway/autostart.sh starts swaync instead of dunst
     waybar: do-not-disturb module uses swaync (swaync-client -d / -D) instead of dunstctl; wifi and bluetooth menus send their messages with notify-send instead of dunstify
+    waybar: the bluetooth module became quick access (custom/quick, scripts/quick-module.sh) — click opens the swaync panel; shows "● REC" and the pomodoro time left in front of its icon while they run (signal 12)
+        panel tiles (swaync/config.json, buttons-grid): bluetooth · screenshot · record · pomodoro / KDE Connect · notes · calculator; toggles turn light grey while on
+        bluetooth:  bluetui in Ghostty; until bluetui is installed it falls back to the old rofi menu (bt-module.sh --menu)
+        screenshot: scripts/screenshot.sh — slurp region (a click takes the whole screen), saved to ~/Pictures/Screenshots and copied to the clipboard
+        record:     scripts/obs-record.py — starts / stops recording in OBS through its websocket server (enabled in OBS's plugin_config, password auth, port 4455); starts OBS in the tray when it is not running and quits it again afterwards; saves to ~/Videos
+        pomodoro:   scripts/pomodoro.sh — 25 min focus / 5 min break, 15 min every 4th; a notification at each change; stopped by a second click
+        notes:      scripts/notes.sh — rofi dropdown of ~/Documents/notes (newest first); typing a name that is not listed starts a new note; opens nvim in a floating Ghostty (app_id quick.notepad)
+        calculator: GMNB 0.3.0 (github.com/Go08er/GlazeMyNumbersBaby, Windows Calculator ported to Rust / GTK 4) — GMNB.flatpak from the release, checked against its SHA256SUMS, flatpak install --user
+        tile glyphs are scaled with transform: swaync ignores font-size on them
+        checked: pomodoro start / bar countdown / stop; a 4 s recording started and stopped from the script (OBS launched and quit); panel screenshots
 
 ## Repo Layout:
     pipewire/    hd599-eq.conf + hd599-oratory1990.txt (headphone EQ), quality.conf, client-quality.conf (sample rates, resampler); ln -s into ~/.config/pipewire/*.conf.d
@@ -336,7 +346,9 @@ Shades used by the GTK / Qt theme: inputs #0B0B0D, buttons #131315, hover #1B1B2
     - Clean out leftover Polybar/Alacritty comments in the scripts
     - Bottom-bar uptime module shows nothing: this uptime has no -p option
     - dunst and mako are installed but unused now that swaync handles notifications:  sudo zypper remove dunst mako
-    - Quick access menu: the top-bar bluetooth module becomes a swaync panel with toggles — bluetooth, screenshot, screen recorder, pomodoro, KDE Connect, notepad / calculator
+    - Quick access: install bluetui for the bluetooth tile:  sudo zypper install bluetui
+    - Quick access: a greyscale theme for the GMNB calculator (out of the box it has a blue accent)
+    - Quick access: screenshot and notes tiles not yet tried by hand (both need a mouse / keyboard)
     - wallpaper.jpg is 30MB — compress it or keep it out of git
     - Cursor theme: sway/config asks for Quintom_Ink but it is not installed anywhere, so the default cursor shows — install it into ~/.local/share/icons, then gsettings set org.gnome.desktop.interface cursor-theme Quintom_Ink
     - Konsole's terminal area still uses its own Breeze colour scheme (only matters if Konsole gets used instead of Ghostty)
