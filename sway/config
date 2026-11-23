@@ -44,6 +44,10 @@ for_window [app_id="lxqt-archiver"] floating enable
 for_window [app_id="lxqt-archiver" title="File Archiver$"] resize set 960 600, move position center
 # Bitwarden is the Firefox extension here: its own windows (popped-out vault, login and passkey prompts) float
 for_window [app_id="firefox" title="^Extension: \(Bitwarden Password Manager\)"] floating enable, move position center
+# quick access panel: notes (nvim in Ghostty) and the calculator (GMNB) float; first time at this size in the
+# centre, after that sway/float-memory.py puts them back where they were closed
+for_window [app_id="quick.notepad"] floating enable, resize set 760 520, move position center
+for_window [app_id="io.github.Go08er.GlazeMyNumbersBaby"] floating enable, resize set 420 640, move position center
 
 ### Idle — a fullscreen window (game, video) keeps the screen from locking or turning off
 for_window [app_id=".*"] inhibit_idle fullscreen

@@ -3,6 +3,9 @@
 # --- Notifications ---
 pgrep -x swaync || swaync &
 
+# --- Floating windows come back where they were closed (notes, calculator) ---
+pgrep -f float-memory.py || "$HOME/.config/sway/float-memory.py" &
+
 # --- Tiling & device management ---
 pgrep -f autotiling-rs || autotiling-rs &
 pgrep -x udiskie || udiskie &
