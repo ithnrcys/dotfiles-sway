@@ -118,9 +118,6 @@ MEMORY: 32Gib
     waybar: network icon moved into its own module (custom/netstate, wifi-module.sh --icon) — shows the "no internet" glyph when NetworkManager's connectivity is anything but full (offline, or router up but internet down)
     waybar: bluetooth icon is one constant SF Symbols glyph; it no longer changes with the adapter state
     waybar: drive, do-not-disturb, caffeine and bluetooth icons one step smaller (9pt / 10pt / 9pt / 9pt)
-    spacedrive: Spacedrive 0.4.3 as the file manager — no openSUSE package, so its Debian .deb is unpacked into ~/.local/opt/spacedrive (ar x + bsdtar), with Debian's libxdo.so.3 (libxdo3_3.20160805.1-5.1) copied into its usr/lib/Spacedrive because openSUSE only ships libxdo.so.4
-        launcher: bin/spacedrive (sets LD_LIBRARY_PATH, and GDK_BACKEND=x11 so it runs through XWayland without its own GTK title bar), symlinked into ~/.local/bin; applications/spacedrive.desktop symlinked into ~/.local/share/applications; icons copied to ~/.local/share/icons/hicolor
-        default:  xdg-mime default spacedrive.desktop inode/directory (was Catfish)
     xdg: XDG_DESKTOP_DIR set to ~/Desktop (was $HOME); Downloads / Documents / Music / Pictures / Videos / Projects unchanged
     system: removed thunar, thunar-volman, thunar-archive-plugin and their lang / branding packages; MozillaThunderbird was already installed
     waybar: external-drive icon nudged down 2px (style.css)
@@ -223,17 +220,6 @@ MEMORY: 32Gib
         build:   not packaged by openSUSE. sudo zypper install cargo (installed 2026-11-15); git clone --branch v0.5.0 https://github.com/Linus789/wl-clip-persist; cargo build --release --locked; install -m 755 target/release/wl-clip-persist ~/.local/bin/
         replaced bin/clip-persist, a wl-paste / wl-copy script from the same day that kept plain text only
         checked: text, formatted text, a picture (byte-identical), a sensitive entry and two copies in a row, in a headless sway
-    spacedrive: restyled and shown as "Files" — spacedrive/patch.py rewrites the interface files stored inside the program (~/.local/opt/spacedrive/usr/bin/spacedrive)
-        why a patch: Spacedrive 0.4.3 is a Tauri program; its stylesheets, scripts and 166 icon pictures are not on disk but inside the executable, as a table of brotli-compressed files (name, data pointer, length)
-        colours: the dark theme's variables set to the waybar palette — sidebar and menus #070708, file area #0B0B0D, hover #1B1B20, selected #2A2A32, lines #2E2E37, text #E3E2E9
-            accent is #6A6A75, not the palette's #BABAC6: Spacedrive writes white text on its accent colour
-        font:    SF Pro Text in front of "system-ui" and of the bundled IBM Plex Sans
-        icons:   every icon picture converted to grey, shapes unchanged (the folders come out close to macOS system grey); onboarding decorations and the logo left in colour
-        menu:    "Reveal in file manager" removed from the right-click menu of files / folders and of the path bar
-        name:    applications/spacedrive.desktop Name=Files (launcher); the window title and window class stay "Spacedrive", so sway rules still match
-        run:     python3 ~/.dotfiles/spacedrive/patch.py (needs python3-Brotli, python3-Pillow); --restore puts the original back. The original is kept as spacedrive.orig and every run starts from it
-        update:  a new Spacedrive version replaces the program and renames its files — delete spacedrive.orig, look up the new file names (CSS / JS_EXPLORER at the top of the script), run again
-        checked: patched copy run on a copy of the library in a headless sway — grid view, list view, settings, right-click menu
     sway: three window rules (sway/config, "Floating")
         archiver: every lxqt-archiver window floats; the main window (title ends in "File Archiver") is 960x600 in the centre, a quarter of the screen; prompts keep their own smaller size
             the archiver restores its own remembered size after sway places it, so ~/.config/lxqt/archiver.conf has WindowSize=@Size(960 600) as well
@@ -265,6 +251,13 @@ MEMORY: 32Gib
         to bypass: choose the DAC itself as output in pavucontrol
     sway: output is 10-bit (render_bit_depth 10 — the kernel reports an XR30 framebuffer); 1920x1080@180 with adaptive sync (48-180 Hz) was already set; screenshots and OBS capture still work
     sway: HDR prepared as an opt-in — login session "Sway (HDR)" (sway/sway-hdr.desktop, copied to /usr/local/share/wayland-sessions) starts sway with WLR_RENDERER=vulkan, which HDR needs and wlroots calls experimental; bin/hdr toggles HDR10 there (hdr / hdr on / hdr off / hdr status). The monitor reports HDR10 (PQ, BT.2020) with a peak around 300 nits. The Vulkan renderer starts on this machine in a headless test; HDR itself is not yet tried on the monitor
+    file manager: Dolphin 26.08.3 — sudo zypper install dolphin kio-extras ffmpegthumbs kdegraphics-thumbnailers (thumbnails: images, video, PDF); xdg-mime default org.kde.dolphin.desktop inode/directory
+        config:  dolphin/dolphinrc, copied to ~/.config/dolphinrc (a copy, not a link: Dolphin rewrites it with window state)
+        colours: [UiSettings] ColorScheme=Mizu is required — outside Plasma, Dolphin otherwise forces its own scheme (Breeze light text, #232629, on the black view)
+        look:    icon-only toolbar, 16 px toolbar / places icons, details view with whole-row highlight and expandable folders, full-width status bar (the default floating one was a white box), no folder-content previews
+        kept:    address bar, toolbar, places panel, status bar; menu bar hidden as before (☰ menu)
+        icons:   theme/install.sh also links inode-directory → the grey folder in Papirus-Mizu — Dolphin's file view asks for that name and got Papirus' blue folder
+        checked: ~/Pictures in a headless sway — text, grey folders, thumbnails, status bar. Not checkable there (no keyboard, so the window never becomes active): the selected entry in the places panel showed light text on the light highlight — look at it with the window focused
     notifications: dunst replaced by SwayNotificationCenter (swaync 0.12.6) — swaync/config.json + style.css, ~/.config/swaync symlinked to it; ~/.config/dunst and dunst/dunstrc removed
         popups: same look as the dunst ones — black, square, 1px #4D4D5A frame (#BABAC6 for critical), JetBrainsMono 10, bold summary over the body, 32px icon on the left, low urgency in #9A9AA4; bottom-right, 10px from the edges, 6px apart; timeouts 4 / 6 / never
         panel:  swaync-client -t opens it flush under the top bar on the right (410px, like the rofi dropdowns): title + clear, do-not-disturb switch, notification history; the base for the quick access menu
@@ -279,7 +272,6 @@ MEMORY: 32Gib
         notes:      scripts/notes.sh — rofi dropdown of ~/Documents/notes (newest first); typing a name that is not listed starts a new note; opens nvim in a floating Ghostty (app_id quick.notepad)
         calculator: GMNB 0.3.0 (github.com/Go08er/GlazeMyNumbersBaby, Windows Calculator ported to Rust / GTK 4) — GMNB.flatpak from the release, checked against its SHA256SUMS, flatpak install --user
         tile glyphs are scaled with transform: swaync ignores font-size on them
-    waybar: do-not-disturb module removed from the bottom bar (custom/dnd, scripts/dnd-module.sh deleted) — the switch in the quick access panel does the same
         checked: pomodoro start / bar countdown / stop; a 4 s recording started and stopped from the script (OBS launched and quit); panel screenshots
     sway: notes (app_id quick.notepad) and the GMNB calculator float — 760x520 / 420x640 in the centre the first time; sway/float-memory.py (started by autostart.sh) saves each one's position and size when it closes and puts the next one back there (~/.local/state/float-memory.json). Move: $mod + left drag, resize: $mod + right drag
         checked: notepad window moved and resized, closed, reopened at the same place and size
@@ -287,12 +279,13 @@ MEMORY: 32Gib
     waybar: quick access icon back to the old bluetooth module's SF Symbols glyph (U+10070A)
     swaync: the panel opens over the right end of the top bar, like the rofi launcher over its left end — overlay layer, no exclusive zone; the "quick access" heading is a 27px row on the bar's text line, and the panel lost its frame, so bar and panel are one black piece with no line between them. While it is open the clock / weather / quick icon are covered: Esc or a click outside closes it
     swaync: panel is a separate card again — top layer below the bar, 10px from the bar and the right edge (the popups' gap), 1px #4D4D5A frame all round; replaces the over-the-bar version
+    waybar: do-not-disturb module removed from the bottom bar (custom/dnd, scripts/dnd-module.sh deleted) — the switch in the quick access panel does the same
 
 ## Repo Layout:
     pipewire/    hd599-eq.conf + hd599-oratory1990.txt (headphone EQ), quality.conf, client-quality.conf (sample rates, resampler); ln -s into ~/.config/pipewire/*.conf.d
     sway/        sway-hdr.desktop (HDR login session), config, autostart.sh, lock.sh, waybar.sh (starts / restarts the bars), inactive-opacity.sh (see-through unfocused windows)
-    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), spacedrive (launcher), expose (window overview), screencam (screen as a webcam through OBS), hdr (HDR toggle); ln -s into ~/.local/bin
-    applications/ spacedrive.desktop, nvim-ghostty.desktop; ln -s into ~/.local/share/applications
+    bin/         ws-color (workspace icon colours), ws-swap (swap two workspace icons), expose (window overview), screencam (screen as a webcam through OBS), hdr (HDR toggle); ln -s into ~/.local/bin
+    applications/ nvim-ghostty.desktop; ln -s into ~/.local/share/applications
     environment.d/ editor.conf, qt.conf (Qt programs use qt5ct / qt6ct); ln -s into ~/.config/environment.d
     theme/       gtk.css (GTK 3 + shared rules), gtk4.css (GTK 4 / libadwaita), settings.ini, Mizu.colors (KDE colour scheme), install.sh (fetches adw-gtk3, builds the icon theme, links everything, sets gsettings)
     kvantum/     Mizu/ (Qt theme: Mizu.kvconfig, Mizu.svg), build-svg.py (draws Mizu.svg), kvantum.kvconfig; linked as ~/.config/Kvantum
@@ -300,7 +293,7 @@ MEMORY: 32Gib
     waybar/      config.jsonc, style.css, scripts/ (rofi menus go through _rofi_engine.sh)
     rofi/        config.rasi (launcher), dropdown.rasi / dropup.rasi / dropup-left.rasi / dropup-right.rasi (top-right / bottom-centre / bottom-left / bottom-right bar menus), music.rasi (cover-art dropup), colors.rasi
     ghostty/     config, colors, fonts
-    spacedrive/  patch.py (recolours Spacedrive, grey icons, SF Pro, removes a menu entry)
+    dolphin/     dolphinrc (file manager look and colour scheme); copied into ~/.config once
     vlc/         vlc-qt-interface.conf (toolbar layout with theme sliders), vlcrc; copied into ~/.config/vlc once
     firefox/     user.js (preferences re-applied at every start); ln -s into the Firefox profile directory
     sddm/        theme/ (Main.qml, metadata.desktop, theme.conf), install.sh, wallpaper.sh (rotating photo)

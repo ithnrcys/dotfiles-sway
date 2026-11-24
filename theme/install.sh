@@ -46,6 +46,8 @@ if [ -d "$SRC" ]; then
             grey="$places/${name/-blue/-grey}"
             [ -e "$grey" ] && ln -s "$(readlink -f "$grey")" "$DST/$size/places/${name/-blue/}"
         done
+        # file managers ask for the folder by its mime-type name (Dolphin's file view), not "folder"
+        [ -e "$DST/$size/places/folder.svg" ] && ln -s folder.svg "$DST/$size/places/inode-directory.svg"
         dirs+=("$size/places")
     done
     {

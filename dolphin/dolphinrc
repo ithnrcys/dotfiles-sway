@@ -1,0 +1,51 @@
+[General]
+Version=202
+ViewPropsTimestamp=2026,9,6,21,10,0.394
+BrowseThroughArchives=true
+RememberOpenedTabs=false
+ShowFullPathInTitlebar=true
+ShowStatusBar=FullWidth
+ShowZoomSlider=true
+ShowSelectionToggle=false
+GlobalViewProps=true
+ConfirmClosingMultipleTabs=false
+
+[IconsMode]
+IconSize=64
+PreviewSize=80
+FontWeight=400
+MaximumTextLines=2
+
+[DetailsMode]
+IconSize=22
+PreviewSize=22
+ExpandableFolders=true
+HighlightEntireRow=true
+LeftPadding=8
+RightPadding=8
+
+[CompactMode]
+IconSize=22
+PreviewSize=22
+
+[PreviewSettings]
+Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail,ffmpegthumbs,gsthumbnail,mobithumbnail,rawthumbnail
+MaximumSize=52428800
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[MainWindow]
+MenuBar=Disabled
+ToolBarsMovable=Disabled
+
+[MainWindow][Toolbar mainToolBar]
+ToolButtonStyle=IconOnly
+IconSize=16
+
+[PlacesPanel]
+IconSize=16
+
+[UiSettings]
+ColorScheme=Mizu
