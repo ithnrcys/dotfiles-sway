@@ -280,6 +280,7 @@ MEMORY: 32Gib
     swaync: the panel opens over the right end of the top bar, like the rofi launcher over its left end — overlay layer, no exclusive zone; the "quick access" heading is a 27px row on the bar's text line, and the panel lost its frame, so bar and panel are one black piece with no line between them. While it is open the clock / weather / quick icon are covered: Esc or a click outside closes it
     swaync: panel is a separate card again — top layer below the bar, 10px from the bar and the right edge (the popups' gap), 1px #4D4D5A frame all round; replaces the over-the-bar version
     waybar: do-not-disturb module removed from the bottom bar (custom/dnd, scripts/dnd-module.sh deleted) — the switch in the quick access panel does the same
+    sway: DualSense Edge touchpad no longer moves the pointer (input ... events disabled); games still read it directly
 
 ## Repo Layout:
     pipewire/    hd599-eq.conf + hd599-oratory1990.txt (headphone EQ), quality.conf, client-quality.conf (sample rates, resampler); ln -s into ~/.config/pipewire/*.conf.d

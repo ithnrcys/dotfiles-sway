@@ -162,3 +162,6 @@ bar bar-0 {
 }
 exec_always ~/.config/sway/waybar.sh
 output * bg ~/.dotfiles/wallpapers/wallpaper.jpg fill
+
+# Stop the DualSense (Edge) touchpad from acting as a mouse; games still read it directly
+input "1356:3570:Sony_Interactive_Entertainment_DualSense_Edge_Wireless_Controller_Touchpad" events disabled
