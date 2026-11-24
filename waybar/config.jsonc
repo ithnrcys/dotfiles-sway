@@ -108,7 +108,7 @@
 
   "modules-left":   ["custom/power", "custom/music-prev", "custom/nowplaying", "custom/music-toggle", "custom/music-next"],
   "modules-center": ["custom/procs", "custom/uptime", "custom/netstate", "network", "network#speed"],
-  "modules-right":  ["custom/volume", "custom/brightness", "custom/drive", "custom/dnd", "custom/caffeine"],
+  "modules-right":  ["custom/volume", "custom/brightness", "custom/drive", "custom/caffeine"],
 
   // power menu (rofi, opens upward from the corner) + vertical line before the music module;
   // the button is the current moon phase, recomputed every hour
@@ -226,14 +226,6 @@
     "interval": 3, "signal": 13, "tooltip": false,
     "format": "  <span color='#4D4D5A'>│</span>  <span size='9pt'>{}</span>   ",
     "on-click": "~/.config/waybar/scripts/drive-module.sh"
-  },
-
-  // do not disturb — click toggles swaync DND
-  "custom/dnd": {
-    "exec": "~/.config/waybar/scripts/dnd-module.sh",
-    "interval": 5, "signal": 10, "tooltip": false,
-    "format": "<span size='10pt'>{}</span>   ",
-    "on-click": "~/.config/waybar/scripts/dnd-module.sh --toggle"
   },
 
   // caffeine — click keeps the screen awake (skips the idle lock and screen-off)

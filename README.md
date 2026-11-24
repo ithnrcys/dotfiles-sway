@@ -279,6 +279,7 @@ MEMORY: 32Gib
         notes:      scripts/notes.sh — rofi dropdown of ~/Documents/notes (newest first); typing a name that is not listed starts a new note; opens nvim in a floating Ghostty (app_id quick.notepad)
         calculator: GMNB 0.3.0 (github.com/Go08er/GlazeMyNumbersBaby, Windows Calculator ported to Rust / GTK 4) — GMNB.flatpak from the release, checked against its SHA256SUMS, flatpak install --user
         tile glyphs are scaled with transform: swaync ignores font-size on them
+    waybar: do-not-disturb module removed from the bottom bar (custom/dnd, scripts/dnd-module.sh deleted) — the switch in the quick access panel does the same
         checked: pomodoro start / bar countdown / stop; a 4 s recording started and stopped from the script (OBS launched and quit); panel screenshots
     sway: notes (app_id quick.notepad) and the GMNB calculator float — 760x520 / 420x640 in the centre the first time; sway/float-memory.py (started by autostart.sh) saves each one's position and size when it closes and puts the next one back there (~/.local/state/float-memory.json). Move: $mod + left drag, resize: $mod + right drag
         checked: notepad window moved and resized, closed, reopened at the same place and size
